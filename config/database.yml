@@ -1,25 +1,36 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem "sqlite3"
-#
-default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+# DB configuration
+
+common: &common
+    pool: 30
+    host: 127.0.0.1
+    adapter: postgresql
+    encoding: unicode
+    reconnect: false
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+    <<: *common
+    database: <%= Rails.application.credentials.db[:database] %>
+    username: <%= Rails.application.credentials.db[:username] %>
+    password: <%= Rails.application.credentials.db[:password] %>
+    port: <%= Rails.application.credentials.db.dig(:port) || 5432 %>
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: db/test.sqlite3
+    <<: *common
+    database: <%= Rails.application.credentials.db[:database] %>
+    username: <%= Rails.application.credentials.db[:username] %>
+    password: <%= Rails.application.credentials.db[:password] %>
+    port: <%= Rails.application.credentials.db[:port] %>
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+    <<: *common
+    port: <%= Rails.application.credentials.db[:port] %>
+    host: <%= Rails.application.credentials.db[:host] %>
+    database: <%= Rails.application.credentials.db[:database] %>
+    username: <%= Rails.application.credentials.db[:username] %>
+    password: <%= Rails.application.credentials.db[:password] %>
+
+production_dev:
+    <<: *common
+    database: <%= Rails.application.credentials.db[:database] %>
+    username: <%= Rails.application.credentials.db[:username] %>
+    password: <%= Rails.application.credentials.db[:password] %>
