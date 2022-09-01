@@ -13,6 +13,9 @@ gem "sprockets-rails"
 # Pg is the Ruby interface to the PostgreSQL RDBMS. It works with PostgreSQL 9.3 and later.
 gem "pg", "1.3.3"
 
+# Flexible authentication solution for Rails with Warden
+gem "devise", "4.8.1"
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
