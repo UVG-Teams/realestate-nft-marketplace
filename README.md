@@ -2,7 +2,7 @@
 
 Trabajo de graduación UVG titulado "Traspaso inmediato e inteligente de propiedades usando blockchain y NFTs".
 
-[Backend](https://github.com/UVG-Teams/realestate-nft-marketplace)
+[Frontend](https://github.com/UVG-Teams/realestate-nft-marketplace-spa)
 
 Autores:
 - [Andy Castillo](https://github.com/Andy5am)
