@@ -36,3 +36,5 @@
 
 /config/credentials/*
 !/config/credentials/.gitkeep
+
+/lib/spa/*
