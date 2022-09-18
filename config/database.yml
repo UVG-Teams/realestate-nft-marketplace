@@ -1,0 +1,36 @@
+# DB configuration
+
+common: &common
+    pool: 30
+    host: 127.0.0.1
+    adapter: postgresql
+    encoding: unicode
+    reconnect: false
+
+development:
+    <<: *common
+    database: <%= Rails.application.credentials.db[:database] %>
+    username: <%= Rails.application.credentials.db[:username] %>
+    password: <%= Rails.application.credentials.db[:password] %>
+    port: <%= Rails.application.credentials.db.dig(:port) || 5432 %>
+
+test:
+    <<: *common
+    database: <%= Rails.application.credentials.db[:database] %>
+    username: <%= Rails.application.credentials.db[:username] %>
+    password: <%= Rails.application.credentials.db[:password] %>
+    port: <%= Rails.application.credentials.db[:port] %>
+
+production:
+    <<: *common
+    port: <%= Rails.application.credentials.db[:port] %>
+    host: <%= Rails.application.credentials.db[:host] %>
+    database: <%= Rails.application.credentials.db[:database] %>
+    username: <%= Rails.application.credentials.db[:username] %>
+    password: <%= Rails.application.credentials.db[:password] %>
+
+production_dev:
+    <<: *common
+    database: <%= Rails.application.credentials.db[:database] %>
+    username: <%= Rails.application.credentials.db[:username] %>
+    password: <%= Rails.application.credentials.db[:password] %>
