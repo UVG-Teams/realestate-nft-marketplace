@@ -40,7 +40,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/lib/spa/node_modules
+/node_modules
 /lib/spa/.pnp
 .pnp.js
 
