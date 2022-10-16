@@ -18,6 +18,30 @@ contract Vesta is ERC721, ERC721Enumerable {
         _safeMint(msg.sender, tokenId);
     }
 
+    function tokenURI(uint256 tokenId) 
+        public
+        view
+        override
+        returns(string memory) 
+    {
+        require(
+            _exists(tokenId),
+            "ERC721 Metadata: URI query for nonexistent token"
+        );
+
+        string memory jsonURI = string(
+            abi.encodePacked(
+                '{"name": "Vesta #',
+                tokenId,
+                '", "description": "Vesta is ...", "image": "',
+                "// TODO: Calculate image URL",
+                '"}'
+            )
+        );
+
+        return "";
+    }
+
     // Enumerable methods to list the tokens a user owns (Overrides required by solidity)
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
         internal
