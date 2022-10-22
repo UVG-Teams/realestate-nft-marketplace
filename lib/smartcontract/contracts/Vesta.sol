@@ -5,8 +5,9 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./Base64.sol";
-
-contract Vesta is ERC721, ERC721Enumerable {
+import "./VestaDNA.sol";
+ 
+contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
@@ -40,7 +41,7 @@ contract Vesta is ERC721, ERC721Enumerable {
             )
         );
 
-        return jsonURI;
+        return string(abi.encodePacked("data:application/json;base64,", jsonURI));
     }
 
     // Enumerable methods to list the tokens a user owns (Overrides required by solidity)
