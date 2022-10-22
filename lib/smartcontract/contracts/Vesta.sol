@@ -9,6 +9,7 @@ import "./VestaDNA.sol";
  
 contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
     using Counters for Counters.Counter;
+    using Strings for uint256;
 
     Counters.Counter private _tokenIdCounter;
 
@@ -32,12 +33,23 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
         );
 
         string memory jsonURI = Base64.encode(
-            abi.encodePacked(
-                '{"name": "Vesta #',
-                tokenId,
-                '", "description": "Vesta is ...", "image": "',
-                "// TODO: Calculate image URL",
-                '"}'
+            bytes(
+                string(
+                    // abi.encodePacked(
+                    //     '{"name": "Vesta #',
+                    //     tokenId,
+                    //     '", "description": "Vesta is ...", "image": "',
+                    //     "https://gateway.pinata.cloud/ipfs/QmRSfSj2CkCVzipTCyQYPGe55C7nFtQbki5ZMKdjPc1Ng8",
+                    //     '"}'
+                    // )
+                    abi.encodePacked(
+                        '{"name": "Vesta #',
+                        tokenId.toString(),
+                        '", "description": "Vesta are houses stored on chain to transfer property", "image": "',
+                        "https://gateway.pinata.cloud/ipfs/QmRSfSj2CkCVzipTCyQYPGe55C7nFtQbki5ZMKdjPc1Ng8",
+                        '"}'
+                    )
+                )
             )
         );
 
