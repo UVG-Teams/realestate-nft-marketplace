@@ -32,6 +32,8 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
             "ERC721 Metadata: URI query for nonexistent token"
         );
 
+        // uint256 metad = get_house_info();
+
         string memory jsonURI = Base64.encode(
             bytes(
                 string(
@@ -41,12 +43,21 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
                     //     '", "description": "Vesta are houses stored on chain to transfer property", "image": "',
                     //     "https://gateway.pinata.cloud/ipfs/Qmde74qhgr2xTtaxBxG9aSEcugbfCVZm2ddkjEjywrnuWW",
                     //     '"}'
+
+                    // abi.encodePacked(
+                    //     '{"name": "Vesta #',
+                    //     metad.toString(),
+                    //     '", "description": "Vesta are houses stored on chain to transfer property", "image": "',
+                    //     "https://gateway.pinata.cloud/ipfs/Qmde74qhgr2xTtaxBxG9aSEcugbfCVZm2ddkjEjywrnuWW",
+                    //     '"}'
                     // )
+                    
+
                     abi.encodePacked(
                         '{"name":"', "Test Vesta",
                         '","description":"', "Test si este formato funciona",
                         '","image":"', "https://gateway.pinata.cloud/ipfs/Qmde74qhgr2xTtaxBxG9aSEcugbfCVZm2ddkjEjywrnuWW",
-                        '","attributes":[{"trait_type":"Tower","value":"', "Red", '"},{"trait_type":"District","value":"', "Blue", '"},{"trait_type": "neighborhood","value":"', "Italia", '"}]}'
+                        '","attributes":[{"trait_type":"Libro","value":"', userI.libro.toString(), '"},{"trait_type":"Habitaciones","value":"', userI.rooms.toString(), '"},{"trait_type": "Ubicacion","value":"', userI.location, '"}]}'
                     )
                 )
             )

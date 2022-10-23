@@ -97,9 +97,9 @@ pragma solidity ^0.8.0;
 contract VestaDNA {
     struct House{
         // uint batch_num;
-        int libro;
-        int folio;
-        int rooms;
+        uint256 libro;
+        uint256 folio;
+        uint256 rooms;
         int bathrooms;
         string location;
         // address user;
@@ -108,12 +108,62 @@ contract VestaDNA {
 
     House userI;
 
-    function set_house_detail(int l, int f, int r, int b, string memory loc) public {
+    function set_house_detail(uint256 l, uint256 f, uint256 r, int b, string memory loc) public {
         userI = House(l, f, r, b, loc);
     }
 
-    function get_house_info() public view returns (int, int, int, int, string memory) { 
-        return(userI.libro, userI.folio, userI.rooms, userI.bathrooms, userI.location); 
+    // function get_house_info() public view returns (int, int, int, int, string memory) { 
+    //     return(userI.libro, userI.folio, userI.rooms, userI.bathrooms, userI.location); 
+    // }
+    function get_house_info() public view returns (uint256, uint256, string memory ) { 
+        return(userI.libro, userI.rooms, userI.location); 
+    }
+}
+
+
+// File @openzeppelin/contracts/utils/Counters.sol@v4.7.3
+
+
+// OpenZeppelin Contracts v4.4.1 (utils/Counters.sol)
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title Counters
+ * @author Matt Condon (@shrugs)
+ * @dev Provides counters that can only be incremented, decremented or reset. This can be used e.g. to track the number
+ * of elements in a mapping, issuing ERC721 ids, or counting request ids.
+ *
+ * Include with `using Counters for Counters.Counter;`
+ */
+library Counters {
+    struct Counter {
+        // This variable should never be directly accessed by users of the library: interactions must be restricted to
+        // the library's function. As of Solidity v0.5.2, this cannot be enforced, though there is a proposal to add
+        // this feature: see https://github.com/ethereum/solidity/issues/4637
+        uint256 _value; // default: 0
+    }
+
+    function current(Counter storage counter) internal view returns (uint256) {
+        return counter._value;
+    }
+
+    function increment(Counter storage counter) internal {
+        unchecked {
+            counter._value += 1;
+        }
+    }
+
+    function decrement(Counter storage counter) internal {
+        uint256 value = counter._value;
+        require(value > 0, "Counter: decrement overflow");
+        unchecked {
+            counter._value = value - 1;
+        }
+    }
+
+    function reset(Counter storage counter) internal {
+        counter._value = 0;
     }
 }
 
@@ -372,6 +422,85 @@ abstract contract Context {
 }
 
 
+// File @openzeppelin/contracts/utils/Strings.sol@v4.7.3
+
+
+// OpenZeppelin Contracts (last updated v4.7.0) (utils/Strings.sol)
+
+pragma solidity ^0.8.0;
+
+/**
+ * @dev String operations.
+ */
+library Strings {
+    bytes16 private constant _HEX_SYMBOLS = "0123456789abcdef";
+    uint8 private constant _ADDRESS_LENGTH = 20;
+
+    /**
+     * @dev Converts a `uint256` to its ASCII `string` decimal representation.
+     */
+    function toString(uint256 value) internal pure returns (string memory) {
+        // Inspired by OraclizeAPI's implementation - MIT licence
+        // https://github.com/oraclize/ethereum-api/blob/b42146b063c7d6ee1358846c198246239e9360e8/oraclizeAPI_0.4.25.sol
+
+        if (value == 0) {
+            return "0";
+        }
+        uint256 temp = value;
+        uint256 digits;
+        while (temp != 0) {
+            digits++;
+            temp /= 10;
+        }
+        bytes memory buffer = new bytes(digits);
+        while (value != 0) {
+            digits -= 1;
+            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
+            value /= 10;
+        }
+        return string(buffer);
+    }
+
+    /**
+     * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation.
+     */
+    function toHexString(uint256 value) internal pure returns (string memory) {
+        if (value == 0) {
+            return "0x00";
+        }
+        uint256 temp = value;
+        uint256 length = 0;
+        while (temp != 0) {
+            length++;
+            temp >>= 8;
+        }
+        return toHexString(value, length);
+    }
+
+    /**
+     * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation with fixed length.
+     */
+    function toHexString(uint256 value, uint256 length) internal pure returns (string memory) {
+        bytes memory buffer = new bytes(2 * length + 2);
+        buffer[0] = "0";
+        buffer[1] = "x";
+        for (uint256 i = 2 * length + 1; i > 1; --i) {
+            buffer[i] = _HEX_SYMBOLS[value & 0xf];
+            value >>= 4;
+        }
+        require(value == 0, "Strings: hex length insufficient");
+        return string(buffer);
+    }
+
+    /**
+     * @dev Converts an `address` with fixed length of 20 bytes to its not checksummed ASCII `string` hexadecimal representation.
+     */
+    function toHexString(address addr) internal pure returns (string memory) {
+        return toHexString(uint256(uint160(addr)), _ADDRESS_LENGTH);
+    }
+}
+
+
 // File @openzeppelin/contracts/utils/introspection/IERC165.sol@v4.7.3
 
 
@@ -546,85 +675,6 @@ interface IERC721 is IERC165 {
 }
 
 
-// File @openzeppelin/contracts/utils/Strings.sol@v4.7.3
-
-
-// OpenZeppelin Contracts (last updated v4.7.0) (utils/Strings.sol)
-
-pragma solidity ^0.8.0;
-
-/**
- * @dev String operations.
- */
-library Strings {
-    bytes16 private constant _HEX_SYMBOLS = "0123456789abcdef";
-    uint8 private constant _ADDRESS_LENGTH = 20;
-
-    /**
-     * @dev Converts a `uint256` to its ASCII `string` decimal representation.
-     */
-    function toString(uint256 value) internal pure returns (string memory) {
-        // Inspired by OraclizeAPI's implementation - MIT licence
-        // https://github.com/oraclize/ethereum-api/blob/b42146b063c7d6ee1358846c198246239e9360e8/oraclizeAPI_0.4.25.sol
-
-        if (value == 0) {
-            return "0";
-        }
-        uint256 temp = value;
-        uint256 digits;
-        while (temp != 0) {
-            digits++;
-            temp /= 10;
-        }
-        bytes memory buffer = new bytes(digits);
-        while (value != 0) {
-            digits -= 1;
-            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
-            value /= 10;
-        }
-        return string(buffer);
-    }
-
-    /**
-     * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation.
-     */
-    function toHexString(uint256 value) internal pure returns (string memory) {
-        if (value == 0) {
-            return "0x00";
-        }
-        uint256 temp = value;
-        uint256 length = 0;
-        while (temp != 0) {
-            length++;
-            temp >>= 8;
-        }
-        return toHexString(value, length);
-    }
-
-    /**
-     * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation with fixed length.
-     */
-    function toHexString(uint256 value, uint256 length) internal pure returns (string memory) {
-        bytes memory buffer = new bytes(2 * length + 2);
-        buffer[0] = "0";
-        buffer[1] = "x";
-        for (uint256 i = 2 * length + 1; i > 1; --i) {
-            buffer[i] = _HEX_SYMBOLS[value & 0xf];
-            value >>= 4;
-        }
-        require(value == 0, "Strings: hex length insufficient");
-        return string(buffer);
-    }
-
-    /**
-     * @dev Converts an `address` with fixed length of 20 bytes to its not checksummed ASCII `string` hexadecimal representation.
-     */
-    function toHexString(address addr) internal pure returns (string memory) {
-        return toHexString(uint256(uint160(addr)), _ADDRESS_LENGTH);
-    }
-}
-
-
 // File @openzeppelin/contracts/token/ERC721/IERC721Receiver.sol@v4.7.3
 
 
@@ -656,35 +706,6 @@ interface IERC721Receiver {
 }
 
 
-// File @openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol@v4.7.3
-
-
-// OpenZeppelin Contracts v4.4.1 (token/ERC721/extensions/IERC721Metadata.sol)
-
-pragma solidity ^0.8.0;
-
-/**
- * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
- * @dev See https://eips.ethereum.org/EIPS/eip-721
- */
-interface IERC721Metadata is IERC721 {
-    /**
-     * @dev Returns the token collection name.
-     */
-    function name() external view returns (string memory);
-
-    /**
-     * @dev Returns the token collection symbol.
-     */
-    function symbol() external view returns (string memory);
-
-    /**
-     * @dev Returns the Uniform Resource Identifier (URI) for `tokenId` token.
-     */
-    function tokenURI(uint256 tokenId) external view returns (string memory);
-}
-
-
 // File @openzeppelin/contracts/utils/introspection/ERC165.sol@v4.7.3
 
 
@@ -713,6 +734,35 @@ abstract contract ERC165 is IERC165 {
     function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {
         return interfaceId == type(IERC165).interfaceId;
     }
+}
+
+
+// File @openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol@v4.7.3
+
+
+// OpenZeppelin Contracts v4.4.1 (token/ERC721/extensions/IERC721Metadata.sol)
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
+ * @dev See https://eips.ethereum.org/EIPS/eip-721
+ */
+interface IERC721Metadata is IERC721 {
+    /**
+     * @dev Returns the token collection name.
+     */
+    function name() external view returns (string memory);
+
+    /**
+     * @dev Returns the token collection symbol.
+     */
+    function symbol() external view returns (string memory);
+
+    /**
+     * @dev Returns the Uniform Resource Identifier (URI) for `tokenId` token.
+     */
+    function tokenURI(uint256 tokenId) external view returns (string memory);
 }
 
 
@@ -1172,53 +1222,6 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
 }
 
 
-// File @openzeppelin/contracts/utils/Counters.sol@v4.7.3
-
-
-// OpenZeppelin Contracts v4.4.1 (utils/Counters.sol)
-
-pragma solidity ^0.8.0;
-
-/**
- * @title Counters
- * @author Matt Condon (@shrugs)
- * @dev Provides counters that can only be incremented, decremented or reset. This can be used e.g. to track the number
- * of elements in a mapping, issuing ERC721 ids, or counting request ids.
- *
- * Include with `using Counters for Counters.Counter;`
- */
-library Counters {
-    struct Counter {
-        // This variable should never be directly accessed by users of the library: interactions must be restricted to
-        // the library's function. As of Solidity v0.5.2, this cannot be enforced, though there is a proposal to add
-        // this feature: see https://github.com/ethereum/solidity/issues/4637
-        uint256 _value; // default: 0
-    }
-
-    function current(Counter storage counter) internal view returns (uint256) {
-        return counter._value;
-    }
-
-    function increment(Counter storage counter) internal {
-        unchecked {
-            counter._value += 1;
-        }
-    }
-
-    function decrement(Counter storage counter) internal {
-        uint256 value = counter._value;
-        require(value > 0, "Counter: decrement overflow");
-        unchecked {
-            counter._value = value - 1;
-        }
-    }
-
-    function reset(Counter storage counter) internal {
-        counter._value = 0;
-    }
-}
-
-
 // File @openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol@v4.7.3
 
 
@@ -1449,6 +1452,8 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
             "ERC721 Metadata: URI query for nonexistent token"
         );
 
+        // uint256 metad = get_house_info();
+
         string memory jsonURI = Base64.encode(
             bytes(
                 string(
@@ -1458,12 +1463,21 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
                     //     '", "description": "Vesta are houses stored on chain to transfer property", "image": "',
                     //     "https://gateway.pinata.cloud/ipfs/Qmde74qhgr2xTtaxBxG9aSEcugbfCVZm2ddkjEjywrnuWW",
                     //     '"}'
+
+                    // abi.encodePacked(
+                    //     '{"name": "Vesta #',
+                    //     metad.toString(),
+                    //     '", "description": "Vesta are houses stored on chain to transfer property", "image": "',
+                    //     "https://gateway.pinata.cloud/ipfs/Qmde74qhgr2xTtaxBxG9aSEcugbfCVZm2ddkjEjywrnuWW",
+                    //     '"}'
                     // )
+                    
+
                     abi.encodePacked(
                         '{"name":"', "Test Vesta",
                         '","description":"', "Test si este formato funciona",
                         '","image":"', "https://gateway.pinata.cloud/ipfs/Qmde74qhgr2xTtaxBxG9aSEcugbfCVZm2ddkjEjywrnuWW",
-                        '","attributes":[{"trait_type":"Tower","value":"', "Red", '"},{"trait_type":"District","value":"', "Blue", '"},{"trait_type": "neighborhood","value":"', "Italia", '"}]}'
+                        '","attributes":[{"trait_type":"Libro","value":"', userI.libro.toString(), '"},{"trait_type":"Habitaciones","value":"', userI.rooms.toString(), '"},{"trait_type": "Ubicacion","value":"', userI.location, '"}]}'
                     )
                 )
             )
