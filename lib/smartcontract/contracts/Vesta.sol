@@ -37,17 +37,16 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
                 string(
                     // abi.encodePacked(
                     //     '{"name": "Vesta #',
-                    //     tokenId,
-                    //     '", "description": "Vesta is ...", "image": "',
-                    //     "https://gateway.pinata.cloud/ipfs/QmRSfSj2CkCVzipTCyQYPGe55C7nFtQbki5ZMKdjPc1Ng8",
+                    //     tokenId.toString(),
+                    //     '", "description": "Vesta are houses stored on chain to transfer property", "image": "',
+                    //     "https://gateway.pinata.cloud/ipfs/Qmde74qhgr2xTtaxBxG9aSEcugbfCVZm2ddkjEjywrnuWW",
                     //     '"}'
                     // )
                     abi.encodePacked(
-                        '{"name": "Vesta #',
-                        tokenId.toString(),
-                        '", "description": "Vesta are houses stored on chain to transfer property", "image": "',
-                        "https://gateway.pinata.cloud/ipfs/QmRSfSj2CkCVzipTCyQYPGe55C7nFtQbki5ZMKdjPc1Ng8",
-                        '"}'
+                        '{"name":"', "Test Vesta",
+                        '","description":"', "Test si este formato funciona",
+                        '","image":"', "https://gateway.pinata.cloud/ipfs/Qmde74qhgr2xTtaxBxG9aSEcugbfCVZm2ddkjEjywrnuWW",
+                        '","attributes":[{"trait_type":"Tower","value":"', "Red", '"},{"trait_type":"District","value":"', "Blue", '"},{"trait_type": "neighborhood","value":"', "Italia", '"}]}'
                     )
                 )
             )
