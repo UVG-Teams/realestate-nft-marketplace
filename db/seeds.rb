@@ -4,9 +4,10 @@
 
 puts "Running seeders"
 
-User.create(
-    email: "hello@admin.com",
+User.create_with(
     password: "admin"
+).find_or_create_by(
+    email: "hello@admin.com",
 )
 
 puts "Finish seeders"
