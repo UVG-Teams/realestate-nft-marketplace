@@ -21,12 +21,12 @@ class ApplicationApiController < ActionController::API
         return respond_with_status(401) unless valid
 
         # Looking for the user
-        current_user = User.find_by_id(payload["sub"])
+        @current_user = User.find_by_id(payload["sub"])
 
-        return respond_with_status(401) if current_user.blank?
+        return respond_with_status(401) if @current_user.blank?
 
         # TODO
-        # return respond_with_status(401) unless current_user.active
+        # return respond_with_status(401) unless @current_user.active
 
     end
 

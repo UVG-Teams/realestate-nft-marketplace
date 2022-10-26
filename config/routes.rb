@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     namespace :api do
         namespace :users do
             resources :sessions
+            resources :registration
         end
 
         resources :users

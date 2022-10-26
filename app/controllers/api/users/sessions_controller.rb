@@ -10,14 +10,14 @@ class Api::Users::SessionsController < ApplicationApiController
         # User not found
         return respond_with_status(404) if user.blank?
 
-        # Setting current_user
-        current_user = user
+        # Setting @current_user
+        @current_user = user
 
         # Wrong password
-        return respond_with_status(400, "Wrong password") unless current_user.valid_password?(session_params[:password])
+        return respond_with_status(400, "Wrong password") unless @current_user.valid_password?(session_params[:password])
 
         # Generate JWT
-        auth_token = ::AuthToken.new(current_user)
+        auth_token = ::AuthToken.new(@current_user)
 
         respond_with_status(200, {
             token: auth_token.token

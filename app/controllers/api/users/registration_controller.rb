@@ -4,7 +4,7 @@ class Api::Users::RegistrationController < ApplicationApiController
 
     def create
 
-        current_user = nil
+        @current_user = nil
 
         # Looking for the user
         user = User.find_for_database_authentication(email: registration_params[:email])
@@ -15,12 +15,12 @@ class Api::Users::RegistrationController < ApplicationApiController
         # Pasword mismatch
         return respond_with_status(400, "Pasword mismatch") if registration_params[:password] != registration_params[:password_confirmation]
 
-        # Setting current_user
-        current_user = User.new(registration_params)
+        # Setting @current_user
+        @current_user = User.new(registration_params)
 
-        if current_user.save
+        if @current_user.save
             # Generate JWT
-            auth_token = ::AuthToken.new(current_user)
+            auth_token = ::AuthToken.new(@current_user)
 
             return respond_with_status(200, {
                 token: auth_token.token

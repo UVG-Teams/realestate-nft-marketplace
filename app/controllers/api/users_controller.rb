@@ -14,6 +14,8 @@ class Api::UsersController < ApplicationApiController
 
     # PATCH/PUT /users/1 or /users/1.json
     def update
+        return respond_with_status(401) if @user != @current_user
+
         if @user.update(user_params)
             respond_with_status(200, "User was successfully updated.")
         else
@@ -23,6 +25,8 @@ class Api::UsersController < ApplicationApiController
 
     # DELETE /users/1 or /users/1.json
     def destroy
+        return respond_with_status(401) if @user != @current_user
+
         @user.destroy
 
         respond_with_status(200, "User was successfully destroyed.")
