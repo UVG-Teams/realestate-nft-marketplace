@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
     devise_for :users,
     :path => "",
     :path_names => {
@@ -8,4 +9,11 @@ Rails.application.routes.draw do
     }
 
     resources :users
+
+    namespace :api do
+        namespace :users do
+            resources :sessions
+        end
+    end
+
 end
