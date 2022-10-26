@@ -24,10 +24,12 @@ module ApplicationApiHelper
         return render(status: status, content_type: 'application/json', json: payload.to_json)
     end
 
-    def debug msg
+    def debug *args
         puts @@ANSI_RED
         puts "-" * 100
-        puts msg
+        args.each do |arg|
+            puts arg
+        end
         puts "-" * 100
         puts @@ANSI_RESET
     end
