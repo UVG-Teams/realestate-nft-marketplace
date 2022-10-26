@@ -54,7 +54,6 @@ class AuthToken
         custom_payload = payload.except("sub", "exp")
 
         self.new(current_user, custom_payload)
-
     end
 
     def self.generate_rsa
