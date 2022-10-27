@@ -15,6 +15,7 @@ class Api::PropertiesController < ApplicationApiController
     # POST /properties or /properties.json
     def create
         @property = Property.new(property_params)
+        @property.user = @current_user
 
         if @property.save
             respond_with_status(200, "Property was successfully created.")
@@ -53,6 +54,13 @@ class Api::PropertiesController < ApplicationApiController
 
     # Only allow a list of trusted parameters through.
     def property_params
-        params.fetch(:property, {})
+        params.fetch(:property, {}).permit(
+            :finca,
+            :folio,
+            :libro,
+            :location,
+            :rooms,
+            :bathrooms,
+        )
     end
 end

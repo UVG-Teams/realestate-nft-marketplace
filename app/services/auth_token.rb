@@ -30,7 +30,12 @@ class AuthToken
     def self.verify token
         hmac_secret = Rails.application.credentials.dig(:hmac, :secret)
 
-        decoded_token = JWT.decode token, hmac_secret, true, { algorithm: @@algorithm }
+        begin
+            decoded_token = JWT.decode token, hmac_secret, true, { algorithm: @@algorithm }
+        rescue => exception
+            Debugger.debug exception
+            return false, nil
+        end
 
         # Decoding parts of the token
         payload = decoded_token[0]
