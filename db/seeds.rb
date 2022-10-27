@@ -29,7 +29,7 @@ users_data.each do |data|
     admin_user = User.create_with(
         password: $password,
         active: true,
-    ).find_or_create_by(
+    ).find_or_create_by!(
         email: data[:email],
     )
 end
@@ -41,9 +41,10 @@ User.all.each do |user|
         folio: Faker::Number.number(digits: 4),
         libro: Faker::Number.number(digits: 4),
         location: Faker::Address.full_address,
+        category: Property.categories.keys.sample,
         rooms: Faker::Number.number(digits: 1),
         bathrooms: Faker::Number.number(digits: 1),
-    ).find_or_create_by(
+    ).find_or_create_by!(
         nft_id: generate_property_uuid(),
     )
 end

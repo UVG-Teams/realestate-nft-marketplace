@@ -8,8 +8,10 @@ class CreateProperties < ActiveRecord::Migration[7.0]
             t.integer   :folio
             t.integer   :libro
             t.string    :location
+            t.string    :status     # listed, not_listed, reserved, etc
 
             # Details
+            t.string    :category   # House, Land, Apartment, Commercial, etc
             t.integer   :rooms
             t.integer   :bathrooms
 

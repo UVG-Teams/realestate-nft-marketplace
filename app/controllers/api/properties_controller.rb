@@ -14,7 +14,12 @@ class Api::PropertiesController < ApplicationApiController
 
     # POST /properties or /properties.json
     def create
-        @property = Property.new(property_params)
+        begin
+            @property = Property.new(property_params)
+        rescue => exception
+            return respond_with_status(400, exception.to_s)
+        end
+
         @property.user = @current_user
 
         if @property.save
@@ -44,6 +49,10 @@ class Api::PropertiesController < ApplicationApiController
         respond_with_status(200, "Property was successfully destroyed.")
     end
 
+    # ====================================================================================================
+    # Custom methods
+    # ====================================================================================================
+
     private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -59,6 +68,7 @@ class Api::PropertiesController < ApplicationApiController
             :folio,
             :libro,
             :location,
+            :category,
             :rooms,
             :bathrooms,
         )

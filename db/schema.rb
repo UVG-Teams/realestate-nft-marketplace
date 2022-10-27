@@ -20,6 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_233848) do
     t.integer "folio"
     t.integer "libro"
     t.string "location"
+    t.string "status"
+    t.string "category"
     t.integer "rooms"
     t.integer "bathrooms"
     t.datetime "created_at", null: false
