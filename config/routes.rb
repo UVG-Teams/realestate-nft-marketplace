@@ -16,7 +16,13 @@ Rails.application.routes.draw do
             resources :registration
         end
 
-        resources :users
+        resources :users do
+            member do
+                get :properties
+            end
+        end
+
+        resources :properties
     end
 
 end
