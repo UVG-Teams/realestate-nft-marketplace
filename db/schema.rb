@@ -15,6 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_233848) do
   enable_extension "plpgsql"
 
   create_table "properties", force: :cascade do |t|
+    t.bigint "nft_id"
     t.integer "finca"
     t.integer "libro"
     t.integer "folio"
