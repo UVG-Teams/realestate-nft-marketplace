@@ -3,10 +3,10 @@ class CreateProperties < ActiveRecord::Migration[7.0]
         create_table :properties do |t|
 
             # Relevant
-            t.bigint    :nft_id
+            t.string    :nft_id
             t.integer   :finca
-            t.integer   :libro
             t.integer   :folio
+            t.integer   :libro
             t.string    :location
 
             # Details

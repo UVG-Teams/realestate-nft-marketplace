@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationApiController
-    before_action :set_user, only: %i[ show edit update destroy ]
+    before_action :set_user, only: %i[ show edit update destroy properties ]
 
     # GET /users or /users.json
     def index
@@ -30,6 +30,15 @@ class Api::UsersController < ApplicationApiController
         @user.destroy
 
         respond_with_status(200, "User was successfully destroyed.")
+    end
+
+    # ====================================================================================================
+    # Custom methods
+    # ====================================================================================================
+
+    def properties
+        user_properties = @user.properties.all
+        respond_with_status(200, user_properties)
     end
 
     private
