@@ -9,7 +9,7 @@ class ApplicationApiController < ActionController::API
         token = nil
 
         if request.headers["Authorization"].present?
-            token = request.headers["Authorization"].split("JWT ").last
+            token = request.headers["Authorization"].split("JWT ")[1]
         end
 
         # No token provided
@@ -25,8 +25,7 @@ class ApplicationApiController < ActionController::API
 
         return respond_with_status(401) if @current_user.blank?
 
-        # TODO
-        # return respond_with_status(401) unless @current_user.active
+        return respond_with_status(401, "Your user is not active") unless @current_user.active
 
     end
 

@@ -5,7 +5,8 @@
 puts "Running seeders"
 
 User.create_with(
-    password: "admin"
+    password: "admin",
+    active: true,
 ).find_or_create_by(
     email: "hello@admin.com",
 )

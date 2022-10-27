@@ -17,6 +17,7 @@ class Api::Users::RegistrationController < ApplicationApiController
 
         # Setting @current_user
         @current_user = User.new(registration_params)
+        @current_user.active = true
 
         if @current_user.save
             # Generate JWT
