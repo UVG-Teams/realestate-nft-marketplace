@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         :sign_up  => "register",
     }
 
-    resources :users
+    resources :users, only: [:index]
 
     namespace :api do
         namespace :users do
