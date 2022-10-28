@@ -9,22 +9,22 @@ default: &default
 
 development:
     <<: *default
-    database: <%= Rails.application.credentials.db[:database] %>
+    port: <%= Rails.application.credentials.db.dig(:port) || 5432 %>
     username: <%= Rails.application.credentials.db[:username] %>
     password: <%= Rails.application.credentials.db[:password] %>
-    port: <%= Rails.application.credentials.db.dig(:port) || 5432 %>
+    database: <%= Rails.application.credentials.db[:database] %>
 
 test:
     <<: *default
-    database: <%= Rails.application.credentials.db[:database] %>
+    port: <%= Rails.application.credentials.db[:port] %>
     username: <%= Rails.application.credentials.db[:username] %>
     password: <%= Rails.application.credentials.db[:password] %>
-    port: <%= Rails.application.credentials.db[:port] %>
+    database: <%= Rails.application.credentials.db[:database] %>
 
 production:
     <<: *default
-    port: <%= Rails.application.credentials.db[:port] %>
     host: <%= Rails.application.credentials.db[:host] %>
-    database: <%= Rails.application.credentials.db[:database] %>
+    port: <%= Rails.application.credentials.db[:port] %>
     username: <%= Rails.application.credentials.db[:username] %>
     password: <%= Rails.application.credentials.db[:password] %>
+    database: <%= Rails.application.credentials.db[:database] %>
