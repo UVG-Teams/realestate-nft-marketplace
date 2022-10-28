@@ -74,3 +74,5 @@ artifacts
 
 
 
+
+/config/credentials/production.key
