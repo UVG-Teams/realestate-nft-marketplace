@@ -11,8 +11,6 @@ end
 
 puts "Running seeders"
 
-$password = "admin"
-
 users_data = [{
     email: "admin@vesta.com",
 }, {
@@ -26,8 +24,12 @@ users_data = [{
 }]
 
 users_data.each do |data|
+
+    password = SecureRandom.hex(10)
+    Debugger.debug data[:email], password
+
     admin_user = User.create_with(
-        password: $password,
+        password: password,
         active: true,
     ).find_or_create_by!(
         email: data[:email],
