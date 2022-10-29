@@ -73,6 +73,11 @@ cache
 artifacts
 
 
+# Secret
+/secret/*
+!/secret/.keep
+
+
 
 
 /config/credentials/production.key
