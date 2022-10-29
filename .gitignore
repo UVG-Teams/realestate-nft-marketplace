@@ -48,7 +48,7 @@
 /lib/spa/coverage
 
 # production
-/lib/spa/build
+# /lib/spa/build
 
 # misc
 .DS_Store
