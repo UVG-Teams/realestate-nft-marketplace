@@ -19,6 +19,9 @@ gem "devise", "4.8.1"
 # JWT for Rails
 gem 'jwt'
 
+# Middleware that will make Rack-based apps CORS compatible.
+gem "rack-cors", "1.1.1"
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
