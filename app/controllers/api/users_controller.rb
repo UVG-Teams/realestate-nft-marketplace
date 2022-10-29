@@ -41,6 +41,26 @@ class Api::UsersController < ApplicationApiController
         respond_with_status(200, user_properties)
     end
 
+    def wallet
+
+        return respond_with_status(400) if wallet_params[:account].blank?
+
+        # Look account in all registered
+        wallet = User::Wallet.find_by(account: wallet_params[:account])
+
+        # Account already registered
+        return respond_with_status(400, "Account already registered by other user") if wallet
+
+        wallet = @current_user.wallets.new(wallet_params)
+
+        if wallet.save
+            respond_with_status(200, "Wallet was successfully created.")
+        else
+            respond_with_status(400, wallet.errors)
+        end
+
+    end
+
     private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -53,4 +73,9 @@ class Api::UsersController < ApplicationApiController
     def user_params
         params.fetch(:user, {})
     end
+
+    def wallet_params
+        params.fetch(:wallet, {}).permit(:account)
+    end
+
 end

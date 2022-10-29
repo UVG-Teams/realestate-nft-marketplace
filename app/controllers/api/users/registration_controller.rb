@@ -20,12 +20,29 @@ class Api::Users::RegistrationController < ApplicationApiController
         @current_user.active = true
 
         if @current_user.save
+
+            if wallet_params[:account]
+
+                # Look account in all registered
+                wallet = User::Wallet.find_by(account: wallet_params[:account])
+
+                # Account already registered
+                return respond_with_status(400, "Account already registered by other user") if wallet
+
+                # Registering account for the current_user
+                @current_user.wallets.create({
+                    account: wallet_params[:account]
+                })
+
+            end
+
             # Generate JWT
             auth_token = ::AuthToken.new(@current_user)
 
             return respond_with_status(200, {
                 token: auth_token.token
             })
+
         else
             return respond_with_status(400, "Try again later")
         end
@@ -36,6 +53,10 @@ class Api::Users::RegistrationController < ApplicationApiController
 
     def registration_params
         params.fetch(:registration, {}).permit(:email, :password, :password_confirmation)
+    end
+
+    def wallet_params
+        params.fetch(:wallet, {}).permit(:account)
     end
 
 end

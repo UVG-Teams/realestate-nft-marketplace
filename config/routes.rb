@@ -22,7 +22,8 @@ Rails.application.routes.draw do
             end
 
             member do
-                get :properties
+                get     :properties
+                post    :wallet
             end
         end
 
