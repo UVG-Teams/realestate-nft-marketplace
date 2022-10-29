@@ -12,11 +12,15 @@ Rails.application.routes.draw do
 
     namespace :api do
         namespace :users do
-            resources :sessions
-            resources :registration
+            resources :sessions, only: [:create]
+            resources :registration, only: [:create]
         end
 
         resources :users do
+            scope module: :user do
+                resources :wallets, only: []
+            end
+
             member do
                 get :properties
             end
