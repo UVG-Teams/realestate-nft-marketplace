@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user_wallet %>
+
+<div>
+  <%= link_to "Edit this wallet", edit_user_wallet_path(@user_wallet) %> |
+  <%= link_to "Back to wallets", user_wallets_path %>
+
+  <%= button_to "Destroy this wallet", @user_wallet, method: :delete %>
+</div>
