@@ -1,10 +1,9 @@
 module ApplicationApiHelper
-
     @@ANSI_RED = "\e[31m"
     @@ANSI_WHITE = "\e[37m"
     @@ANSI_RESET = "\e[0m"
 
-    def respond_with_status(status=200, payload={})
+    def respond_with_status(status = 200, payload = {})
 
         if payload.is_a?(String)
             payload = { msg: payload }
@@ -33,5 +32,4 @@ module ApplicationApiHelper
         puts '-' * 100
         puts @@ANSI_RESET
     end
-
 end

@@ -28,6 +28,5 @@ module RealestateNftMarketplace
                     methods: %i(get post options put)
             end
         end
-
     end
 end

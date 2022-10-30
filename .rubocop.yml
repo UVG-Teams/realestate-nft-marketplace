@@ -27,3 +27,6 @@ Layout/CommentIndentation:
 
 Style/Documentation:
   Enabled: false
+
+Layout/ArgumentAlignment:
+  Enabled: false

@@ -1,5 +1,4 @@
 class Api::Users::RegistrationController < ApplicationApiController
-
     skip_before_action :authorize_request, only: :create
 
     def create
@@ -65,5 +64,4 @@ class Api::Users::RegistrationController < ApplicationApiController
     def wallet_params
         params.fetch(:wallet, {}).permit(:account)
     end
-
 end

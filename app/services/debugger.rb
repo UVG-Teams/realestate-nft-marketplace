@@ -1,5 +1,4 @@
 module Debugger
-
     ANSI_RED = "\e[31m"
     ANSI_WHITE = "\e[37m"
     ANSI_RESET = "\e[0m"
@@ -13,5 +12,4 @@ module Debugger
         puts '-' * 100
         puts ANSI_RESET
     end
-
 end

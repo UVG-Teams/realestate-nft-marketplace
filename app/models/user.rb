@@ -5,5 +5,4 @@ class User < ApplicationRecord
 
     has_many :wallets
     has_many :properties
-
 end

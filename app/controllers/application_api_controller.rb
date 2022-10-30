@@ -28,5 +28,4 @@ class ApplicationApiController < ActionController::API
         return respond_with_status(401, 'Your user is not active') unless @current_user.active
 
     end
-
 end

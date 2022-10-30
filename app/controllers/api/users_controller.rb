@@ -77,5 +77,4 @@ class Api::UsersController < ApplicationApiController
     def wallet_params
         params.fetch(:wallet, {}).permit(:account)
     end
-
 end

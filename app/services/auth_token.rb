@@ -2,7 +2,6 @@ require 'jwt'
 # Docs: https://github.com/jwt/ruby-jwt
 
 class AuthToken
-
     attr_accessor :token
     @@algorithm = 'HS256'
 
@@ -68,5 +67,4 @@ class AuthToken
         Debugger.debug rsa_private
         Debugger.debug rsa_public
     end
-
 end

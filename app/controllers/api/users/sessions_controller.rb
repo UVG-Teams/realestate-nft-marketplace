@@ -1,5 +1,4 @@
 class Api::Users::SessionsController < ApplicationApiController
-
     skip_before_action :authorize_request, only: :create
 
     def create
@@ -48,5 +47,4 @@ class Api::Users::SessionsController < ApplicationApiController
     def session_params
         params.fetch(:session, {}).permit(:email, :password, :account)
     end
-
 end
