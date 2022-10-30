@@ -20,6 +20,7 @@ jobs:
           POSTGRES_PASSWORD: password
     env:
       RAILS_ENV: test
+      # RAILS_MASTER_KEY: ${{ secrets.RAILS_CREDENTIALS_CI_KEY }}
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:
       - name: Checkout code
@@ -39,6 +40,8 @@ jobs:
           bundle exec rake db:create
           bundle exec rake db:migrate
           bundle exec rake db:seed
+        env:
+          RAILS_ENV: test
       # - name: Set up database schema
         # run: bin/rails db:schema:load
       # Add or replace test runners here
