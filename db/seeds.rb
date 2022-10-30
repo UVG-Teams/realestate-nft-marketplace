@@ -23,11 +23,10 @@ users_data = [{
 }]
 
 users_data.each do |data|
-
     password = SecureRandom.hex(10)
     Debugger.debug data[:email], password
 
-    admin_user = User.create_with(
+    User.create_with(
         password: password,
         active: true
     ).find_or_create_by!(

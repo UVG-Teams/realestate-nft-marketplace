@@ -75,7 +75,6 @@ group :development, :test do
   # bundle exec rubocop --parallel
   # rubocop --autocorrect --only Style/StringLiterals
   gem 'rubocop'
-
 end
 
 group :development do

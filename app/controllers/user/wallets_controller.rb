@@ -56,6 +56,7 @@ class User::WalletsController < ApplicationController
     end
 
     private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user_wallet
         @user_wallet = User::Wallet.find(params[:id])

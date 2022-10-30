@@ -9,3 +9,21 @@ Layout/IndentationWidth:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Layout/FirstHashElementIndentation:
+  Enabled: false
+
+Layout/ClosingParenthesisIndentation:
+  Enabled: false
+
+Layout/FirstArgumentIndentation:
+  Enabled: false
+
+Layout/CommentIndentation:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
