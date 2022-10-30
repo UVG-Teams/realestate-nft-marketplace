@@ -10,10 +10,10 @@ class Api::Users::RegistrationController < ApplicationApiController
         user = User.find_for_database_authentication(email: registration_params[:email])
 
         # User already exists
-        return respond_with_status(400, "User already exists") unless user.blank?
+        return respond_with_status(400, 'User already exists') unless user.blank?
 
         # Pasword mismatch
-        return respond_with_status(400, "Pasword mismatch") if registration_params[:password] != registration_params[:password_confirmation]
+        return respond_with_status(400, 'Pasword mismatch') if registration_params[:password] != registration_params[:password_confirmation]
 
         # Setting @current_user
         @current_user = User.new(registration_params)
@@ -27,7 +27,7 @@ class Api::Users::RegistrationController < ApplicationApiController
                 wallet = User::Wallet.find_by(account: wallet_params[:account])
 
                 # Account already registered
-                return respond_with_status(400, "Account already registered by other user") if wallet
+                return respond_with_status(400, 'Account already registered by other user') if wallet
 
                 # Registering account for the current_user
                 @current_user.wallets.create({
@@ -44,7 +44,7 @@ class Api::Users::RegistrationController < ApplicationApiController
             })
 
         else
-            return respond_with_status(400, "Try again later")
+            return respond_with_status(400, 'Try again later')
         end
 
     end

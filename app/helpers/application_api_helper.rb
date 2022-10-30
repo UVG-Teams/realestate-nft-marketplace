@@ -12,13 +12,13 @@ module ApplicationApiHelper
 
         case status
         when 200
-            payload[:msg] = "200 - Ok" unless payload
+            payload[:msg] = '200 - Ok' unless payload
         when 400
-            payload[:msg] = "400 - Bad Request" unless payload[:msg]
+            payload[:msg] = '400 - Bad Request' unless payload[:msg]
         when 401
-            payload[:msg] = "401 - Not Authorized" unless payload[:msg]
+            payload[:msg] = '401 - Not Authorized' unless payload[:msg]
         when 404
-            payload[:msg] = "404 - Not Found" unless payload[:msg]
+            payload[:msg] = '404 - Not Found' unless payload[:msg]
         end
 
         return render(status: status, content_type: 'application/json', json: payload.to_json)
@@ -26,11 +26,11 @@ module ApplicationApiHelper
 
     def debug *args
         puts @@ANSI_RED
-        puts "-" * 100
+        puts '-' * 100
         args.each do |arg|
             puts arg
         end
-        puts "-" * 100
+        puts '-' * 100
         puts @@ANSI_RESET
     end
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 namespace :dev do
     namespace :db do
         desc 'Reset DB'

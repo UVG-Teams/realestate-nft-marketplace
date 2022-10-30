@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
         unless user_signed_in?
 
             # redirect with requested url, so user will be redirected after login
-            redirect_to("/login", notice: "Please Login to view that page!") and return unless ["/login"].include?(request.fullpath)
+            redirect_to('/login', notice: 'Please Login to view that page!') and return unless ['/login'].include?(request.fullpath)
 
         end
 

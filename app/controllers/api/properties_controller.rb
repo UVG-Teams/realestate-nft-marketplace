@@ -23,7 +23,7 @@ class Api::PropertiesController < ApplicationApiController
         @property.user = @current_user
 
         if @property.save
-            respond_with_status(200, "Property was successfully created.")
+            respond_with_status(200, 'Property was successfully created.')
         else
             respond_with_status(400, @property.errors)
         end
@@ -34,7 +34,7 @@ class Api::PropertiesController < ApplicationApiController
         return respond_with_status(401) if @property.user != @current_user
 
         if @property.update(property_params)
-            respond_with_status(200, "Property was successfully updated.")
+            respond_with_status(200, 'Property was successfully updated.')
         else
             respond_with_status(400, @property.errors)
         end
@@ -46,7 +46,7 @@ class Api::PropertiesController < ApplicationApiController
 
         @property.destroy
 
-        respond_with_status(200, "Property was successfully destroyed.")
+        respond_with_status(200, 'Property was successfully destroyed.')
     end
 
     # ====================================================================================================
@@ -58,7 +58,7 @@ class Api::PropertiesController < ApplicationApiController
     # Use callbacks to share common setup or constraints between actions.
     def set_property
         @property = Property.find_by_id(params[:id])
-        return respond_with_status(404, "Property not found.") if @property.blank?
+        return respond_with_status(404, 'Property not found.') if @property.blank?
     end
 
     # Only allow a list of trusted parameters through.

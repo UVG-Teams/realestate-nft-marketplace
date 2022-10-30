@@ -6,11 +6,11 @@ module Debugger
 
     def self.debug *args
         puts ANSI_RED
-        puts "-" * 100
+        puts '-' * 100
         args.each do |arg|
             puts arg
         end
-        puts "-" * 100
+        puts '-' * 100
         puts ANSI_RESET
     end
 

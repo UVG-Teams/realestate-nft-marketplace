@@ -2,17 +2,17 @@ class Property < ApplicationRecord
     belongs_to :user
 
     enum status: {
-        listed: "listed",
-        not_listed: "not_listed",
-        reserved: "reserved",
-    }, _default: "not_listed"
+        listed: 'listed',
+        not_listed: 'not_listed',
+        reserved: 'reserved',
+    }, _default: 'not_listed'
 
     enum category: {
-        house: "house",
-        land: "land",
-        apartment: "apartment",
-        commercial: "commercial",
-        other: "other",
+        house: 'house',
+        land: 'land',
+        apartment: 'apartment',
+        commercial: 'commercial',
+        other: 'other',
     }
 
     validates :status, inclusion: { in: statuses.keys }

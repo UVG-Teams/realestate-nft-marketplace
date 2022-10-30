@@ -9,18 +9,18 @@ def generate_property_uuid
 end
 
 
-puts "Running seeders"
+puts 'Running seeders'
 
 users_data = [{
-    email: "admin@vesta.com",
+    email: 'admin@vesta.com',
 }, {
-    email: "frosal@vesta.com",
+    email: 'frosal@vesta.com',
 }, {
-    email: "lrivera@vesta.com",
+    email: 'lrivera@vesta.com',
 }, {
-    email: "acastillo@vesta.com",
+    email: 'acastillo@vesta.com',
 }, {
-    email: "mfuentes@vesta.com",
+    email: 'mfuentes@vesta.com',
 }]
 
 users_data.each do |data|
@@ -51,4 +51,4 @@ User.all.each do |user|
     )
 end
 
-puts "Finish seeders"
+puts 'Finish seeders'

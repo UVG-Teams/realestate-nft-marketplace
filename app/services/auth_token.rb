@@ -4,7 +4,7 @@ require 'jwt'
 class AuthToken
 
     attr_accessor :token
-    @@algorithm = "HS256"
+    @@algorithm = 'HS256'
 
     def initialize current_user, custom_payload = {}
         @current_user = current_user
@@ -42,10 +42,10 @@ class AuthToken
         header = decoded_token[1]
 
         # Check if the algorithm is correct
-        return false, nil if header["alg"] != @@algorithm
+        return false, nil if header['alg'] != @@algorithm
 
         # Check if token is expired
-        return false, nil if 0.seconds.from_now.to_i > payload["exp"].to_i
+        return false, nil if 0.seconds.from_now.to_i > payload['exp'].to_i
 
         return true, payload
     end
@@ -55,8 +55,8 @@ class AuthToken
 
         return nil unless valid
 
-        current_user = User.find_by_id(payload["sub"])
-        custom_payload = payload.except("sub", "exp")
+        current_user = User.find_by_id(payload['sub'])
+        custom_payload = payload.except('sub', 'exp')
 
         self.new(current_user, custom_payload)
     end

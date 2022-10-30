@@ -25,7 +25,7 @@ class User::WalletsController < ApplicationController
 
         respond_to do |format|
             if @user_wallet.save
-                format.html { redirect_to user_wallet_url(@user_wallet), notice: "Wallet was successfully created." }
+                format.html { redirect_to user_wallet_url(@user_wallet), notice: 'Wallet was successfully created.' }
                 format.json { render :show, status: :created, location: @user_wallet }
             else
                 format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class User::WalletsController < ApplicationController
     def update
         respond_to do |format|
             if @user_wallet.update(user_wallet_params)
-                format.html { redirect_to user_wallet_url(@user_wallet), notice: "Wallet was successfully updated." }
+                format.html { redirect_to user_wallet_url(@user_wallet), notice: 'Wallet was successfully updated.' }
                 format.json { render :show, status: :ok, location: @user_wallet }
             else
                 format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class User::WalletsController < ApplicationController
         @user_wallet.destroy
 
         respond_to do |format|
-            format.html { redirect_to user_wallets_url, notice: "Wallet was successfully destroyed." }
+            format.html { redirect_to user_wallets_url, notice: 'Wallet was successfully destroyed.' }
             format.json { head :no_content }
         end
     end

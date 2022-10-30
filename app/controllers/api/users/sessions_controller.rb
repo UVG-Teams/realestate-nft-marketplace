@@ -8,7 +8,7 @@ class Api::Users::SessionsController < ApplicationApiController
 
             wallet = User::Wallet.find_by(account: session_params[:account])
 
-            return respond_with_status(404, "Wallet account not found") unless wallet
+            return respond_with_status(404, 'Wallet account not found') unless wallet
 
             # Setting @current_user
             @current_user = wallet.user
@@ -19,7 +19,7 @@ class Api::Users::SessionsController < ApplicationApiController
             user = User.find_for_database_authentication(email: session_params[:email])
 
             # User not found
-            return respond_with_status(404, "User not found") if user.blank?
+            return respond_with_status(404, 'User not found') if user.blank?
 
             # Setting @current_user
             @current_user = user
@@ -27,7 +27,7 @@ class Api::Users::SessionsController < ApplicationApiController
         end
 
         # Validate password
-        return respond_with_status(400, "Wrong password") unless @current_user.valid_password?(session_params[:password])
+        return respond_with_status(400, 'Wrong password') unless @current_user.valid_password?(session_params[:password])
 
         # Generate JWT
         auth_token = ::AuthToken.new(@current_user, {
