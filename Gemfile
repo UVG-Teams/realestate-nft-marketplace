@@ -72,6 +72,9 @@ group :development, :test do
   # Brakeman detects security vulnerabilities in Ruby on Rails applications via static analysis.
   gem "brakeman", "5.2.3"
 
+  # Rubocop detects bad practices on code
+  gem 'rubocop'
+
 end
 
 group :development do
