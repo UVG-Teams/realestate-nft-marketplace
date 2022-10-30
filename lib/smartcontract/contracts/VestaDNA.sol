@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 
 contract VestaDNA {
     struct House{
+        string image;
         string typology;
         uint256 finca;
         uint256 folio;
@@ -22,6 +23,7 @@ contract VestaDNA {
     House userI;
 
     function set_house_detail(
+        string memory image,
         string memory typology,
         uint256 finca,
         uint256 folio,
@@ -37,6 +39,7 @@ contract VestaDNA {
         string memory location
     ) public {
         userI = House(
+            image,
             typology,
             finca,
             folio,
@@ -58,6 +61,7 @@ contract VestaDNA {
         view
         returns (
             string memory,
+            string memory,
             uint256,
             uint256,
             uint256,
@@ -72,6 +76,7 @@ contract VestaDNA {
             string memory
         ) { 
             return(
+                userI.image,
                 userI.typology,
                 userI.finca,
                 userI.folio,
