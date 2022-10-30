@@ -58,10 +58,10 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
                     
 
                     abi.encodePacked(
-                        '{"name":"', "Vesta :)",
+                        '{"name":"', "Vesta",
                         '","description":"', "Vesta is a property tokenization platform, represented as NFTs that live on the blockchain for easy transfer of ownership.",
-                        '","image":"', "https://gateway.pinata.cloud/ipfs/QmbX4BNVdhRZJrecshrewWn93StaPZ3ku49RfwuF6HxdxD",
-                        '","attributes":[{"trait_type":"Typology","value":"', userI.typology, '"},{"trait_type": "Year built","value":"', userI.yearBuilt.toString(), '"},{"trait_type": "Square meters","value":"', userI.sqm.toString(), '"},{"trait_type": "Rooms","value":"', userI.rooms.toString(), '"},{"trait_type": "Bathrooms","value":"', userI.bathrooms.toString(), '"},{"trait_type": "Levels","value":"', userI.levels.toString(), '"},{"trait_type": "Parkings","value":"', userI.parkings.toString(), '"},{"trait_type": "Yard","value":"',  boolToString(userI.yard), '"},{"trait_type": "Location","value":"', userI.location, '"}]}'
+                        '","image":"', userI.image,
+                        '","attributes":[{"trait_type":"Typology","value":"', userI.typology, '"},{"trait_type": "Year built","value":"', userI.yearBuilt.toString(), '"},{"trait_type": "Square meters","value":"', userI.sqm.toString(), '"},{"trait_type": "Rooms","value":"', userI.rooms.toString(), '"},{"trait_type": "Bathrooms","value":"', userI.bathrooms.toString(), '"},{"trait_type": "Levels","value":"', userI.levels.toString(), '"},{"trait_type": "Parkings","value":"', userI.parkings.toString(), '"},{"trait_type": "Yard","value":"',  boolToString(userI.yard), '"},{"trait_type": "Pool","value":"',  boolToString(userI.pool), '"},{"trait_type": "Location","value":"', userI.location, '"}]}'
                     )
                 )
             )
