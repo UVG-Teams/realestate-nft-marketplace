@@ -12,6 +12,9 @@ class Api::Users::RegistrationController < ApplicationApiController
         # User already exists
         return respond_with_status(400, "User already exists") unless user.blank?
 
+        # Password complexity mismatched
+        return respond_with_status(400, "Password must contain lower case, upper case and number") if registration_params[:params].blank? and not registration_params[:password].match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)./)
+
         # Pasword mismatch
         return respond_with_status(400, "Pasword mismatch") if registration_params[:password] != registration_params[:password_confirmation]
 
