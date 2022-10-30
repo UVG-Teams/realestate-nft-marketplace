@@ -1,7 +1,11 @@
-require "test_helper"
+# frozen_string_literal: true
 
-class User::WalletTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+require 'test_helper'
+
+module User
+  class WalletTest < ActiveSupport::TestCase
+    # test "the truth" do
+    #   assert true
+    # end
+  end
 end
