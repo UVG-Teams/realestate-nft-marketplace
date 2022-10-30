@@ -36,6 +36,7 @@
 
 /config/credentials/*
 !/config/credentials/.gitkeep
+!/config/credentials/ci.yml.enc
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 

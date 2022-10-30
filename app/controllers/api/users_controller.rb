@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationApiController
-    before_action :set_user, only: %i[ show edit update destroy properties ]
+    before_action :set_user, only: %i[show edit update destroy properties]
 
     # GET /users or /users.json
     def index
@@ -17,7 +17,7 @@ class Api::UsersController < ApplicationApiController
         return respond_with_status(401) if @user != @current_user
 
         if @user.update(user_params)
-            respond_with_status(200, "User was successfully updated.")
+            respond_with_status(200, 'User was successfully updated.')
         else
             respond_with_status(400, @user.errors)
         end
@@ -29,7 +29,7 @@ class Api::UsersController < ApplicationApiController
 
         @user.destroy
 
-        respond_with_status(200, "User was successfully destroyed.")
+        respond_with_status(200, 'User was successfully destroyed.')
     end
 
     # ====================================================================================================
@@ -42,23 +42,21 @@ class Api::UsersController < ApplicationApiController
     end
 
     def wallet
-
         return respond_with_status(400) if wallet_params[:account].blank?
 
         # Look account in all registered
         wallet = User::Wallet.find_by(account: wallet_params[:account])
 
         # Account already registered
-        return respond_with_status(400, "Account already registered by other user") if wallet
+        return respond_with_status(400, 'Account already registered by other user') if wallet
 
         wallet = @current_user.wallets.new(wallet_params)
 
         if wallet.save
-            respond_with_status(200, "Wallet was successfully created.")
+            respond_with_status(200, 'Wallet was successfully created.')
         else
             respond_with_status(400, wallet.errors)
         end
-
     end
 
     private
@@ -66,7 +64,7 @@ class Api::UsersController < ApplicationApiController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
         @user = User.find_by_id(params[:id])
-        return respond_with_status(404, "User not found.") if @user.blank?
+        return respond_with_status(404, 'User not found.') if @user.blank?
     end
 
     # Only allow a list of trusted parameters through.
@@ -77,5 +75,4 @@ class Api::UsersController < ApplicationApiController
     def wallet_params
         params.fetch(:wallet, {}).permit(:account)
     end
-
 end

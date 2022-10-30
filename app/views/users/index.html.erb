@@ -7,10 +7,10 @@
     <%= render user %>
     <p>
       <span><%= user.email %></span>
-      <%= link_to "Show this user", user %>
+      <%# <%= link_to "Show this user", user %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New user", new_user_path %>
+<%# <%= link_to "New user", new_user_path %>
 <%= link_to "Logout", destroy_user_session_path %>

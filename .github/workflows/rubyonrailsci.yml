@@ -3,9 +3,9 @@
 name: "Ruby on Rails CI"
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "production" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master", "production" ]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -20,6 +20,7 @@ jobs:
           POSTGRES_PASSWORD: password
     env:
       RAILS_ENV: test
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_CREDENTIALS_CI_KEY }}
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:
       - name: Checkout code
@@ -30,8 +31,15 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace database setup steps here
-      - name: Set up database schema
-        run: bin/rails db:schema:load
+      - name: Bundle Install
+        run: bundle install
+      - name: Set up database
+        run: |
+          cp ./config/credentials/ci.yml.enc ./config/credentials/test.yml.enc
+          bundle exec rake db:drop
+          bundle exec rake db:create
+          bundle exec rake db:migrate
+          bundle exec rake db:seed
       # Add or replace test runners here
       - name: Run tests
         run: bin/rake
@@ -47,8 +55,8 @@ jobs:
           bundler-cache: true
       # Add or replace any other lints here
       - name: Security audit dependencies
-        run: bin/bundler-audit --update
+        run: bundle exec bundler-audit
       - name: Security audit application code
-        run: bin/brakeman -q -w2
+        run: bundle exec brakeman
       - name: Lint Ruby files
-        run: bin/rubocop --parallel
+        run: bundle exec rubocop --parallel

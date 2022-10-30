@@ -10,8 +10,14 @@ Autores:
 
 
 
-# Credentials
+# Ruby Setup
 
+- Install rvm
+- rvm install 2.7.2
+- bundle install
+- Troubleshoot: brew install libpq
+- EDITOR="nano" rails credentials:edit --environment development
+```
 db:
     database: nft_realestate_dev
     username: postgres
@@ -20,3 +26,17 @@ db:
 
 hmac:
     secret: "some secret string"
+```
+- rake dev:db:reset
+- Guardar password
+
+
+# Conventional Commits
+- feat
+- fix
+- docs
+- test
+- ci
+- test
+- refactor
+- build

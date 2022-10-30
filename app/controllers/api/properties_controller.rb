@@ -1,5 +1,5 @@
 class Api::PropertiesController < ApplicationApiController
-    before_action :set_property, only: %i[ show edit update destroy ]
+    before_action :set_property, only: %i[show edit update destroy]
 
     # GET /properties or /properties.json
     def index
@@ -16,14 +16,14 @@ class Api::PropertiesController < ApplicationApiController
     def create
         begin
             @property = Property.new(property_params)
-        rescue => exception
-            return respond_with_status(400, exception.to_s)
+        rescue StandardError => e
+            return respond_with_status(400, e.to_s)
         end
 
         @property.user = @current_user
 
         if @property.save
-            respond_with_status(200, "Property was successfully created.")
+            respond_with_status(200, 'Property was successfully created.')
         else
             respond_with_status(400, @property.errors)
         end
@@ -34,7 +34,7 @@ class Api::PropertiesController < ApplicationApiController
         return respond_with_status(401) if @property.user != @current_user
 
         if @property.update(property_params)
-            respond_with_status(200, "Property was successfully updated.")
+            respond_with_status(200, 'Property was successfully updated.')
         else
             respond_with_status(400, @property.errors)
         end
@@ -46,7 +46,7 @@ class Api::PropertiesController < ApplicationApiController
 
         @property.destroy
 
-        respond_with_status(200, "Property was successfully destroyed.")
+        respond_with_status(200, 'Property was successfully destroyed.')
     end
 
     # ====================================================================================================
@@ -58,7 +58,7 @@ class Api::PropertiesController < ApplicationApiController
     # Use callbacks to share common setup or constraints between actions.
     def set_property
         @property = Property.find_by_id(params[:id])
-        return respond_with_status(404, "Property not found.") if @property.blank?
+        return respond_with_status(404, 'Property not found.') if @property.blank?
     end
 
     # Only allow a list of trusted parameters through.
@@ -70,7 +70,7 @@ class Api::PropertiesController < ApplicationApiController
             :location,
             :category,
             :rooms,
-            :bathrooms,
+            :bathrooms
         )
     end
 end

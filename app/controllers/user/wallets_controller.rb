@@ -1,5 +1,5 @@
 class User::WalletsController < ApplicationController
-    before_action :set_user_wallet, only: %i[ show edit update destroy ]
+    before_action :set_user_wallet, only: %i[show edit update destroy]
 
     # GET /user/wallets or /user/wallets.json
     def index
@@ -7,8 +7,7 @@ class User::WalletsController < ApplicationController
     end
 
     # GET /user/wallets/1 or /user/wallets/1.json
-    def show
-    end
+    def show; end
 
     # GET /user/wallets/new
     def new
@@ -16,8 +15,7 @@ class User::WalletsController < ApplicationController
     end
 
     # GET /user/wallets/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /user/wallets or /user/wallets.json
     def create
@@ -25,7 +23,7 @@ class User::WalletsController < ApplicationController
 
         respond_to do |format|
             if @user_wallet.save
-                format.html { redirect_to user_wallet_url(@user_wallet), notice: "Wallet was successfully created." }
+                format.html { redirect_to user_wallet_url(@user_wallet), notice: 'Wallet was successfully created.' }
                 format.json { render :show, status: :created, location: @user_wallet }
             else
                 format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class User::WalletsController < ApplicationController
     def update
         respond_to do |format|
             if @user_wallet.update(user_wallet_params)
-                format.html { redirect_to user_wallet_url(@user_wallet), notice: "Wallet was successfully updated." }
+                format.html { redirect_to user_wallet_url(@user_wallet), notice: 'Wallet was successfully updated.' }
                 format.json { render :show, status: :ok, location: @user_wallet }
             else
                 format.html { render :edit, status: :unprocessable_entity }
@@ -52,12 +50,13 @@ class User::WalletsController < ApplicationController
         @user_wallet.destroy
 
         respond_to do |format|
-            format.html { redirect_to user_wallets_url, notice: "Wallet was successfully destroyed." }
+            format.html { redirect_to user_wallets_url, notice: 'Wallet was successfully destroyed.' }
             format.json { head :no_content }
         end
     end
 
     private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user_wallet
         @user_wallet = User::Wallet.find(params[:id])
