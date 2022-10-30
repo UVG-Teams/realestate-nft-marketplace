@@ -6,11 +6,8 @@ contract VestaDNA {
     struct House{
         string image;
         string typology;
-        uint256 finca;
-        uint256 folio;
-        uint256 libro;
         uint256 yearBuilt;
-        bool rebuilt;
+        uint256 sqm;
         uint256 rooms;
         uint256 bathrooms;
         uint256 levels;
@@ -25,11 +22,8 @@ contract VestaDNA {
     function set_house_detail(
         string memory image,
         string memory typology,
-        uint256 finca,
-        uint256 folio,
-        uint256 libro,
         uint256 yearBuilt,
-        bool rebuilt,
+        uint256 sqm,
         uint256 rooms,
         uint256 bathrooms,
         uint256 levels,
@@ -41,11 +35,8 @@ contract VestaDNA {
         userI = House(
             image,
             typology,
-            finca,
-            folio,
-            libro,
             yearBuilt,
-            rebuilt,
+            sqm,
             rooms,
             bathrooms,
             levels,
@@ -55,6 +46,7 @@ contract VestaDNA {
             location
         );
     }
+
 
     function get_house_info()
         public
@@ -66,9 +58,6 @@ contract VestaDNA {
             uint256,
             uint256,
             uint256,
-            bool,
-            uint256,
-            uint256,
             uint256,
             uint256,
             bool,
@@ -78,11 +67,8 @@ contract VestaDNA {
             return(
                 userI.image,
                 userI.typology,
-                userI.finca,
-                userI.folio,
-                userI.libro,
                 userI.yearBuilt,
-                userI.rebuilt,
+                userI.sqm,
                 userI.rooms,
                 userI.bathrooms,
                 userI.levels,
