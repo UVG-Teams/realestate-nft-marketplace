@@ -10,13 +10,21 @@ Autores:
 
 
 
-# Credentials
+# Ruby Setup
 
-db:
-    database: nft_realestate_dev
-    username: postgres
-    password: ""
-    port: 5432
+- Install rvm
+- rvm install 2.7.2
+- bundle install
+- EDITOR="nano" rails credentials:edit --environment development
+```
+    db:
+        database: nft_realestate_dev
+        username: postgres
+        password: ""
+        port: 5432
 
-hmac:
-    secret: "some secret string"
+    hmac:
+        secret: "some secret string"
+```
+- rake dev:db:reset
+- Guardar password

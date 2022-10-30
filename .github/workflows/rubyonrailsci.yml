@@ -3,9 +3,9 @@
 name: "Ruby on Rails CI"
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "production" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master", "production" ]
 jobs:
   test:
     runs-on: ubuntu-latest
