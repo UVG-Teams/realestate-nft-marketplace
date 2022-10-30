@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
     # Validate user authorization
     def authorization
-
         unless user_signed_in?
 
             # redirect with requested url, so user will be redirected after login
@@ -12,6 +11,5 @@ class ApplicationController < ActionController::Base
         end
 
         true
-
     end
 end

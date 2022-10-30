@@ -2,7 +2,6 @@ class Api::Users::SessionsController < ApplicationApiController
     skip_before_action :authorize_request, only: :create
 
     def create
-
         if session_params[:account]
 
             wallet = User::Wallet.find_by(account: session_params[:account])
@@ -39,7 +38,6 @@ class Api::Users::SessionsController < ApplicationApiController
         respond_with_status(200, {
             token: auth_token.token
         })
-
     end
 
     private

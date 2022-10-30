@@ -49,3 +49,7 @@ Style/ClassAndModuleChildren:
 Layout/AccessModifierIndentation:
   Enabled: false
 
+Metrics/AbcSize:
+  Enabled: false
+
+

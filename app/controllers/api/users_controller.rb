@@ -42,7 +42,6 @@ class Api::UsersController < ApplicationApiController
     end
 
     def wallet
-
         return respond_with_status(400) if wallet_params[:account].blank?
 
         # Look account in all registered
@@ -58,7 +57,6 @@ class Api::UsersController < ApplicationApiController
         else
             respond_with_status(400, wallet.errors)
         end
-
     end
 
     private

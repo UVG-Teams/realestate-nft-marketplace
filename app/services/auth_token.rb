@@ -31,8 +31,8 @@ class AuthToken
 
         begin
             decoded_token = JWT.decode token, hmac_secret, true, { algorithm: @@algorithm }
-        rescue StandardError => exception
-            Debugger.debug exception
+        rescue StandardError => e
+            Debugger.debug e
             return false, nil
         end
 

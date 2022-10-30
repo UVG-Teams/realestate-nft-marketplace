@@ -5,7 +5,6 @@ class ApplicationApiController < ActionController::API
     before_action :authorize_request
 
     def authorize_request
-
         token = nil
 
         if request.headers['Authorization'].present?
@@ -26,6 +25,5 @@ class ApplicationApiController < ActionController::API
         return respond_with_status(401) if @current_user.blank?
 
         return respond_with_status(401, 'Your user is not active') unless @current_user.active
-
     end
 end

@@ -2,7 +2,6 @@ class Api::Users::RegistrationController < ApplicationApiController
     skip_before_action :authorize_request, only: :create
 
     def create
-
         @current_user = nil
 
         # Looking for the user
@@ -45,7 +44,6 @@ class Api::Users::RegistrationController < ApplicationApiController
         else
             respond_with_status(400, 'Try again later')
         end
-
     end
 
     private

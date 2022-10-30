@@ -16,8 +16,8 @@ class Api::PropertiesController < ApplicationApiController
     def create
         begin
             @property = Property.new(property_params)
-        rescue StandardError => exception
-            return respond_with_status(400, exception.to_s)
+        rescue StandardError => e
+            return respond_with_status(400, e.to_s)
         end
 
         @property.user = @current_user
