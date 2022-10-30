@@ -3,6 +3,7 @@ require 'jwt'
 
 class AuthToken
     attr_accessor :token
+
     @@algorithm = 'HS256'
 
     def initialize(current_user, custom_payload = {})

@@ -4,9 +4,7 @@ module ApplicationApiHelper
     @@ANSI_RESET = "\e[0m"
 
     def respond_with_status(status = 200, payload = {})
-        if payload.is_a?(String)
-            payload = { msg: payload }
-        end
+        payload = { msg: payload } if payload.is_a?(String)
 
         case status
         when 200

@@ -7,9 +7,7 @@ class ApplicationApiController < ActionController::API
     def authorize_request
         token = nil
 
-        if request.headers['Authorization'].present?
-            token = request.headers['Authorization'].split('JWT ')[1]
-        end
+        token = request.headers['Authorization'].split('JWT ')[1] if request.headers['Authorization'].present?
 
         # No token provided
         return respond_with_status(401) unless token

@@ -52,4 +52,7 @@ Layout/AccessModifierIndentation:
 Metrics/AbcSize:
   Enabled: false
 
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
 
