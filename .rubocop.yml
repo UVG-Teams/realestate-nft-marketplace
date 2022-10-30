@@ -13,6 +13,9 @@ Style/FrozenStringLiteralComment:
 Metrics/MethodLength:
   Enabled: false
 
+Layout/LineLength:
+  Enabled: false
+
 Layout/FirstHashElementIndentation:
   Enabled: false
 
@@ -30,3 +33,19 @@ Style/Documentation:
 
 Layout/ArgumentAlignment:
   Enabled: false
+
+Layout/MultilineOperationIndentation:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Layout/AccessModifierIndentation:
+  Enabled: false
+

@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationApiController
-    before_action :set_user, only: %i[ show edit update destroy properties ]
+    before_action :set_user, only: %i[show edit update destroy properties]
 
     # GET /users or /users.json
     def index

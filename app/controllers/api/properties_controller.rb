@@ -1,5 +1,5 @@
 class Api::PropertiesController < ApplicationApiController
-    before_action :set_property, only: %i[ show edit update destroy ]
+    before_action :set_property, only: %i[show edit update destroy]
 
     # GET /properties or /properties.json
     def index
@@ -16,7 +16,7 @@ class Api::PropertiesController < ApplicationApiController
     def create
         begin
             @property = Property.new(property_params)
-        rescue => exception
+        rescue StandardError => exception
             return respond_with_status(400, exception.to_s)
         end
 

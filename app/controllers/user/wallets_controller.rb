@@ -1,5 +1,5 @@
 class User::WalletsController < ApplicationController
-    before_action :set_user_wallet, only: %i[ show edit update destroy ]
+    before_action :set_user_wallet, only: %i[show edit update destroy]
 
     # GET /user/wallets or /user/wallets.json
     def index
