@@ -58,7 +58,7 @@ class Api::Users::RegistrationController < ApplicationApiController
             :password_confirmation,
             :first_name,
             :last_name,
-            :telephone,
+            :telephone
         )
     end
 

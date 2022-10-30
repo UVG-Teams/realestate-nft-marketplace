@@ -70,7 +70,7 @@ class Api::PropertiesController < ApplicationApiController
             :location,
             :category,
             :rooms,
-            :bathrooms,
+            :bathrooms
         )
     end
 end

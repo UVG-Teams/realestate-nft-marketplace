@@ -30,9 +30,9 @@ users_data.each do |data|
 
     admin_user = User.create_with(
         password: password,
-        active: true,
+        active: true
     ).find_or_create_by!(
-        email: data[:email],
+        email: data[:email]
     )
 end
 
@@ -45,9 +45,9 @@ User.all.each do |user|
         location: Faker::Address.full_address,
         category: Property.categories.keys.sample,
         rooms: Faker::Number.number(digits: 1),
-        bathrooms: Faker::Number.number(digits: 1),
+        bathrooms: Faker::Number.number(digits: 1)
     ).find_or_create_by!(
-        nft_id: generate_property_uuid(),
+        nft_id: generate_property_uuid()
     )
 end
 
