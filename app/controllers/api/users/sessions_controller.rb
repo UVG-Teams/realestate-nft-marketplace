@@ -30,7 +30,12 @@ class Api::Users::SessionsController < ApplicationApiController
         return respond_with_status(400, "Wrong password") unless @current_user.valid_password?(session_params[:password])
 
         # Generate JWT
-        auth_token = ::AuthToken.new(@current_user)
+        auth_token = ::AuthToken.new(@current_user, {
+            email: @current_user.email,
+            first_name: @current_user.first_name,
+            last_name: @current_user.last_name,
+            telephone: @current_user.telephone,
+        })
 
         respond_with_status(200, {
             token: auth_token.token
