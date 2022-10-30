@@ -30,8 +30,17 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace database setup steps here
-      - name: Set up database schema
-        run: bin/rails db:schema:load
+      - name: Bundle Install
+        run: bundle install
+      - name: Set up database
+        run: |
+          cp ./config/credentials/ci.yml.enc ./config/credentials/test.yml.enc
+          bundle exec rake db:drop
+          bundle exec rake db:create
+          bundle exec rake db:migrate
+          bundle exec rake db:seed
+      # - name: Set up database schema
+        # run: bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run tests
         run: bin/rake
