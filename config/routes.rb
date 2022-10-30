@@ -27,6 +27,11 @@ Rails.application.routes.draw do
             end
         end
 
-        resources :properties
+        resources :properties do
+            member do
+                post    :upload_files
+                get     :get_files
+            end
+        end
     end
 end

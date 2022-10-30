@@ -10,7 +10,19 @@ class Api::UsersController < ApplicationApiController
 
     # GET /users/1 or /users/1.json
     def show
-        respond_with_status(200, @user)
+        respond_with_status(200, @user.slice(
+            :id,
+            :email,
+            :active,
+            :created_at,
+            :updated_at,
+            :first_name,
+            :last_name,
+            :telephone,
+            :pid_number,
+        ).merge(
+            avatar: @user.avatar.attached? ? url_for(@user.avatar) : nil,
+        ))
     end
 
     # PATCH/PUT /users/1 or /users/1.json
@@ -86,6 +98,6 @@ class Api::UsersController < ApplicationApiController
     end
 
     def check_ownership
-        return respond_with_status(401) if @user != @current_user
+        return respond_with_status(401) if @current_user != @user
     end
 end

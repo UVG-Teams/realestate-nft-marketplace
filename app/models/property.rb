@@ -17,4 +17,6 @@ class Property < ApplicationRecord
 
     validates :status, inclusion: { in: statuses.keys }
     validates :category, inclusion: { in: categories.keys }
+
+    has_many_attached :files
 end
