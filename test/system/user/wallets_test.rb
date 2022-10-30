@@ -7,6 +7,7 @@ class User::WalletsTest < ApplicationSystemTestCase
     @user_wallet = user_wallets(:one)
   end
 
+=begin
   test 'visiting the index' do
     visit user_wallets_url
     assert_selector 'h1', text: 'Wallets'
@@ -38,4 +39,5 @@ class User::WalletsTest < ApplicationSystemTestCase
 
     assert_text 'Wallet was successfully destroyed'
   end
+=end
 end

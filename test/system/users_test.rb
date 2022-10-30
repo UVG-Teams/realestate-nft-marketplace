@@ -7,6 +7,7 @@ class UsersTest < ApplicationSystemTestCase
     @user = users(:one)
   end
 
+=begin
   test 'visiting the index' do
     visit users_url
     assert_selector 'h1', text: 'Users'
@@ -38,4 +39,5 @@ class UsersTest < ApplicationSystemTestCase
 
     assert_text 'User was successfully destroyed'
   end
+=end
 end

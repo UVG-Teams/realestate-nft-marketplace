@@ -7,6 +7,7 @@ class PropertiesTest < ApplicationSystemTestCase
     @property = properties(:one)
   end
 
+=begin
   test 'visiting the index' do
     visit properties_url
     assert_selector 'h1', text: 'Properties'
@@ -38,4 +39,5 @@ class PropertiesTest < ApplicationSystemTestCase
 
     assert_text 'Property was successfully destroyed'
   end
+=end
 end
