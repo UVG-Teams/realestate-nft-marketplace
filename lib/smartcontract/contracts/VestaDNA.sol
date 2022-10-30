@@ -53,10 +53,38 @@ contract VestaDNA {
         );
     }
 
-    // function get_house_info() public view returns (int, int, int, int, string memory) { 
-    //     return(userI.libro, userI.folio, userI.rooms, userI.bathrooms, userI.location); 
-    // }
-    function get_house_info() public view returns (uint256, uint256, string memory ) { 
-        return(userI.libro, userI.rooms, userI.location); 
+    function get_house_info()
+        public
+        view
+        returns (
+            string memory,
+            uint256,
+            uint256,
+            uint256,
+            uint256,
+            bool,
+            uint256,
+            uint256,
+            uint256,
+            uint256,
+            bool,
+            bool,
+            string memory
+        ) { 
+            return(
+                userI.typology,
+                userI.finca,
+                userI.folio,
+                userI.libro,
+                userI.yearBuilt,
+                userI.rebuilt,
+                userI.rooms,
+                userI.bathrooms,
+                userI.levels,
+                userI.parkings,
+                userI.yard,
+                userI.pool,
+                userI.location
+            ); 
     }
 }
