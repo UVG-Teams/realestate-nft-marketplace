@@ -5,37 +5,34 @@ def generate_property_uuid
     uuid = SecureRandom.hex(20)
 
     # Check if the uuid is unique
-    return Property.find_by(nft_id: uuid) ? generate_property_uuid() : uuid
+    Property.find_by(nft_id: uuid) ? generate_property_uuid : uuid
 end
 
-
-puts "Running seeders"
+puts 'Running seeders'
 
 users_data = [{
-    email: "admin@vesta.com",
+    email: 'admin@vesta.com'
 }, {
-    email: "frosal@vesta.com",
+    email: 'frosal@vesta.com'
 }, {
-    email: "lrivera@vesta.com",
+    email: 'lrivera@vesta.com'
 }, {
-    email: "acastillo@vesta.com",
+    email: 'acastillo@vesta.com'
 }, {
-    email: "mfuentes@vesta.com",
+    email: 'mfuentes@vesta.com'
 }]
 
 users_data.each do |data|
-
     password = SecureRandom.hex(10)
     Debugger.debug data[:email], password
 
-    admin_user = User.create_with(
+    User.create_with(
         password: password,
-        active: true,
+        active: true
     ).find_or_create_by!(
-        email: data[:email],
+        email: data[:email]
     )
 end
-
 
 User.all.each do |user|
     user.properties.create_with(
@@ -45,10 +42,10 @@ User.all.each do |user|
         location: Faker::Address.full_address,
         category: Property.categories.keys.sample,
         rooms: Faker::Number.number(digits: 1),
-        bathrooms: Faker::Number.number(digits: 1),
+        bathrooms: Faker::Number.number(digits: 1)
     ).find_or_create_by!(
-        nft_id: generate_property_uuid(),
+        nft_id: generate_property_uuid
     )
 end
 
-puts "Finish seeders"
+puts 'Finish seeders'

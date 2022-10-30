@@ -5,12 +5,9 @@ class ApplicationApiController < ActionController::API
     before_action :authorize_request
 
     def authorize_request
-
         token = nil
 
-        if request.headers["Authorization"].present?
-            token = request.headers["Authorization"].split("JWT ")[1]
-        end
+        token = request.headers['Authorization'].split('JWT ')[1] if request.headers['Authorization'].present?
 
         # No token provided
         return respond_with_status(401) unless token
@@ -21,12 +18,10 @@ class ApplicationApiController < ActionController::API
         return respond_with_status(401) unless valid
 
         # Looking for the user
-        @current_user = User.find_by_id(payload["sub"])
+        @current_user = User.find_by_id(payload['sub'])
 
         return respond_with_status(401) if @current_user.blank?
 
-        return respond_with_status(401, "Your user is not active") unless @current_user.active
-
+        return respond_with_status(401, 'Your user is not active') unless @current_user.active
     end
-
 end
