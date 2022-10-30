@@ -1,7 +1,7 @@
 module ApplicationApiHelper
-    @@ANSI_RED = "\e[31m"
-    @@ANSI_WHITE = "\e[37m"
-    @@ANSI_RESET = "\e[0m"
+    ANSI_RED = "\e[31m".freeze
+    ANSI_WHITE = "\e[37m".freeze
+    ANSI_RESET = "\e[0m".freeze
 
     def respond_with_status(status = 200, payload = {})
         payload = { msg: payload } if payload.is_a?(String)
@@ -21,12 +21,12 @@ module ApplicationApiHelper
     end
 
     def debug(*args)
-        puts @@ANSI_RED
+        puts ANSI_RED
         puts '-' * 100
         args.each do |arg|
             puts arg
         end
         puts '-' * 100
-        puts @@ANSI_RESET
+        puts ANSI_RESET
     end
 end

@@ -2,16 +2,25 @@ AllCops:
   NewCops: enable
   DisabledByDefault: false
 
-Layout/IndentationWidth:
+Metrics/AbcSize:
   Enabled: false
-  # Number of spaces for each indentation level.
-  # Width: 2
 
-Style/FrozenStringLiteralComment:
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
   Enabled: false
 
 Metrics/MethodLength:
   Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Layout/IndentationWidth:
+  Enabled: false
+  # Number of spaces for each indentation level.
+  # Width: 2
 
 Layout/LineLength:
   Enabled: false
@@ -28,13 +37,16 @@ Layout/FirstArgumentIndentation:
 Layout/CommentIndentation:
   Enabled: false
 
-Style/Documentation:
-  Enabled: false
-
 Layout/ArgumentAlignment:
   Enabled: false
 
 Layout/MultilineOperationIndentation:
+  Enabled: false
+
+Layout/AccessModifierIndentation:
+  Enabled: false
+
+Style/Documentation:
   Enabled: false
 
 Style/NumericLiterals:
@@ -46,18 +58,6 @@ Style/RedundantSelf:
 Style/ClassAndModuleChildren:
   Enabled: false
 
-Layout/AccessModifierIndentation:
-  Enabled: false
-
-Metrics/AbcSize:
-  Enabled: false
-
-Metrics/CyclomaticComplexity:
-  Enabled: false
-
-Metrics/PerceivedComplexity:
-  Enabled: false
-
 Style/SpecialGlobalVars:
   Enabled: false
 
@@ -67,4 +67,17 @@ Style/SoleNestedConditional:
 Style/PerlBackrefs:
   Enabled: false
 
+Style/ExpandPathArguments:
+  Enabled: false
 
+Style/GlobalStdStream:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/RedundantFetchBlock:
+  Enabled: false
+
+Style/ClassVars:
+  Enabled: false
