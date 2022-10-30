@@ -6,3 +6,6 @@ Layout/IndentationWidth:
   Enabled: false
   # Number of spaces for each indentation level.
   # Width: 2
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

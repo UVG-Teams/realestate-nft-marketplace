@@ -7,8 +7,7 @@ class User::WalletsController < ApplicationController
     end
 
     # GET /user/wallets/1 or /user/wallets/1.json
-    def show
-    end
+    def show; end
 
     # GET /user/wallets/new
     def new
@@ -16,8 +15,7 @@ class User::WalletsController < ApplicationController
     end
 
     # GET /user/wallets/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /user/wallets or /user/wallets.json
     def create

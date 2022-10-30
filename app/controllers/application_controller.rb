@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
         end
 
-        return true
+        true
 
     end
 end

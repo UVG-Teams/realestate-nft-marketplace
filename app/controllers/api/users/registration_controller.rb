@@ -39,12 +39,12 @@ class Api::Users::RegistrationController < ApplicationApiController
             # Generate JWT
             auth_token = ::AuthToken.new(@current_user)
 
-            return respond_with_status(200, {
+            respond_with_status(200, {
                 token: auth_token.token
             })
 
         else
-            return respond_with_status(400, 'Try again later')
+            respond_with_status(400, 'Try again later')
         end
 
     end

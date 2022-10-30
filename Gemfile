@@ -72,6 +72,7 @@ group :development, :test do
   gem 'brakeman', '5.2.3'
 
   # Rubocop detects bad practices on code
+  # bundle exec rubocop --parallel
   # rubocop --autocorrect --only Style/StringLiterals
   gem 'rubocop'
 

@@ -4,10 +4,10 @@ module ApplicationApiHelper
     @@ANSI_WHITE = "\e[37m"
     @@ANSI_RESET = "\e[0m"
 
-    def respond_with_status status=200, payload={}
+    def respond_with_status(status=200, payload={})
 
         if payload.is_a?(String)
-            payload = { :msg => payload }
+            payload = { msg: payload }
         end
 
         case status
@@ -21,10 +21,10 @@ module ApplicationApiHelper
             payload[:msg] = '404 - Not Found' unless payload[:msg]
         end
 
-        return render(status: status, content_type: 'application/json', json: payload.to_json)
+        render(status: status, content_type: 'application/json', json: payload.to_json)
     end
 
-    def debug *args
+    def debug(*args)
         puts @@ANSI_RED
         puts '-' * 100
         args.each do |arg|

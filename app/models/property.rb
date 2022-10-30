@@ -4,7 +4,7 @@ class Property < ApplicationRecord
     enum status: {
         listed: 'listed',
         not_listed: 'not_listed',
-        reserved: 'reserved',
+        reserved: 'reserved'
     }, _default: 'not_listed'
 
     enum category: {
@@ -12,7 +12,7 @@ class Property < ApplicationRecord
         land: 'land',
         apartment: 'apartment',
         commercial: 'commercial',
-        other: 'other',
+        other: 'other'
     }
 
     validates :status, inclusion: { in: statuses.keys }

@@ -4,7 +4,7 @@ module Debugger
     ANSI_WHITE = "\e[37m"
     ANSI_RESET = "\e[0m"
 
-    def self.debug *args
+    def self.debug(*args)
         puts ANSI_RED
         puts '-' * 100
         args.each do |arg|

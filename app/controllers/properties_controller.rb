@@ -7,8 +7,7 @@ class PropertiesController < ApplicationController
     end
 
     # GET /properties/1 or /properties/1.json
-    def show
-    end
+    def show; end
 
     # GET /properties/new
     def new
@@ -16,8 +15,7 @@ class PropertiesController < ApplicationController
     end
 
     # GET /properties/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /properties or /properties.json
     def create

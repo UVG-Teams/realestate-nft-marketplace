@@ -34,7 +34,7 @@ class Api::Users::SessionsController < ApplicationApiController
             email: @current_user.email,
             first_name: @current_user.first_name,
             last_name: @current_user.last_name,
-            telephone: @current_user.telephone,
+            telephone: @current_user.telephone
         })
 
         respond_with_status(200, {
