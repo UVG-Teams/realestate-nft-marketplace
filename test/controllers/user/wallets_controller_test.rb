@@ -2,8 +2,7 @@
 
 require 'test_helper'
 
-module User
-  class WalletsControllerTest < ActionDispatch::IntegrationTest
+class User::WalletsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user_wallet = user_wallets(:one)
   end
@@ -47,6 +46,5 @@ module User
     end
 
     assert_redirected_to user_wallets_url
-  end
   end
 end

@@ -2,8 +2,7 @@
 
 require 'application_system_test_case'
 
-module User
-  class WalletsTest < ApplicationSystemTestCase
+class User::WalletsTest < ApplicationSystemTestCase
   setup do
     @user_wallet = user_wallets(:one)
   end
@@ -38,6 +37,5 @@ module User
     click_on 'Destroy this wallet', match: :first
 
     assert_text 'Wallet was successfully destroyed'
-  end
   end
 end
