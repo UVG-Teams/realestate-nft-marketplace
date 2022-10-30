@@ -81,3 +81,6 @@ Style/RedundantFetchBlock:
 
 Style/ClassVars:
   Enabled: false
+
+Style/BlockComments:
+  Enabled: false
