@@ -19,13 +19,21 @@ Autores:
 - EDITOR="nano" rails credentials:edit --environment development
 ```
 db:
-    database: nft_realestate_dev
+    port: 5432
     username: postgres
     password: ""
-    port: 5432
+    database: nft_realestate_dev
+
+aws:
+    access_key_id: ""
+    secret_access_key: ""
+    region: ""
+    bucket: ""
 
 hmac:
-    secret: "some secret string"
+    secret: somehmacsecret
+
+secret_key_base: somesecretkeybase
 ```
 - rake dev:db:reset
 - Guardar password

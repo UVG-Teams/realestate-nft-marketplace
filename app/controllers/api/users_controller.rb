@@ -1,5 +1,6 @@
 class Api::UsersController < ApplicationApiController
-    before_action :set_user, only: %i[show edit update destroy properties]
+    before_action :set_user, only: %i[show update destroy properties upload_avatar]
+    before_action :check_ownership, only: %i[update destroy upload_avatar]
 
     # GET /users or /users.json
     def index
@@ -14,8 +15,6 @@ class Api::UsersController < ApplicationApiController
 
     # PATCH/PUT /users/1 or /users/1.json
     def update
-        return respond_with_status(401) if @user != @current_user
-
         if @user.update(user_params)
             respond_with_status(200, 'User was successfully updated.')
         else
@@ -25,8 +24,6 @@ class Api::UsersController < ApplicationApiController
 
     # DELETE /users/1 or /users/1.json
     def destroy
-        return respond_with_status(401) if @user != @current_user
-
         @user.destroy
 
         respond_with_status(200, 'User was successfully destroyed.')
@@ -35,6 +32,18 @@ class Api::UsersController < ApplicationApiController
     # ====================================================================================================
     # Custom methods
     # ====================================================================================================
+
+    def upload_avatar
+        # Remove the previous if exists
+        @current_user.avatar.purge if @current_user.avatar.attached?
+
+        # Attach the new file
+        @current_user.avatar.attach(params[:avatar])
+
+        respond_with_status(200, {
+            avatar_url: url_for(@current_user.avatar)
+        })
+    end
 
     def properties
         user_properties = @user.properties.all
@@ -74,5 +83,9 @@ class Api::UsersController < ApplicationApiController
 
     def wallet_params
         params.fetch(:wallet, {}).permit(:account)
+    end
+
+    def check_ownership
+        return respond_with_status(401) if @user != @current_user
     end
 end
