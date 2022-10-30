@@ -29,3 +29,14 @@ hmac:
 ```
 - rake dev:db:reset
 - Guardar password
+
+
+# Conventional Commits
+- feat
+- fix
+- docs
+- test
+- ci
+- test
+- refactor
+- build
