@@ -10,8 +10,6 @@ module ApplicationApiHelper
             payload = { :msg => payload }
         end
 
-        payload[:status] = status
-
         case status
         when 200
             payload[:msg] = "200 - Ok" unless payload
