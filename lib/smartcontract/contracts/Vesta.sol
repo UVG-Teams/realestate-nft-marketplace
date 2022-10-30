@@ -21,6 +21,10 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
         _safeMint(msg.sender, tokenId);
     }
 
+    function boolToString(bool _b) public pure returns (string memory) {
+        return (_b ? 'Yes' : 'No');
+    }
+
     function tokenURI(uint256 tokenId) 
         public
         view
@@ -57,7 +61,7 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
                         '{"name":"', "Vesta :)",
                         '","description":"', "Vesta is a property tokenization platform, represented as NFTs that live on the blockchain for easy transfer of ownership.",
                         '","image":"', "https://gateway.pinata.cloud/ipfs/QmbX4BNVdhRZJrecshrewWn93StaPZ3ku49RfwuF6HxdxD",
-                        '","attributes":[{"trait_type":"Typology","value":"', userI.typology, '"},{"trait_type": "Year built","value":"', userI.yearBuilt.toString(), '"},{"trait_type": "Square meters","value":"', userI.sqm.toString(), '"},{"trait_type": "Rooms","value":"', userI.rooms.toString(), '"},{"trait_type": "Bathrooms","value":"', userI.bathrooms.toString(), '"},{"trait_type": "Levels","value":"', userI.levels.toString(), '"},{"trait_type": "Parkings","value":"', userI.parkings.toString(), '"},{"trait_type": "location","value":"', userI.location, '"}]}'
+                        '","attributes":[{"trait_type":"Typology","value":"', userI.typology, '"},{"trait_type": "Year built","value":"', userI.yearBuilt.toString(), '"},{"trait_type": "Square meters","value":"', userI.sqm.toString(), '"},{"trait_type": "Rooms","value":"', userI.rooms.toString(), '"},{"trait_type": "Bathrooms","value":"', userI.bathrooms.toString(), '"},{"trait_type": "Levels","value":"', userI.levels.toString(), '"},{"trait_type": "Parkings","value":"', userI.parkings.toString(), '"},{"trait_type": "Yard","value":"',  boolToString(userI.yard), '"},{"trait_type": "Location","value":"', userI.location, '"}]}'
                     )
                 )
             )
