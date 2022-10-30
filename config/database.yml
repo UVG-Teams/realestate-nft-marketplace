@@ -9,7 +9,7 @@ default: &default
 
 development:
     <<: *default
-    port: <%= Rails.application.credentials.db[:port] || 5432 %>
+    port: <%= Rails.application.credentials.db.dig(:port) || 5432 %>
     username: <%= Rails.application.credentials.db[:username] %>
     password: <%= Rails.application.credentials.db[:password] %>
     database: <%= Rails.application.credentials.db[:database] %>

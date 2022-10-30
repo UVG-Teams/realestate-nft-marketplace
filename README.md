@@ -17,14 +17,14 @@ Autores:
 - bundle install
 - EDITOR="nano" rails credentials:edit --environment development
 ```
-    db:
-        database: nft_realestate_dev
-        username: postgres
-        password: ""
-        port: 5432
+db:
+    database: nft_realestate_dev
+    username: postgres
+    password: ""
+    port: 5432
 
-    hmac:
-        secret: "some secret string"
+hmac:
+    secret: "some secret string"
 ```
 - rake dev:db:reset
 - Guardar password
