@@ -52,7 +52,14 @@ class Api::Users::RegistrationController < ApplicationApiController
     private
 
     def registration_params
-        params.fetch(:registration, {}).permit(:email, :password, :password_confirmation)
+        params.fetch(:registration, {}).permit(
+            :email,
+            :password,
+            :password_confirmation,
+            :first_name,
+            :last_name,
+            :telephone,
+        )
     end
 
     def wallet_params
