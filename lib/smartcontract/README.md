@@ -14,4 +14,5 @@ npx hardhat run scripts/deploy.js
 
 npx hardhat compile
 npx hardhat run scripts/deploy.js --network goerli
+npx hardhat flatten > Flattened.sol 
 ```
