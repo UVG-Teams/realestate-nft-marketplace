@@ -15,6 +15,7 @@ Autores:
 - Install rvm
 - rvm install 2.7.2
 - bundle install
+- Troubleshoot: brew install libpq
 - EDITOR="nano" rails credentials:edit --environment development
 ```
 db:
