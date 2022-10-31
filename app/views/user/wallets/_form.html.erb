@@ -1,0 +1,17 @@
+<%= form_with(model: user_wallet) do |form| %>
+  <% if user_wallet.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user_wallet.errors.count, "error") %> prohibited this user_wallet from being saved:</h2>
+
+      <ul>
+        <% user_wallet.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

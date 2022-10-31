@@ -1,0 +1,67 @@
+# This workflow will install a prebuilt Ruby version, install dependencies, and
+# run tests and linters.
+name: "Ruby on Rails CI"
+on:
+  push:
+    branches: [ "master", "production" ]
+  pull_request:
+    branches: [ "master", "production" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: rails_test
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
+    env:
+      RAILS_ENV: test
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_CREDENTIALS_CI_KEY }}
+      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      # Add or replace dependency steps here
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa # v1.115.3
+        with:
+          bundler-cache: true
+      # Add or replace database setup steps here
+      - name: Bundle Install
+        run: bundle install
+      - name: Set up database
+        run: |
+          cp ./config/credentials/ci.yml.enc ./config/credentials/test.yml.enc
+          echo "$PRIVATE_KEY" >> ./config/credentials/jwtRS256.key
+          echo "$PUBLIC_KEY" >> ./config/credentials/jwtRS256.key.pub
+          bundle exec rake db:drop
+          bundle exec rake db:create
+          bundle exec rake db:migrate
+          bundle exec rake db:seed
+        env:
+          PRIVATE_KEY: ${{ secrets.RAILS_CREDENTIALS_JWT_RSA_CI_KEY }}
+          PUBLIC_KEY: ${{ secrets.RAILS_CREDENTIALS_JWT_RSA_CI_KEY_PUB }}
+      # Add or replace test runners here
+      - name: Run tests
+        run: bin/rake
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa # v1.115.3
+        with:
+          bundler-cache: true
+      # Add or replace any other lints here
+      - name: Security audit dependencies
+        run: bundle exec bundler-audit
+      - name: Security audit application code
+        run: bundle exec brakeman
+      - name: Lint Ruby files
+        run: bundle exec rubocop --parallel

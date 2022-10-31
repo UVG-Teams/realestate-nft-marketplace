@@ -1,6 +1,6 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -18,5 +18,15 @@ module RealestateNftMarketplace
         #
         # config.time_zone = "Central Time (US & Canada)"
         # config.eager_load_paths << Rails.root.join("extras")
+
+        config.middleware.insert_before 0, Rack::Cors do
+            allow do
+                origins '*'
+                resource '/api/*',
+                    headers: :any,
+                    expose: %w[access-token expiry token-type uid client],
+                    methods: %i[get post options put]
+            end
+        end
     end
 end

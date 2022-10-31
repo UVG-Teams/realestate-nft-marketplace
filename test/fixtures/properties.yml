@@ -4,8 +4,18 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+# one: {}
 # column: value
-#
-two: {}
+one:
+    nft_id: 123
+    finca: 214323
+    folio: 232432
+    libro: 354958
+    location: somewhere
+    status: not_listed
+    category: other
+    rooms: 1
+    bathrooms: 2
+
+# two: {}
 # column: value
