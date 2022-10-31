@@ -14,7 +14,7 @@ class AuthToken
     end
 
     def generate
-        private_key_path = Rails.application.credentials.dig(:rsa, :private_key)
+        private_key_path = Rails.root.join('config/credentials/jwtRS256.key')
         private_key_file = File.open(private_key_path)
 
         private_key_data = private_key_file.read
@@ -33,7 +33,7 @@ class AuthToken
     end
 
     def self.verify(token)
-        public_key_path = Rails.application.credentials.dig(:rsa, :public_key)
+        public_key_path = Rails.root.join('config/credentials/jwtRS256.key.pub')
 
         public_key_file = File.open(public_key_path)
 

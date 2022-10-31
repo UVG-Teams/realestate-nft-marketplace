@@ -7,10 +7,10 @@
 # one: {}
 # column: value
 one:
-  email: hola@hola.com
-  first_name: Hola
-  last_name: Hola
-  telephone: +50212345678
-#
+    email: hola@hola.com
+    first_name: Hola
+    last_name: Hola
+    telephone: +50212345678
+
 # two: {}
 # column: value
