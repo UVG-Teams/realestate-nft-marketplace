@@ -61,13 +61,15 @@ jobs:
           node-version: 16
       - name: NPM Install
         working-directory: ./lib/smartcontract
-        run: |
-          ls
-          npm install
+        run: npm install
+      - name: Configuration of env
+        working-directory: ./lib/smartcontract
+        run: echo "$ENV_VARS" >> .env
+        env:
+          ENV_VARS: ${{ secrets.SMARTCONTRACTS_CREDENTIALS_ENV_VARS }}
       - name: Run tests
         working-directory: ./lib/smartcontract
         run: |
-          ls
           npx hardhat help
           npx hardhat test
 
