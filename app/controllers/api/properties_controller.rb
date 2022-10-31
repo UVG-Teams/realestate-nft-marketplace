@@ -50,7 +50,7 @@ class Api::PropertiesController < ApplicationApiController
     # Custom methods
     # ====================================================================================================
 
-    def get_files
+    def retrieve_files
         response = {
             images: []
         }

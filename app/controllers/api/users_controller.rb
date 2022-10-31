@@ -19,9 +19,9 @@ class Api::UsersController < ApplicationApiController
             :first_name,
             :last_name,
             :telephone,
-            :pid_number,
+            :pid_number
         ).merge(
-            avatar: @user.avatar.attached? ? url_for(@user.avatar) : nil,
+            avatar: @user.avatar.attached? ? url_for(@user.avatar) : nil
         ))
     end
 

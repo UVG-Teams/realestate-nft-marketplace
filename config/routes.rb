@@ -30,7 +30,7 @@ Rails.application.routes.draw do
         resources :properties do
             member do
                 post    :upload_files
-                get     :get_files
+                get     :retrieve_files
             end
         end
     end
