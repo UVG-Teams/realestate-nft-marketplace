@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationApiController
-    before_action :set_user, only: %i[show update destroy properties upload_avatar]
-    before_action :check_ownership, only: %i[update destroy upload_avatar]
+    before_action :set_user, only: %i[show update destroy properties upload_avatar remove_wallet]
+    before_action :check_ownership, only: %i[update destroy upload_avatar remove_wallet]
 
     # GET /users or /users.json
     def index
@@ -21,7 +21,8 @@ class Api::UsersController < ApplicationApiController
             :telephone,
             :pid_number
         ).merge(
-            avatar: @user.avatar.attached? ? url_for(@user.avatar) : nil
+            avatar: @user.avatar.attached? ? url_for(@user.avatar) : nil,
+            wallets: @user.wallets
         ))
     end
 
@@ -75,6 +76,20 @@ class Api::UsersController < ApplicationApiController
 
         if wallet.save
             respond_with_status(200, 'Wallet was successfully created.')
+        else
+            respond_with_status(400, wallet.errors)
+        end
+    end
+
+    def remove_wallet
+        return respond_with_status(400) if wallet_params[:account].blank?
+
+        wallet = @user.wallets.find_by(account: wallet_params[:account])
+
+        return respond_with_status(404) unless wallet
+
+        if wallet.destroy
+            respond_with_status(200, 'Wallet was successfully destroy.')
         else
             respond_with_status(400, wallet.errors)
         end

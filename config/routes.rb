@@ -23,6 +23,7 @@ Rails.application.routes.draw do
             member do
                 get     :properties
                 post    :wallet
+                delete  :remove_wallet
                 post    :upload_avatar
             end
         end
