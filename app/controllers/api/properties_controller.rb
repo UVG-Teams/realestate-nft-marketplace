@@ -1,5 +1,6 @@
 class Api::PropertiesController < ApplicationApiController
-    before_action :set_property, only: %i[show edit update destroy]
+    before_action :set_property, only: %i[show edit update destroy get_files upload_files]
+    before_action :check_ownership, only: %i[update destroy get_files upload_files]
 
     # GET /properties or /properties.json
     def index
@@ -31,8 +32,6 @@ class Api::PropertiesController < ApplicationApiController
 
     # PATCH/PUT /properties/1 or /properties/1.json
     def update
-        return respond_with_status(401) if @property.user != @current_user
-
         if @property.update(property_params)
             respond_with_status(200, 'Property was successfully updated.')
         else
@@ -42,8 +41,6 @@ class Api::PropertiesController < ApplicationApiController
 
     # DELETE /properties/1 or /properties/1.json
     def destroy
-        return respond_with_status(401) if @property.user != @current_user
-
         @property.destroy
 
         respond_with_status(200, 'Property was successfully destroyed.')
@@ -52,6 +49,39 @@ class Api::PropertiesController < ApplicationApiController
     # ====================================================================================================
     # Custom methods
     # ====================================================================================================
+
+    def retrieve_files
+        response = {
+            images: []
+        }
+
+        @property.files.each do |file|
+            response[:images].append({
+                id: file.id,
+                url: url_for(file)
+            })
+        end
+
+        respond_with_status(200, response)
+    end
+
+    def upload_files
+        # Attach the new file
+        @property.files.attach(params[:files])
+
+        response = {
+            images: []
+        }
+
+        @property.files.each do |file|
+            response[:images].append({
+                id: file.id,
+                url: url_for(file)
+            })
+        end
+
+        respond_with_status(200, response)
+    end
 
     private
 
@@ -72,5 +102,9 @@ class Api::PropertiesController < ApplicationApiController
             :rooms,
             :bathrooms
         )
+    end
+
+    def check_ownership
+        return respond_with_status(401) if @current_user != @property.user
     end
 end

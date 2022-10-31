@@ -28,6 +28,9 @@ gem 'puma', '~> 5.0'
 # Fake data generator [https://github.com/faker-ruby/faker]
 gem 'faker'
 
+# AWS S3 service bucket
+gem 'aws-sdk-s3'
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem 'importmap-rails'
 
