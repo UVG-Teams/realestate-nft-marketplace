@@ -3,9 +3,8 @@ require 'jwt'
 
 class AuthToken
     attr_accessor :token
-    @@algorithm = "RS256"
 
-    @@algorithm = 'HS256'
+    @@algorithm = 'RS256'
 
     def initialize(current_user, custom_payload = {})
         @current_user = current_user
@@ -23,7 +22,6 @@ class AuthToken
 
         private_key = OpenSSL::PKey::RSA.new(private_key_data)
 
-
         # Setting the payload of the token
         payload = {
             **@custom_payload,
@@ -33,10 +31,9 @@ class AuthToken
         }
 
         self.token = JWT.encode payload, private_key, @@algorithm
-
     end
 
-    def self.verify token
+    def self.verify(token)
         public_key_path = Rails.application.credentials.dig(:rsa, :public_key)
 
         public_key_file = File.open(public_key_path)
@@ -47,8 +44,8 @@ class AuthToken
 
         begin
             decoded_token = JWT.decode token, public_key, true, { algorithm: @@algorithm }
-        rescue => exception
-            Debugger.debug exception
+        rescue StandardError => e
+            Debugger.debug e
             return false, nil
         end
 
