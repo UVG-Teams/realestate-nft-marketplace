@@ -2,10 +2,8 @@
 
 require 'test_helper'
 
-module Api
-  class UsersControllerTest < ActionDispatch::IntegrationTest
+class Api::UsersControllerTest < ActionDispatch::IntegrationTest
     # test "the truth" do
     #   assert true
     # end
-  end
 end

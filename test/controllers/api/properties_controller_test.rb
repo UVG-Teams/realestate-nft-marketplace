@@ -2,10 +2,8 @@
 
 require 'test_helper'
 
-module Api
-  class PropertiesControllerTest < ActionDispatch::IntegrationTest
+class Api::PropertiesControllerTest < ActionDispatch::IntegrationTest
     # test "the truth" do
     #   assert true
     # end
-  end
 end

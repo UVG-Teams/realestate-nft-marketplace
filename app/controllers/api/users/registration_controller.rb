@@ -4,11 +4,18 @@ class Api::Users::RegistrationController < ApplicationApiController
     def create
         @current_user = nil
 
+        return respond_with_status(400, 'Email required') if registration_params[:email].blank?
+        return respond_with_status(400, 'Password required') if registration_params[:password].blank?
+        return respond_with_status(400, 'Password confirmation required') if registration_params[:password_confirmation].blank?
+
         # Looking for the user
         user = User.find_for_database_authentication(email: registration_params[:email])
 
         # User already exists
         return respond_with_status(400, 'User already exists') unless user.blank?
+
+        # Password complexity mismatched
+        return respond_with_status(400, 'Password must contain lower case, upper case and number') if registration_params[:params].blank? && !registration_params[:password].match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)./)
 
         # Pasword mismatch
         return respond_with_status(400, 'Pasword mismatch') if registration_params[:password] != registration_params[:password_confirmation]

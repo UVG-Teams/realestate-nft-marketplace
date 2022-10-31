@@ -479,6 +479,10 @@ library Address {
 
 
 // File @openzeppelin/contracts/utils/Context.sol@v4.7.3
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 23f8efdc (feat: avalanche fuji support, fix smart contract metadata)
 
 
 // OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
@@ -502,6 +506,39 @@ abstract contract Context {
 
     function _msgData() internal view virtual returns (bytes calldata) {
         return msg.data;
+<<<<<<< HEAD
+    }
+}
+
+
+// File @openzeppelin/contracts/utils/Strings.sol@v4.7.3
+=======
+>>>>>>> parent of 23f8efdc (feat: avalanche fuji support, fix smart contract metadata)
+
+
+// OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
+
+pragma solidity ^0.8.0;
+
+/**
+ * @dev Provides information about the current execution context, including the
+ * sender of the transaction and its data. While these are generally available
+ * via msg.sender and msg.data, they should not be accessed in such a direct
+ * manner, since when dealing with meta-transactions the account sending and
+ * paying for execution may not be the actual sender (as far as an application
+ * is concerned).
+ *
+ * This contract is only required for intermediate, library-like contracts.
+ */
+abstract contract Context {
+    function _msgSender() internal view virtual returns (address) {
+        return msg.sender;
+    }
+
+    function _msgData() internal view virtual returns (bytes calldata) {
+        return msg.data;
+=======
+>>>>>>> parent of 23f8efdc (feat: avalanche fuji support, fix smart contract metadata)
     }
 }
 
@@ -1487,10 +1524,12 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
 
     constructor() ERC721("Vesta", "V") {}
 
-    function mint() public {
+    function mint() public returns(uint256) {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(msg.sender, tokenId);
+
+        return tokenId;
     }
 
     function boolToString(bool _b) public pure returns (string memory) {

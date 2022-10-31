@@ -9,23 +9,32 @@ Autores:
 - [Francisco Rosal](https://github.com/FR98)
 
 
-
 # Ruby Setup
 
 - Install rvm
 - rvm install 2.7.2
 - bundle install
-- Troubleshoot: brew install libpq
+- Troubleshoot:
+  - MacOS: brew install libpq
+  - Ubuntu: sudo apt-get -y install libpq-dev
 - EDITOR="nano" rails credentials:edit --environment development
 ```
 db:
-    database: nft_realestate_dev
+    port: 5432
     username: postgres
     password: ""
-    port: 5432
+    database: nft_realestate_dev
+
+aws:
+    access_key_id: ""
+    secret_access_key: ""
+    region: ""
+    bucket: ""
 
 hmac:
-    secret: "some secret string"
+    secret: somehmacsecret
+
+secret_key_base: somesecretkeybase
 ```
 - rake dev:db:reset
 - Guardar password
@@ -40,3 +49,7 @@ hmac:
 - test
 - refactor
 - build
+
+# Rubocop
+- rubocop --autocorrect --only Style/StringLiterals && rubocop --autocorrect --only Style/WordArray
+- bundle exec rubocop --parallel
