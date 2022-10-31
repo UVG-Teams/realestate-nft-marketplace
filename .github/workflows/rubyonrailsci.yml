@@ -60,11 +60,14 @@ jobs:
         with:
           node-version: 16
       - name: NPM Install
+        working-directory: ./lib/smartcontract
         run: |
-          cd lib/smartcontract
+          ls
           npm install
       - name: Run tests
+        working-directory: ./lib/smartcontract
         run: |
+          ls
           npx hardhat help
           npx hardhat test
 

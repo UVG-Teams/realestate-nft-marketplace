@@ -14,7 +14,6 @@ namespace :dev do
             Rake::Task['db:seed'].invoke
 
             sh 'bundle exec rubocop --parallel'
-
         end
     end
 end
