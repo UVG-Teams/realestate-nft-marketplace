@@ -15,7 +15,6 @@ class AuthToken
 
     def generate
         private_key_path = Rails.application.credentials.dig(:rsa, :private_key)
-        
         private_key_file = File.open(private_key_path)
 
         private_key_data = private_key_file.read
