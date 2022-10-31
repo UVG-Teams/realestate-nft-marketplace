@@ -4,7 +4,7 @@ require 'jwt'
 class AuthToken
     attr_accessor :token
 
-    @@algorithm = 'HS256'
+    @@algorithm = 'RS256'
 
     def initialize(current_user, custom_payload = {})
         @current_user = current_user
@@ -14,7 +14,12 @@ class AuthToken
     end
 
     def generate
-        hmac_secret = Rails.application.credentials.dig(:hmac, :secret)
+        private_key_path = Rails.application.credentials.dig(:rsa, :private_key)
+        private_key_file = File.open(private_key_path)
+
+        private_key_data = private_key_file.read
+
+        private_key = OpenSSL::PKey::RSA.new(private_key_data)
 
         # Setting the payload of the token
         payload = {
@@ -24,14 +29,20 @@ class AuthToken
             exp: 5.minutes.from_now.to_i
         }
 
-        self.token = JWT.encode payload, hmac_secret, @@algorithm
+        self.token = JWT.encode payload, private_key, @@algorithm
     end
 
     def self.verify(token)
-        hmac_secret = Rails.application.credentials.dig(:hmac, :secret)
+        public_key_path = Rails.application.credentials.dig(:rsa, :public_key)
+
+        public_key_file = File.open(public_key_path)
+
+        public_key_data = public_key_file.read
+
+        public_key = OpenSSL::PKey::RSA.new(public_key_data)
 
         begin
-            decoded_token = JWT.decode token, hmac_secret, true, { algorithm: @@algorithm }
+            decoded_token = JWT.decode token, public_key, true, { algorithm: @@algorithm }
         rescue StandardError => e
             Debugger.debug e
             return false, nil
