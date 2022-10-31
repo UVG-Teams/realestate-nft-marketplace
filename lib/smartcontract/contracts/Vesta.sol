@@ -15,10 +15,12 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
 
     constructor() ERC721("Vesta", "V") {}
 
-    function mint() public {
+    function mint() public returns(uint256) {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(msg.sender, tokenId);
+
+        return tokenId;
     }
 
     function boolToString(bool _b) public pure returns (string memory) {
