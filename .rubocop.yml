@@ -2,10 +2,6 @@ AllCops:
   NewCops: enable
   DisabledByDefault: false
 
-  Exclude:
-    - db/schema.rb
-    - vendor/**/*.rb
-
 Metrics/AbcSize:
   Enabled: false
 
