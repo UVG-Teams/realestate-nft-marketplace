@@ -23,9 +23,15 @@ Rails.application.routes.draw do
             member do
                 get     :properties
                 post    :wallet
+                post    :upload_avatar
             end
         end
 
-        resources :properties
+        resources :properties do
+            member do
+                post    :upload_files
+                get     :retrieve_files
+            end
+        end
     end
 end
