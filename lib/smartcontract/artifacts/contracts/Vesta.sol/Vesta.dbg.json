@@ -1,5 +1,9 @@
 {
   "_format": "hh-sol-dbg-1",
+<<<<<<< HEAD
 
   "buildInfo": "../../build-info/9d982acc08e3860a5e39f15302dbc6bf.json"
+=======
+  "buildInfo": "../../build-info/4dfc48eca2094f57d2a32d388c951072.json"
+>>>>>>> 23f8efdc (feat: avalanche fuji support, fix smart contract metadata)
 }
