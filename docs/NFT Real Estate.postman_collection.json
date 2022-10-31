@@ -27,7 +27,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    // \"account\": \"test1\",\n    \"email\": \"admin@vesta.com\",\n    \"password\": \"password\"\n}",
+					"raw": "{\n    // \"account\": \"test1\",\n    \"email\": \"admin@vesta.com\",\n    \"password\": \"31142bc5ab31685d7a13\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -154,14 +154,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}/api/users/2.json",
+					"raw": "{{host}}/api/users/1.json",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"api",
 						"users",
-						"2.json"
+						"1.json"
 					]
 				}
 			},
@@ -251,6 +251,55 @@
 						"users",
 						"1",
 						"wallet.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Wallet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"wallet\": {\n        \"account\": \"test1\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users/1/remove_wallet.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"1",
+						"remove_wallet.json"
 					]
 				}
 			},
