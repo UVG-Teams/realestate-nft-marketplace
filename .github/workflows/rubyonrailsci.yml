@@ -49,6 +49,25 @@ jobs:
       - name: Run tests
         run: bin/rake
 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      # Add or replace dependency steps here
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: NPM Install
+        run: |
+          cd lib/smartcontract
+          npm install
+      - name: Run tests
+        run: |
+          npx hardhat help
+          npx hardhat test
+
   lint:
     runs-on: ubuntu-latest
     steps:
