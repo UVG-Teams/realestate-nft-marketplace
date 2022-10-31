@@ -4,6 +4,7 @@ AllCops:
 
   Exclude:
     - db/schema.rb
+    - vendor/*
 
 Metrics/AbcSize:
   Enabled: false
