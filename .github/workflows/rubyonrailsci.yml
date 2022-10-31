@@ -69,9 +69,7 @@ jobs:
           ENV_VARS: ${{ secrets.SMARTCONTRACTS_CREDENTIALS_ENV_VARS }}
       - name: Run tests
         working-directory: ./lib/smartcontract
-        run: |
-          npx hardhat help
-          npx hardhat test
+        run: REPORT_GAS=true npx hardhat test
 
   lint:
     runs-on: ubuntu-latest
