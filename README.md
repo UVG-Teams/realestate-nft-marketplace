@@ -52,6 +52,5 @@ secret_key_base: somesecretkeybase
 - build
 
 # Rubocop
-rubocop --autocorrect --only  Style/StringLiterals
-rubocop --autocorrect --only  Style/WordArray
-bundle exec rubocop --parallel
+- rubocop --autocorrect --only  Style/StringLiterals && rubocop --autocorrect --only  Style/WordArray
+- bundle exec rubocop --parallel

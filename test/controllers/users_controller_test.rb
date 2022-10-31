@@ -5,17 +5,17 @@ require 'test_helper'
 class UsersControllerTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
 
-    setup do
-        @user = users(:one)
-    end
-
     test 'should get index' do
-        sign_in users(:one)
+        sign_in User.first
         get users_url
         assert_response :success
     end
 
 =begin
+    setup do
+        @user = users(:one)
+    end
+
     test 'should get new' do
         get new_user_url
         assert_response :success
