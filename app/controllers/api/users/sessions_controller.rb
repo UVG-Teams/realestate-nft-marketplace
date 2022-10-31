@@ -2,6 +2,8 @@ class Api::Users::SessionsController < ApplicationApiController
     skip_before_action :authorize_request, only: :create
 
     def create
+        return respond_with_status(400, 'Password required') if session_params[:password].blank?
+
         if session_params[:account]
 
             wallet = User::Wallet.find_by(account: session_params[:account])
