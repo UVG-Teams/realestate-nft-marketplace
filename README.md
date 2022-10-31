@@ -15,7 +15,9 @@ Autores:
 - Install rvm
 - rvm install 2.7.2
 - bundle install
-- Troubleshoot: brew install libpq
+- Troubleshoot:
+  - MacOS: brew install libpq
+  - Ubuntu: sudo apt-get -y install libpq-dev
 - EDITOR="nano" rails credentials:edit --environment development
 ```
 db:

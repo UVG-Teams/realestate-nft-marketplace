@@ -1,0 +1,690 @@
+{
+	"info": {
+		"_postman_id": "140a36b3-6ab2-4d23-8c5b-dd87e449eee3",
+		"name": "NFT Real Estate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10867951"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"bearerToken\", \"Bearer \" + jsonData[\"token\"]);",
+							"pm.environment.set(\"jwt\", \"JWT \" + jsonData[\"token\"]);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    // \"account\": \"test1\",\n    \"email\": \"admin@vesta.com\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users/sessions.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"sessions.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"bearerToken\", \"Bearer \" + jsonData[\"token\"]);",
+							"pm.environment.set(\"jwt\", \"JWT \" + jsonData[\"token\"]);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"registration\": {\n        \"email\": \"hello@admin.com\",\n        \"password\": \"admin\",\n        \"password_confirmation\": \"admin\",\n        \"first_name\": \"Hello\",\n        \"last_name\": \"Postman\",\n        \"telephone\": \"+50255446025\"\n    },\n    \"wallet\": {\n        \"account\": \"test2\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users/registration.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"registration.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/users.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/users/2.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"2.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Properties",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/users/1/properties.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"1",
+						"properties.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Wallet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"wallet\": {\n        \"account\": \"test1\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users/1/wallet.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"1",
+						"wallet.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Avatar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "avatar",
+							"contentType": "",
+							"type": "file",
+							"src": "/Users/willi/Downloads/Imagen de iOS.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/users/1/upload_avatar.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"1",
+						"upload_avatar.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/users/2.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"2.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/users/2.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"2.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Property",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"finca\": 927364,\n    \"folio\": 862379,\n    \"libro\": 378456,\n    \"location\": \"Somewhere\",\n    \"category\": \"house\",\n    \"rooms\": 1,\n    \"bathrooms\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/properties.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"properties.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Properties",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/properties.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"properties.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Property",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/properties/1.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"properties",
+						"1.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Property Files",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/properties/1/get_files.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"properties",
+						"1",
+						"get_files.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Property Files",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/Users/willi/Downloads/51913533482_0f8636e2f1_o.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/properties/1/upload_files.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"properties",
+						"1",
+						"upload_files.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Property",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"finca\": 927364,\n    \"folio\": 862379,\n    \"libro\": 378456,\n    \"location\": \"Somewhere\",\n    \"rooms\": 1,\n    \"bathrooms\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/properties/7.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"properties",
+						"7.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Property",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/properties/6.json",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"properties",
+						"6.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
