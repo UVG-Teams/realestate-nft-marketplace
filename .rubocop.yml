@@ -2,6 +2,11 @@ AllCops:
   NewCops: enable
   DisabledByDefault: false
 
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/{rails,rake}'
+
 Metrics/AbcSize:
   Enabled: false
 
