@@ -49,6 +49,28 @@ jobs:
       - name: Run tests
         run: bin/rake
 
+  smartcontract-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      # Add or replace dependency steps here
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: NPM Install
+        working-directory: ./lib/smartcontract
+        run: npm install
+      - name: Configuration of env
+        working-directory: ./lib/smartcontract
+        run: echo "$ENV_VARS" >> .env
+        env:
+          ENV_VARS: ${{ secrets.SMARTCONTRACTS_CREDENTIALS_ENV_VARS }}
+      - name: Run tests
+        working-directory: ./lib/smartcontract
+        run: REPORT_GAS=true npx hardhat test
+
   lint:
     runs-on: ubuntu-latest
     steps:

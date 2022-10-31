@@ -9,7 +9,6 @@ Autores:
 - [Francisco Rosal](https://github.com/FR98)
 
 
-
 # Ruby Setup
 
 - Install rvm
