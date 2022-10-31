@@ -21,6 +21,10 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
         _safeMint(msg.sender, tokenId);
     }
 
+    function boolToString(bool _b) public pure returns (string memory) {
+        return (_b ? 'Yes' : 'No');
+    }
+
     function tokenURI(uint256 tokenId) 
         public
         view
@@ -54,10 +58,10 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
                     
 
                     abi.encodePacked(
-                        '{"name":"', "Test Vesta",
-                        '","description":"', "Test si este formato funciona",
-                        '","image":"', "https://gateway.pinata.cloud/ipfs/Qmde74qhgr2xTtaxBxG9aSEcugbfCVZm2ddkjEjywrnuWW",
-                        '","attributes":[{"trait_type":"Libro","value":"', userI.libro.toString(), '"},{"trait_type":"Habitaciones","value":"', userI.rooms.toString(), '"},{"trait_type": "Ubicacion","value":"', userI.location, '"}]}'
+                        '{"name":"', "Vesta",
+                        '","description":"', "Vesta is a property tokenization platform, represented as NFTs that live on the blockchain for easy transfer of ownership.",
+                        '","image":"', userI.image,
+                        '","attributes":[{"trait_type":"Typology","value":"', userI.typology, '"},{"trait_type": "Year built","value":"', userI.yearBuilt.toString(), '"},{"trait_type": "Square meters","value":"', userI.sqm.toString(), '"},{"trait_type": "Rooms","value":"', userI.rooms.toString(), '"},{"trait_type": "Bathrooms","value":"', userI.bathrooms.toString(), '"},{"trait_type": "Levels","value":"', userI.levels.toString(), '"},{"trait_type": "Parkings","value":"', userI.parkings.toString(), '"},{"trait_type": "Yard","value":"',  boolToString(userI.yard), '"},{"trait_type": "Pool","value":"',  boolToString(userI.pool), '"},{"trait_type": "Location","value":"', userI.location, '"}]}'
                     )
                 )
             )
