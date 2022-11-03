@@ -1,13 +1,13 @@
 # This workflow will install a prebuilt Ruby version, install dependencies, and
 # run tests and linters.
-name: "Ruby on Rails CI"
+name: "CI"
 on:
   push:
     branches: [ "master", "production" ]
   pull_request:
     branches: [ "master", "production" ]
 jobs:
-  test:
+  rails-test:
     runs-on: ubuntu-latest
     services:
       postgres:

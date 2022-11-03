@@ -46,7 +46,6 @@ secret_key_base: somesecretkeybase
 - docs
 - test
 - ci
-- test
 - refactor
 - build
 
