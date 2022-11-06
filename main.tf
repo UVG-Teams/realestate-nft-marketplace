@@ -20,8 +20,8 @@ terraform {
     required_version = ">= 1.2.0"
 }
 
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
+# variable "aws_access_key" {}
+# variable "aws_secret_key" {}
 
 
 # Configure the AWS Provider
