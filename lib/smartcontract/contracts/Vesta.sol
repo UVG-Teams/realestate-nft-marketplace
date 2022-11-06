@@ -15,10 +15,12 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
 
     constructor() ERC721("Vesta", "V") {}
 
-    function mint() public {
+    function mint() public returns(uint256) {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(msg.sender, tokenId);
+
+        return tokenId;
     }
 
     function boolToString(bool _b) public pure returns (string memory) {
@@ -36,32 +38,17 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
             "ERC721 Metadata: URI query for nonexistent token"
         );
 
-        // uint256 metad = get_house_info();
+        (string memory a, string memory aa, uint256 b, uint256 c, uint256 d, uint256 e, uint256 f, uint256 g, bool h, bool i, string memory j) = get_house(tokenId);
 
         string memory jsonURI = Base64.encode(
             bytes(
                 string(
-                    // abi.encodePacked(
-                    //     '{"name": "Vesta #',
-                    //     tokenId.toString(),
-                    //     '", "description": "Vesta are houses stored on chain to transfer property", "image": "',
-                    //     "https://gateway.pinata.cloud/ipfs/Qmde74qhgr2xTtaxBxG9aSEcugbfCVZm2ddkjEjywrnuWW",
-                    //     '"}'
-
-                    // abi.encodePacked(
-                    //     '{"name": "Vesta #',
-                    //     metad.toString(),
-                    //     '", "description": "Vesta are houses stored on chain to transfer property", "image": "',
-                    //     "https://gateway.pinata.cloud/ipfs/Qmde74qhgr2xTtaxBxG9aSEcugbfCVZm2ddkjEjywrnuWW",
-                    //     '"}'
-                    // )
-                    
-
                     abi.encodePacked(
-                        '{"name":"', "Vesta",
+                        '{"name":"', "Vesta #", 
+                        tokenId.toString(),
                         '","description":"', "Vesta is a property tokenization platform, represented as NFTs that live on the blockchain for easy transfer of ownership.",
-                        '","image":"', userI.image,
-                        '","attributes":[{"trait_type":"Typology","value":"', userI.typology, '"},{"trait_type": "Year built","value":"', userI.yearBuilt.toString(), '"},{"trait_type": "Square meters","value":"', userI.sqm.toString(), '"},{"trait_type": "Rooms","value":"', userI.rooms.toString(), '"},{"trait_type": "Bathrooms","value":"', userI.bathrooms.toString(), '"},{"trait_type": "Levels","value":"', userI.levels.toString(), '"},{"trait_type": "Parkings","value":"', userI.parkings.toString(), '"},{"trait_type": "Yard","value":"',  boolToString(userI.yard), '"},{"trait_type": "Pool","value":"',  boolToString(userI.pool), '"},{"trait_type": "Location","value":"', userI.location, '"}]}'
+                        '","image":"', a,
+                        '","attributes":[{"trait_type":"Typology","value":"', aa, '"},{"trait_type": "Year built","value":"', b.toString(), '"},{"trait_type": "Square meters","value":"', c.toString(), '"},{"trait_type": "Rooms","value":"', d.toString(), '"},{"trait_type": "Bathrooms","value":"', e.toString(), '"},{"trait_type": "Levels","value":"', f.toString(), '"},{"trait_type": "Parkings","value":"', g.toString(), '"},{"trait_type": "Yard","value":"',  boolToString(h), '"},{"trait_type": "Pool","value":"',  boolToString(i), '"},{"trait_type": "Location","value":"', j, '"}]}'
                     )
                 )
             )
