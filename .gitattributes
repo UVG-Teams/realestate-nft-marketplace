@@ -7,4 +7,4 @@ db/schema.rb linguist-generated
 vendor/* linguist-vendored
 
 # Mark any Jupyter Notebook files as having been generated.
-*.ipynb linguist-vendored
+lib/data_algorithms/image_recognition/*/*.ipynb linguist-vendored
