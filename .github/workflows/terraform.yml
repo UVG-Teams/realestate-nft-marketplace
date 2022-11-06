@@ -84,8 +84,8 @@ jobs:
 
     - name: Getting credentials
       run: |
-        echo "$AWS_TF_USER_ACCESS_KEY" >> ci.tfvars
-        echo "$AWS_TF_USER_SECRET_KEY" >> ci.tfvars
+        echo "aws_access_key=$AWS_TF_USER_ACCESS_KEY" >> ci.tfvars
+        echo "aws_secret_key=$AWS_TF_USER_SECRET_KEY" >> ci.tfvars
       # run: |
       #   export AWS_ACCESS_KEY_ID="$AWS_TF_USER_ACCESS_KEY"
       #   export AWS_SECRET_ACCESS_KEY="$AWS_TF_USER_SECRET_KEY"
