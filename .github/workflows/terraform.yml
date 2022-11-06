@@ -45,7 +45,7 @@ name: 'Terraform'
 on:
   push:
     branches: [ "production" ]
-  pull_request:
+  # pull_request:
     # branches: [ "production" ]
 
 permissions:
@@ -68,6 +68,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_TF_USER_ACCESS_KEY }
+        aws-secret-access-key: ${{ secrets.AWS_TF_USER_SECRET_KEY }}
+        aws-region: eu-west-2a
+
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
@@ -82,19 +89,19 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check
 
-    - name: Getting credentials
+    # - name: Getting credentials
       # run: |
       #   echo "aws_access_key=$AWS_TF_USER_ACCESS_KEY" >> ci.tfvars
       #   echo "aws_secret_key=$AWS_TF_USER_SECRET_KEY" >> ci.tfvars
       # run: |
       #   export AWS_ACCESS_KEY_ID="$AWS_TF_USER_ACCESS_KEY"
       #   export AWS_SECRET_ACCESS_KEY="$AWS_TF_USER_SECRET_KEY"
-      run: |
-        export TF_VAR_aws_access_key="$AWS_TF_USER_ACCESS_KEY"
-        export TF_VAR_aws_secret_key="$AWS_TF_USER_SECRET_KEY"
-      env:
-        AWS_TF_USER_ACCESS_KEY: ${{ secrets.AWS_TF_USER_ACCESS_KEY }
-        AWS_TF_USER_SECRET_KEY: ${{ secrets.AWS_TF_USER_SECRET_KEY }}
+      # run: |
+      #   export TF_VAR_aws_access_key="$AWS_TF_USER_ACCESS_KEY"
+      #   export TF_VAR_aws_secret_key="$AWS_TF_USER_SECRET_KEY"
+      # env:
+      #   AWS_TF_USER_ACCESS_KEY: ${{ secrets.AWS_TF_USER_ACCESS_KEY }
+      #   AWS_TF_USER_SECRET_KEY: ${{ secrets.AWS_TF_USER_SECRET_KEY }}
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
