@@ -82,26 +82,30 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check
 
-    # - name: Getting credentials
-    #   run: |
-    #     export AWS_ACCESS_KEY_ID="$AWS_TF_USER_ACCESS_KEY"
-    #     export AWS_SECRET_ACCESS_KEY="$AWS_TF_USER_SECRET_KEY"
-    #   env:
-    #     AWS_TF_USER_ACCESS_KEY: ${{ secrets.AWS_TF_USER_ACCESS_KEY }
-    #     AWS_TF_USER_SECRET_KEY: ${{ secrets.AWS_TF_USER_SECRET_KEY }}
+    - name: Getting credentials
+      run: |
+        echo "$AWS_TF_USER_ACCESS_KEY" >> ci.tfvars
+        echo "$AWS_TF_USER_SECRET_KEY" >> ci.tfvars
+      # run: |
+      #   export AWS_ACCESS_KEY_ID="$AWS_TF_USER_ACCESS_KEY"
+      #   export AWS_SECRET_ACCESS_KEY="$AWS_TF_USER_SECRET_KEY"
+      env:
+        AWS_TF_USER_ACCESS_KEY: ${{ secrets.AWS_TF_USER_ACCESS_KEY }
+        AWS_TF_USER_SECRET_KEY: ${{ secrets.AWS_TF_USER_SECRET_KEY }}
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      env:
-        TF_VAR_aws_access_key: ${{ secrets.AWS_TF_USER_ACCESS_KEY }}
-        TF_VAR_aws_secret_key: ${{ secrets.AWS_TF_USER_SECRET_KEY }}
-      run: terraform plan -var="aws_access_key=${{ TF_VAR_aws_access_key }}" -var="aws_secret_key=${{ TF_VAR_aws_secret_key }}"
+      run: terraform plan -var-file="ci.tfvars"
+      #  -var="aws_access_key=${{ TF_VAR_aws_access_key }}" -var="aws_secret_key=${{ TF_VAR_aws_secret_key }}"
+      # env:
+      #   TF_VAR_aws_access_key: ${{ secrets.AWS_TF_USER_ACCESS_KEY }}
+      #   TF_VAR_aws_secret_key: ${{ secrets.AWS_TF_USER_SECRET_KEY }}
 
       # On push to "production", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       if: github.ref == 'refs/heads/"production"' && github.event_name == 'push'
-      env:
-        TF_VAR_aws_access_key: ${{ secrets.AWS_TF_USER_ACCESS_KEY }}
-        TF_VAR_aws_secret_key: ${{ secrets.AWS_TF_USER_SECRET_KEY }}
-      run: terraform apply -auto-approve -var="aws_access_key=${{ TF_VAR_aws_access_key }}" -var="aws_secret_key=${{ TF_VAR_aws_secret_key }}"
+      run: terraform apply -auto-approve -var-file="ci.tfvars"
+      # env:
+      #   TF_VAR_aws_access_key: ${{ secrets.AWS_TF_USER_ACCESS_KEY }}
+      #   TF_VAR_aws_secret_key: ${{ secrets.AWS_TF_USER_SECRET_KEY }}
