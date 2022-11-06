@@ -79,3 +79,7 @@ artifacts/build-info
 /secret/*
 !/secret/.keep
 
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
