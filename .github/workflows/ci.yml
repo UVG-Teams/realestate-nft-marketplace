@@ -2,8 +2,6 @@
 # run tests and linters.
 name: "CI"
 on:
-  push:
-    branches: [ "master", "production" ]
   pull_request:
     branches: [ "master", "production" ]
 jobs:
