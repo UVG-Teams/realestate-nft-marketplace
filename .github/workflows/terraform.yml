@@ -78,6 +78,7 @@ jobs:
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
+      if: github.ref != 'refs/heads/"production"' && github.event_name != 'push'
       run: terraform fmt -check
 
     # Generates an execution plan for Terraform
