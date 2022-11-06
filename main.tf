@@ -1,14 +1,14 @@
 # https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build#write-configuration
 terraform {
-    # backend "remote" {
-    #     # The name of your Terraform Cloud organization.
-    #     organization = "uvg-teams"
+    backend "remote" {
+        # The name of your Terraform Cloud organization.
+        organization = "uvg-teams"
 
-    #     # The name of the Terraform Cloud workspace to store Terraform state files in.
-    #     workspaces {
-    #         name = "realestate-nft-marketplace"
-    #     }
-    # }
+        # The name of the Terraform Cloud workspace to store Terraform state files in.
+        workspaces {
+            name = "realestate-nft-marketplace"
+        }
+    }
 
     required_providers {
         aws = {
@@ -20,15 +20,15 @@ terraform {
     required_version = ">= 1.2.0"
 }
 
-# variable "aws_access_key" {}
-# variable "aws_secret_key" {}
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
 
 
 # Configure the AWS Provider
 provider "aws" {
     region  = "eu-west-2a"
-    # access_key = var.aws_access_key
-    # secret_key = var.aws_secret_key
+    access_key = var.aws_access_key
+    secret_key = var.aws_secret_key
 }
 
 
