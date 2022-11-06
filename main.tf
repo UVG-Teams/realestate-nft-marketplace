@@ -1,14 +1,14 @@
 # https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build#write-configuration
 terraform {
-    backend "remote" {
-        # The name of your Terraform Cloud organization.
-        organization = "uvg-teams"
+    # backend "remote" {
+    #     # The name of your Terraform Cloud organization.
+    #     organization = "uvg-teams"
 
-        # The name of the Terraform Cloud workspace to store Terraform state files in.
-        workspaces {
-            name = "realestate-nft-marketplace"
-        }
-    }
+    #     # The name of the Terraform Cloud workspace to store Terraform state files in.
+    #     workspaces {
+    #         name = "realestate-nft-marketplace"
+    #     }
+    # }
 
     required_providers {
         aws = {
