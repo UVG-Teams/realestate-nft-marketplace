@@ -10,9 +10,13 @@ terraform {
     }
 }
 
-# An example resource that does nothing.
-resource "null_resource" "example" {
-    triggers = {
-        value = "A example resource that does nothing!"
-    }
+# AWS Lightsail Instance
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lightsail_instance
+
+resource "aws_lightsail_instance" "example_test" {
+    name                = "example_test_name"
+    availability_zone   = "eu-west-2a"
+    blueprint_id        = "ubuntu_20_04"
+    bundle_id           = "nano_2_0"
+    key_pair_name       = "lightsail-servers-test"
 }
