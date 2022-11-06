@@ -5,6 +5,22 @@ from flaskr.db import get_db
 import functools
 import hmac
 
+# import numpy as np
+# import pandas as pd
+# import matplotlib
+import cv2 as cv
+import tensorflow as tf
+# from tensorflow import keras, cast
+# import matplotlib.pyplot as plt
+import math
+
+bathroom = tf.keras.models.load_model('./models/bathroom.h5')
+diningroom = tf.keras.models.load_model('./models/diningroom.h5')
+bedroom = tf.keras.models.load_model('./models/bedroom.h5')
+livingroom = tf.keras.models.load_model('./models/livingroom.h5')
+kitchen = tf.keras.models.load_model('./models/kitchen.h5')
+IMG_SIZE = 224
+
 class User(object):
     def __init__(self, id, username):
         self.id = id
@@ -26,10 +42,11 @@ def authenticate(username, password):
         user = db.execute(
             'SELECT * FROM user WHERE username = ?', (username,)
         ).fetchone()
-        match = check_password_hash(user['password'], password)
-        if user and match:
-            print("🚀 ~ file: auth.py ~ line 25 ~ user", user)
-            return User(user['id'], user['username'])
+        print("🚀 ~ file: auth.py ~ line 29 ~ user", user)
+        if user is not None:
+            match = check_password_hash(user['password'], password)
+            if user and match:
+                return User(user['id'], user['username'])
     return {
         'message': error
     }
@@ -62,7 +79,6 @@ def register():
         elif not password:
             error = 'Password is required.'
 
-        print("🚀 ~ file: auth.py ~ line 31 ~ username", username, password)
         if error is None:
             try:
                 db.execute(
@@ -78,7 +94,6 @@ def register():
                 return {
                     'message': f'Auth error = {error}'
                 }
-#        flash(error)
     return {
         'message': f'auth error{error}'
         }
@@ -86,4 +101,6 @@ def register():
 @bp.route('/protected', methods=('GET', 'POST'))
 @jwt_required()
 def protected():
+    print("🚀 ~ file: auth.py ~ line 104 ~ protected")
+    
     return {'message': current_identity}

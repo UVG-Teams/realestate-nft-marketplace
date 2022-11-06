@@ -21,16 +21,17 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # @jwt_required()
-    @app.route('/protected')
-    def protected():
-        return {'message': f'{current_identity}'}
-
     from . import db
     db.init_app(app)
 
     from . import auth
     jwt = JWT(app, auth.authenticate, auth.identity)
     app.register_blueprint(auth.bp)
+
+    @jwt_required()
+    @app.route('/protected')
+    def protected():
+        return {'message': f'{current_identity}'}
+
 
     return app
