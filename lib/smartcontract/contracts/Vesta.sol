@@ -6,7 +6,11 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./Base64.sol";
 import "./VestaDNA.sol";
- 
+
+
+/// @title Vesta
+/// @author Gian Luca Rivera - <gian.luca.99@hotmail.com>
+/// @notice Provides the necessary functions to generate an NFT with metadata / Proporciona las funciones necesarias para generar un NFT con metadata 
 contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
     using Counters for Counters.Counter;
     using Strings for uint256;
