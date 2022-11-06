@@ -85,12 +85,17 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan -input=false
-      env:
-        TF_VAR_aws_access_key: ${{ secrets.AWS_TF_USER_ACCESS_KEY }}
-        TF_VAR_aws_secret_key: ${{ secrets.AWS_TF_USER_SECRET_KEY }}
+
+    - name: Getting credentials
+      run: |
+        export AWS_ACCESS_KEY_ID="${{ secrets.AWS_TF_USER_ACCESS_KEY }}"
+        export AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_TF_USER_SECRET_KEY }}"
 
       # On push to "production", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       if: github.ref == 'refs/heads/"production"' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
+      # env:
+      #   TF_VAR_aws_access_key: ${{ secrets.AWS_TF_USER_ACCESS_KEY }}
+      #   TF_VAR_aws_secret_key: ${{ secrets.AWS_TF_USER_SECRET_KEY }}
