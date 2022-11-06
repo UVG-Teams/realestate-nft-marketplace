@@ -12,3 +12,4 @@ lib/data_algorithms/image_recognition/bedroom/*.ipynb linguist-vendored
 lib/data_algorithms/image_recognition/dining/*.ipynb linguist-vendored
 lib/data_algorithms/image_recognition/kitchen/*.ipynb linguist-vendored
 lib/data_algorithms/image_recognition/living/*.ipynb linguist-vendored
+lib/data_algorithms/image_recognition/image_classification.ipynb linguist-vendored
