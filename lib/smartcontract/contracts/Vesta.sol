@@ -9,8 +9,9 @@ import "./VestaDNA.sol";
 
 
 /// @title Vesta
-/// @author Gian Luca Rivera - <gian.luca.99@hotmail.com>
-/// @notice Provides the necessary functions to generate an NFT with metadata / Proporciona las funciones necesarias para generar un NFT con metadata 
+/// @author Gian Luca Rivera
+/// @notice Provides the necessary functions to generate an NFT with metadata
+/// @dev Inherits ERC721, ERC721Enumerable from OpenZeppelin and VestaDNA.sol
 contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
     using Counters for Counters.Counter;
     using Strings for uint256;
@@ -19,6 +20,8 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
 
     constructor() ERC721("Vesta", "V") {}
 
+    /// @notice Function in charge of creating a new token, new tokenId
+    /// @return unique token identification 
     function mint() public returns(uint256) {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
@@ -27,10 +30,17 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
         return tokenId;
     }
 
+    /// @notice Convierte un bool a string
+    /// @param _b booleano
+    /// @return Yes or No
+    /// @dev Inherits ERC721, ERC721Enumerable from OpenZeppelin and VestaDNA.sol
     function boolToString(bool _b) public pure returns (string memory) {
         return (_b ? 'Yes' : 'No');
     }
 
+    /// @notice Returns a url in standard Data URL with the metadata that makes up the NFT encoded in base64
+    /// @param tokenId unique token identification
+    /// @return Data URL (data:application/json;base64,...)
     function tokenURI(uint256 tokenId) 
         public
         view
@@ -61,7 +71,10 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
         return string(abi.encodePacked("data:application/json;base64,", jsonURI));
     }
 
-    // Enumerable methods to list the tokens a user owns (Overrides required by solidity)
+    /// @notice Enumerable methods to list the tokens a user owns (Overrides required by solidity), transfer a token
+    /// @param from  origin
+    /// @param to destination
+    /// @param tokenId unique token identification
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
         internal
         override(ERC721, ERC721Enumerable)
@@ -69,7 +82,9 @@ contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
         super._beforeTokenTransfer(from, to, tokenId);
     }
 
-    // States that in addition to being 721 it is enumerable
+    /// @notice States that in addition to being 721 it is enumerable
+    /// @param interfaceId unique interface identification
+    /// @return override support interface
     function supportsInterface(bytes4 interfaceId)
         public
         view
