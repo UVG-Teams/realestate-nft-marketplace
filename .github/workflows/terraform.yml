@@ -52,6 +52,7 @@ permissions:
   contents: read
 
 jobs:
+  # Terraform Setup
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
