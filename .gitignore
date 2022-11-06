@@ -81,5 +81,5 @@ artifacts/build-info
 
 
 # Terraform
-.terraform/
-.terraform.lock.hcl
+.terraform/providers/
+# .terraform.lock.hcl
