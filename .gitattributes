@@ -8,3 +8,5 @@ vendor/* linguist-vendored
 
 # Mark any Jupyter Notebook files as having been generated.
 lib/data_algorithms/image_recognition/*/*.ipynb linguist-vendored
+!lib/data_algorithms/image_recognition/image_classification.ipynb linguist-vendored
+!lib/data_algorithms/image_recognition/all_models.ipynb linguist-vendored
