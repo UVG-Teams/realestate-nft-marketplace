@@ -1,0 +1,64 @@
+# This workflow will deploy the application
+name: "Server"
+on:
+  workflow_dispatch:
+
+jobs:
+  server-configuration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Updating Ruby on Rails
+        uses: appleboy/ssh-action@master
+        with:
+          host: "34.193.107.238"
+          username: ubuntu
+          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
+          script_stop: true
+          script: |
+            whoami
+            cd ~
+            echo $PATH
+            echo " ---> BUNDLER_WITHOUT="development:test" bundle install"
+            BUNDLER_WITHOUT="development:test" bundle install
+            echo " ---> git checkout production"
+            git checkout production
+
+      - name: Updating React
+        uses: appleboy/ssh-action@master
+        with:
+          host: "34.193.107.238"
+          username: ubuntu
+          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
+          script_stop: true
+          script: |
+            whoami
+            echo " ---> cd /var/www/"
+            cd /var/www/
+            echo " ---> sudo curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh"
+            sudo curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+            echo " ---> sudo bash nodesource_setup.sh"
+            sudo bash nodesource_setup.sh
+            echo " ---> sudo apt-get install nodejs"
+            sudo apt-get install nodejs
+            echo " ---> sudo apt-get --yes --force-yes install build-essential"
+            sudo apt-get --yes --force-yes install build-essential
+            echo " ---> cd /var/www/"
+            cd /var/www/
+            echo " ---> mkdir spa.vesta.f-rosal.com"
+            mkdir spa.vesta.f-rosal.com
+            echo " ---> sudo ln -s /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com"
+            sudo ln -s /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com
+            echo " ---> sudo service nginx restart"
+            sudo service nginx restart
+          # echo " ---> cd /var/www/spa.vesta.f-rosal.com"
+          # cd /var/www/spa.vesta.f-rosal.com
+          # echo " ---> sudo npm install -g serve"
+          # sudo npm install -g serve
+          # echo " ---> serve -s build -l 80"
+          # serve -s build -l 80
+          # echo " ---> sudo service nginx restart"
+          # sudo service nginx restart
