@@ -131,4 +131,21 @@ jobs:
             echo " ---> Creating new rsa keys"
             echo "$PRIVATE_KEY" >> ./id_rsa
             echo "$PUBLIC_KEY" >> ./id_rsa.pub
-
+            echo " ---> cd /var/"
+            cd /var/
+            echo " ---> sudo chown ubuntu www -R"
+            sudo chown ubuntu www -R
+            echo " ---> cd /www/"
+            cd /www/
+            echo " ---> git clone git@github.com:UVG-Teams/realestate-nft-marketplace.git"
+            git clone git@github.com:UVG-Teams/realestate-nft-marketplace.git
+            echo " ---> mv realestate-nft-marketplace/ vesta.f-rosal.com/"
+            mv realestate-nft-marketplace/ vesta.f-rosal.com/
+            echo " ---> cd vesta.f-rosal.com"
+            cd vesta.f-rosal.com
+            echo " ---> BUNDLER_WITHOUT="development:test" bundle install"
+            BUNDLER_WITHOUT="development:test" bundle install
+            echo " ---> git checkout production"
+            git checkout production
+            echo " ---> git status"
+            git status
