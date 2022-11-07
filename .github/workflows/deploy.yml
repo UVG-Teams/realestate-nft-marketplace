@@ -28,6 +28,8 @@ jobs:
             whoami
             cd ~
             echo $PATH
+            echo " ---> Fixing $PATH for this ssh connection"
+            export PATH=/usr/share/rvm/gems/ruby-2.7.2/bin:/usr/share/rvm/gems/ruby-2.7.2@global/bin:/usr/share/rvm/rubies/ruby-2.7.2/bin:/usr/share/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
             echo " ---> cd /var/www/vesta.f-rosal.com/"
             cd /var/www/vesta.f-rosal.com/
             echo " ---> BUNDLER_WITHOUT="development:test" bundle outdated"
@@ -60,7 +62,7 @@ jobs:
             whoami
             echo " ---> cd /var/www/"
             cd /var/www/
-            echo " ---> sudo ln -s /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com"
-            sudo ln -s /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com
+            echo " ---> sudo ln -s -f /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com"
+            sudo ln -s -f /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com
             echo " ---> sudo service nginx restart"
             sudo service nginx restart
