@@ -103,11 +103,15 @@ jobs:
           script_stop: true
           script: |
             cd ~
-            exec bash
+            exec bash \-l
+            echo " ---> rvm list"
+            rvm list
             echo " ---> rvm list known"
             rvm list known
             echo " ---> rvm install 2.7.2"
             rvm install 2.7.2
+            echo " ---> rvm list"
+            rvm list
             echo " ---> Instalar postgres dependencies"
             echo " ---> sudo apt-get -y install libpq-dev"
             sudo apt-get -y install libpq-dev
