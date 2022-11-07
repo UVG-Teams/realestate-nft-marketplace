@@ -131,6 +131,7 @@ jobs:
             echo " ---> Creating new rsa keys"
             echo "$PRIVATE_KEY" >> ./id_rsa
             echo "$PUBLIC_KEY" >> ./id_rsa.pub
+            sudo chmod 600 id_rsa
             echo " ---> cd /var/"
             cd /var/
             echo " ---> sudo chown ubuntu www -R"
