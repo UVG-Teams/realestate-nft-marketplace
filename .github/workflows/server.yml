@@ -102,7 +102,6 @@ jobs:
           key: ${{ secrets.VESTA_CI_SSH_KEY }}
           script_stop: true
           script: |
-            exec bash \-l
             cd ~
             echo " ---> rvm list"
             rvm list
