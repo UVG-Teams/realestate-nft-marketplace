@@ -103,6 +103,7 @@ jobs:
           script_stop: true
           script: |
             cd ~
+            exec bash
             echo " ---> rvm list known"
             rvm list known
             echo " ---> rvm install 2.7.2"
