@@ -85,6 +85,14 @@ jobs:
             echo " ---> Reiniciar"
             echo " ---> sudo reboot"
             sudo reboot
+      
+      - name: Wait for the server to be up
+        uses: nev7n/wait_for_response@v1
+        with:
+          url: 'http://34.193.107.238'
+          responseCode: 200
+          timeout: 2000
+          interval: 500
 
       - name: Executing remote commands using ssh key
         uses: appleboy/ssh-action@master
@@ -93,7 +101,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.VESTA_CI_SSH_KEY }}
           script_stop: true
-          timeout: 10m
           script: |
             echo " ---> rvm list known"
             rvm list known
