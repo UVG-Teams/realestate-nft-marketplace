@@ -133,6 +133,8 @@ jobs:
             echo "$PUBLIC_KEY" >> ./id_rsa.pub
             echo " ---> Adding Github on known hosts"
             ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+            echo " ---> Adding right permissions to key"
+            sudo chmod 600 id_rsa
             echo " ---> cd /var/"
             cd /var/
             echo " ---> sudo chown ubuntu www -R"
