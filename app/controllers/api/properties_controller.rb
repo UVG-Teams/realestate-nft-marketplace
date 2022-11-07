@@ -3,17 +3,28 @@ class Api::PropertiesController < ApplicationApiController
     before_action :check_ownership, only: %i[update destroy get_files upload_files]
 
     # GET /properties or /properties.json
+    # @return [Object] All properties information
     def index
         @properties = Property.all
         respond_with_status(200, @properties)
     end
 
     # GET /properties/1 or /properties/1.json
+    # @param [int] id The property id to show
+    # @return [Object] Single property information
     def show
         respond_with_status(200, @property)
     end
 
     # POST /properties or /properties.json
+    # @param [String] finca
+    # @param [String] folio
+    # @param [String] libro
+    # @param [String] location Property location
+    # @param [String] category Property category
+    # @param [int] rooms Number of rooms in the property
+    # @param [int] bathrooms Number of bathrooms in the property
+    # @return [Object] The new created property information
     def create
         begin
             @property = Property.new(property_params)
@@ -31,6 +42,15 @@ class Api::PropertiesController < ApplicationApiController
     end
 
     # PATCH/PUT /properties/1 or /properties/1.json
+    # @param [int] id The property id to update
+    # @param [String] finca
+    # @param [String] folio
+    # @param [String] libro
+    # @param [String] location Property location
+    # @param [String] category Property category
+    # @param [int] rooms Number of rooms in the property
+    # @param [int] bathrooms Number of bathrooms in the property
+    # @return [Object] The updated property information
     def update
         if @property.update(property_params)
             respond_with_status(200, 'Property was successfully updated.')
@@ -40,6 +60,8 @@ class Api::PropertiesController < ApplicationApiController
     end
 
     # DELETE /properties/1 or /properties/1.json
+    # @param [int] id The property id to delete
+    # @return [nil, error] If the property was delted returns nil
     def destroy
         @property.destroy
 
@@ -50,6 +72,9 @@ class Api::PropertiesController < ApplicationApiController
     # Custom methods
     # ====================================================================================================
 
+    
+    # @param [int] id The property id to get the files from
+    # @return The files from a property
     def retrieve_files
         response = {
             images: []
@@ -65,6 +90,10 @@ class Api::PropertiesController < ApplicationApiController
         respond_with_status(200, response)
     end
 
+
+    # @param [int] id The property id to upload the file to
+    # @param File The file to upload
+    # @return [true, error] True on upload successfull
     def upload_files
         # Attach the new file
         @property.files.attach(params[:files])

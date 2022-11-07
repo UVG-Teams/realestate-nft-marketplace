@@ -3,6 +3,9 @@ module ApplicationApiHelper
     ANSI_WHITE = "\e[37m".freeze
     ANSI_RESET = "\e[0m".freeze
 
+    # @param [int] status Status of the response
+    # @param [Object] payload Information of the response
+    # @return Object Information of response
     def respond_with_status(status = 200, payload = {})
         payload = { msg: payload } if payload.is_a?(String)
 

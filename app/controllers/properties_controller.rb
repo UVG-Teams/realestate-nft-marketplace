@@ -2,22 +2,35 @@ class PropertiesController < ApplicationController
     before_action :set_property, only: %i[show edit update destroy]
 
     # GET /properties or /properties.json
+    # @return [Object] All properties information
     def index
         @properties = Property.all
     end
 
     # GET /properties/1 or /properties/1.json
+    # @param [int] id The property id to show
+    # @return [Object] Single property information
     def show; end
 
     # GET /properties/new
+    # @return Create property view
     def new
         @property = Property.new
     end
 
     # GET /properties/1/edit
+    # @return Edit property view
     def edit; end
 
     # POST /properties or /properties.json
+    # @param [String] finca
+    # @param [String] folio
+    # @param [String] libro
+    # @param [String] location Property location
+    # @param [String] category Property category
+    # @param [int] rooms Number of rooms in the property
+    # @param [int] bathrooms Number of bathrooms in the property
+    # @return [Object] The new created property information
     def create
         @property = Property.new(property_params)
 
@@ -33,6 +46,15 @@ class PropertiesController < ApplicationController
     end
 
     # PATCH/PUT /properties/1 or /properties/1.json
+    # @param [int] id The property id to update
+    # @param [String] finca
+    # @param [String] folio
+    # @param [String] libro
+    # @param [String] location Property location
+    # @param [String] category Property category
+    # @param [int] rooms Number of rooms in the property
+    # @param [int] bathrooms Number of bathrooms in the property
+    # @return [Object] The updated property information
     def update
         respond_to do |format|
             if @property.update(property_params)
@@ -46,6 +68,8 @@ class PropertiesController < ApplicationController
     end
 
     # DELETE /properties/1 or /properties/1.json
+    # @param [int] id The property id to delete
+    # @return [nil, error] If the property was delted returns nil
     def destroy
         @property.destroy
 
