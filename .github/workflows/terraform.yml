@@ -43,8 +43,9 @@
 name: 'Terraform'
 
 on:
-  push:
-    branches: [ "production" ]
+  workflow_dispatch:
+  # push:
+  #   branches: [ "production" ]
 
 permissions:
   contents: read
