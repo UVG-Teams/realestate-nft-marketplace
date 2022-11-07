@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: ApplicationApiController
+  
+    &mdash; Documentation by YARD 0.9.28
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "ApplicationApiController";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo;
+    
+    
+    <span class="title">ApplicationApiController</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: ApplicationApiController
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">ActionController::API</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActionController::API</li>
+          
+            <li class="next">ApplicationApiController</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd>ActionController::MimeResponds, <span class='object_link'><a href="ApplicationApiHelper.html" title="ApplicationApiHelper (module)">ApplicationApiHelper</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>app/controllers/application_api_controller.rb</dd>
+  </dl>
+  
+</div>
+
+<div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="Api/PropertiesController.html" title="Api::PropertiesController (class)">Api::PropertiesController</a></span>, <span class='object_link'><a href="Api/Users/RegistrationController.html" title="Api::Users::RegistrationController (class)">Api::Users::RegistrationController</a></span>, <span class='object_link'><a href="Api/Users/SessionsController.html" title="Api::Users::SessionsController (class)">Api::Users::SessionsController</a></span>, <span class='object_link'><a href="Api/UsersController.html" title="Api::UsersController (class)">Api::UsersController</a></span></p>
+</div>
+
+
+
+  <h2>Constant Summary</h2>
+  
+  <h3 class="inherited">Constants included
+     from <span class='object_link'><a href="ApplicationApiHelper.html" title="ApplicationApiHelper (module)">ApplicationApiHelper</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationApiHelper.html#ANSI_RED-constant" title="ApplicationApiHelper::ANSI_RED (constant)">ApplicationApiHelper::ANSI_RED</a></span>, <span class='object_link'><a href="ApplicationApiHelper.html#ANSI_RESET-constant" title="ApplicationApiHelper::ANSI_RESET (constant)">ApplicationApiHelper::ANSI_RESET</a></span>, <span class='object_link'><a href="ApplicationApiHelper.html#ANSI_WHITE-constant" title="ApplicationApiHelper::ANSI_WHITE (constant)">ApplicationApiHelper::ANSI_WHITE</a></span></p>
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#authorize_request-instance_method" title="#authorize_request (instance method)">#<strong>authorize_request</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="ApplicationApiHelper.html" title="ApplicationApiHelper (module)">ApplicationApiHelper</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationApiHelper.html#debug-instance_method" title="ApplicationApiHelper#debug (method)">#debug</a></span>, <span class='object_link'><a href="ApplicationApiHelper.html#respond_with_status-instance_method" title="ApplicationApiHelper#respond_with_status (method)">#respond_with_status</a></span></p>
+
+  
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="authorize_request-instance_method">
+  
+    #<strong>authorize_request</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/application_api_controller.rb', line 7</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_authorize_request'>authorize_request</span>
+    <span class='id identifier rubyid_token'>token</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+    <span class='id identifier rubyid_token'>token</span> <span class='op'>=</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>JWT </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+
+    <span class='comment'># No token provided
+</span>    <span class='kw'>return</span> <span class='id identifier rubyid_respond_with_status'>respond_with_status</span><span class='lparen'>(</span><span class='int'>401</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_token'>token</span>
+
+    <span class='comment'># Check if token is valid
+</span>    <span class='id identifier rubyid_valid'>valid</span><span class='comma'>,</span> <span class='id identifier rubyid_payload'>payload</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="AuthToken.html" title="AuthToken (class)">AuthToken</a></span></span><span class='period'>.</span><span class='id identifier rubyid_verify'><span class='object_link'><a href="AuthToken.html#verify-class_method" title="AuthToken.verify (method)">verify</a></span></span> <span class='id identifier rubyid_token'>token</span>
+
+    <span class='kw'>return</span> <span class='id identifier rubyid_respond_with_status'>respond_with_status</span><span class='lparen'>(</span><span class='int'>401</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_valid'>valid</span>
+
+    <span class='comment'># Looking for the user
+</span>    <span class='ivar'>@current_user</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="User.html" title="User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_by_id'>find_by_id</span><span class='lparen'>(</span><span class='id identifier rubyid_payload'>payload</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sub</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+    <span class='kw'>return</span> <span class='id identifier rubyid_respond_with_status'>respond_with_status</span><span class='lparen'>(</span><span class='int'>401</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@current_user</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span>
+
+    <span class='kw'>return</span> <span class='id identifier rubyid_respond_with_status'>respond_with_status</span><span class='lparen'>(</span><span class='int'>401</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Your user is not active</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='ivar'>@current_user</span><span class='period'>.</span><span class='id identifier rubyid_active'>active</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Sun Nov  6 19:53:17 2022 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.28 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

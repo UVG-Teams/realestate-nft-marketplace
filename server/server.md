@@ -43,6 +43,7 @@
     - rvm list
     - rvm list known
     - rvm install 2.7.2
+    - rvm use 2.7.2
   - Instalar postgres dependencies
     - sudo apt-get -y install libpq-dev
   - Instalar codigo
@@ -81,7 +82,6 @@
   - Configurar certbot
     - sudo certbot --nginx
     - Confirmar que funciona visitando https
-  - RAILS_ENV=production rails assets:precompile
   - sudo service nginx restart
   - cd /var/www/vesta.f-rosal.com/
   - add writing permissions to public folder
@@ -90,9 +90,6 @@
     - sudo chown ubuntu public/ -R
   - make nginx user as owner of public folder
     - sudo chown www-data:www-data public/ -R
-  - delete assets from old app versions
-    - bundle exec rake assets:clean RAILS_ENV=production
-  - bundle exec rake assets:precompile RAILS_ENV=production
   - sudo service nginx restart
 - Intalar Frontend
   - On local
