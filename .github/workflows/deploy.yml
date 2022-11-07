@@ -1,5 +1,5 @@
 # This workflow will deploy the application
-name: "Server"
+name: "Deploy"
 on:
   workflow_dispatch:
 
