@@ -17,7 +17,7 @@ jobs:
       #   with:
       #     host: "34.193.107.238"
       #     username: ubuntu
-      #     key: ${{ secrets.VESTA_CI_SSH_KEY }}
+      #     key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
       #     script_stop: true
       #     script: |
       #       cd ~
@@ -79,7 +79,7 @@ jobs:
       #   with:
       #     host: "34.193.107.238"
       #     username: ubuntu
-      #     key: ${{ secrets.VESTA_CI_SSH_KEY }}
+      #     key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
       #     script_stop: false
       #     script: |
       #       echo " ---> Reiniciar"
@@ -96,15 +96,17 @@ jobs:
 
       - name: Executing remote commands using ssh key
         uses: appleboy/ssh-action@master
+        env:
+          PRIVATE_KEY: ${{ secrets.SSH_ID_RSA_PRIV_FOR_CD }}
+          PUBLIC_KEY: ${{ secrets.SSH_ID_RSA_PUB_FOR_CD }}
         with:
           host: "34.193.107.238"
           username: ubuntu
-          key: ${{ secrets.VESTA_CI_SSH_KEY }}
+          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
           script_stop: true
           script: |
             whoami
             cd ~
-            echo $PATH
             export PATH=$PATH:/usr/share/rvm/bin
             echo $PATH
             echo " ---> rvm list"
@@ -115,7 +117,15 @@ jobs:
             rvm install 2.7.2
             echo " ---> rvm list"
             rvm list
+            echo " ---> rvm use 2.7.2"
+            rvm use 2.7.2
             echo " ---> Instalar postgres dependencies"
             echo " ---> sudo apt-get -y install libpq-dev"
             sudo apt-get -y install libpq-dev
             echo " ---> Instalar codigo"
+            cd /home/ubuntu/.ssh/
+            rm -r id_rsa
+            rm -r id_rsa.pub
+            echo "$PRIVATE_KEY" >> ./id_rsa
+            echo "$PUBLIC_KEY" >> ./id_rsa.pub
+

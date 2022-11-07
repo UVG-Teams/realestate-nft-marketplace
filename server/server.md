@@ -43,6 +43,7 @@
     - rvm list
     - rvm list known
     - rvm install 2.7.2
+    - rvm use 2.7.2
   - Instalar postgres dependencies
     - sudo apt-get -y install libpq-dev
   - Instalar codigo
