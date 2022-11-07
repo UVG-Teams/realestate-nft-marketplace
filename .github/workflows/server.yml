@@ -76,6 +76,15 @@ jobs:
             echo " ---> Reiniciar"
             echo " ---> sudo reboot"
             sudo reboot
+
+      - name: Executing remote commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: "34.193.107.238"
+          username: ubuntu
+          key: ${{ secrets.VESTA_CI_SSH_KEY }}
+          script_stop: true
+          script: |
             echo " ---> rvm list known"
             rvm list known
             echo " ---> rvm install 2.7.2"
