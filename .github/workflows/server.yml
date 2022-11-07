@@ -103,7 +103,8 @@ jobs:
           script_stop: true
           script: |
             cd ~
-            echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc
+            export PATH=$PATH:/usr/local/rvm
+            echo $PATH
             echo " ---> rvm list"
             rvm list
             echo " ---> rvm list known"
