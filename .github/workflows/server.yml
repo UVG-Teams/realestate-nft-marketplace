@@ -135,6 +135,8 @@ jobs:
             cd /var/
             echo " ---> sudo chown ubuntu www -R"
             sudo chown ubuntu www -R
+            echo " ---> cd /www/"
+            cd /www/
             echo " ---> git clone git@github.com:UVG-Teams/realestate-nft-marketplace.git"
             git clone git@github.com:UVG-Teams/realestate-nft-marketplace.git
             echo " ---> mv realestate-nft-marketplace/ vesta.f-rosal.com/"
