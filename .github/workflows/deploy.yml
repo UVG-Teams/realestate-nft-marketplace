@@ -8,6 +8,11 @@ on:
         default: "34.193.107.238"
         description: "Host of the Lightsail instance"
         type: string
+      username:
+        required: true
+        default: ubuntu
+        description: "User of the Lightsail instance"
+        type: string
 
 jobs:
   server-configuration:
@@ -21,7 +26,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ inputs.host }}
-          username: ubuntu
+          username: ${{ inputs.username }}
           key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
           script_stop: true
           script: |
@@ -49,7 +54,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ inputs.host }}
-          username: ubuntu
+          username: ${{ inputs.username }}
           key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
           script_stop: true
           script: |
