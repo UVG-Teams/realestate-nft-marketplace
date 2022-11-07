@@ -93,6 +93,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.VESTA_CI_SSH_KEY }}
           script_stop: true
+          timeout: 10m
           script: |
             echo " ---> rvm list known"
             rvm list known
