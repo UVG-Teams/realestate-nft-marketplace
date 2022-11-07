@@ -105,7 +105,7 @@ jobs:
             whoami
             cd ~
             echo $PATH
-            export PATH=$PATH:/usr/local/rvm
+            export PATH=$PATH:/usr/share/rvm/bin
             echo $PATH
             echo " ---> rvm list"
             rvm list
