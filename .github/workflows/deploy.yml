@@ -41,9 +41,7 @@ jobs:
             echo " ---> BUNDLER_WITHOUT="development:test" bundle update"
             BUNDLER_WITHOUT="development:test" bundle update
             echo " ---> RAILS_ENV=production rake db:migrate:status"
-            RAILS_ENV=production rake db:migrate:status
             echo " ---> RAILS_ENV=production rake db:migrate"
-            RAILS_ENV=production rake db:migrate
             echo " ---> sudo service nginx restart"
             sudo service nginx restart
 
