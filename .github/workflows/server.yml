@@ -201,11 +201,3 @@ jobs:
             sudo ln -s /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com
             echo " ---> sudo service nginx restart"
             sudo service nginx restart
-          # echo " ---> cd /var/www/spa.vesta.f-rosal.com"
-          # cd /var/www/spa.vesta.f-rosal.com
-          # echo " ---> sudo npm install -g serve"
-          # sudo npm install -g serve
-          # echo " ---> serve -s build -l 80"
-          # serve -s build -l 80
-          # echo " ---> sudo service nginx restart"
-          # sudo service nginx restart
