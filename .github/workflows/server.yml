@@ -61,8 +61,8 @@ jobs:
             sudo touch vesta.f-rosal.com.conf
             echo " ---> Instalar backend"
             echo " ---> Instalar rvm"
-            echo " ---> sudo apt-get install software-properties-common"
-            sudo apt-get install software-properties-common
+            echo " ---> sudo apt-get --yes --force-yes install software-properties-common"
+            sudo apt-get --yes --force-yes install software-properties-common
             echo " ---> sudo apt-add-repository -y ppa:rael-gc/rvm"
             sudo apt-add-repository -y ppa:rael-gc/rvm
             echo " ---> sudo apt-get update"
