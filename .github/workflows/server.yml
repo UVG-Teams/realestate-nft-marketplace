@@ -91,8 +91,8 @@ jobs:
         with:
           url: 'http://34.193.107.238'
           responseCode: 200
-          timeout: 2000
-          interval: 500
+          timeout: 300000 # 5m
+          interval: 30000 # 30s
 
       - name: Executing remote commands using ssh key
         uses: appleboy/ssh-action@master
