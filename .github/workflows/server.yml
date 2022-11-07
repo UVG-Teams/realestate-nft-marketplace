@@ -147,6 +147,8 @@ jobs:
             mv realestate-nft-marketplace/ vesta.f-rosal.com/
             echo " ---> cd vesta.f-rosal.com"
             cd vesta.f-rosal.com
+            echo " ---> Fixing $PATH for this ssh connection"
+            export PATH=/usr/share/rvm/gems/ruby-2.7.2/bin:/usr/share/rvm/gems/ruby-2.7.2@global/bin:/usr/share/rvm/rubies/ruby-2.7.2/bin:/usr/share/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
             echo " ---> BUNDLER_WITHOUT="development:test" bundle install"
             BUNDLER_WITHOUT="development:test" bundle install
             echo " ---> git checkout production"
