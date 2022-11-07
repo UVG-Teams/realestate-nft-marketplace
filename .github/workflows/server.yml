@@ -155,3 +155,6 @@ jobs:
             git checkout production
             echo " ---> git status"
             git status
+            echo " ---> cp server/vesta.f-rosal.com.conf /etc/nginx/sites-available"
+            sudo cp server/vesta.f-rosal.com.conf /etc/nginx/sites-available
+
