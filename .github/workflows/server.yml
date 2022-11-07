@@ -125,9 +125,6 @@ jobs:
             sudo apt-get -y install libpq-dev
             echo " ---> Instalar codigo"
             cd /home/ubuntu/.ssh/
-            echo " ---> Removing old rsa keys"
-            rm -r id_rsa
-            rm -r id_rsa.pub
             echo " ---> Creating new rsa keys"
             echo "$PRIVATE_KEY" >> ./id_rsa
             echo "$PUBLIC_KEY" >> ./id_rsa.pub
