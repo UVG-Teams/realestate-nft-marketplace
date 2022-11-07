@@ -103,6 +103,7 @@ jobs:
           script_stop: true
           script: |
             cd ~
+            echo "source $HOME/.rvm/scripts/rvm" >> ~/.bash_profile
             echo $PATH
             echo " ---> rvm list"
             rvm list
