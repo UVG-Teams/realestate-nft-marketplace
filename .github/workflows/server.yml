@@ -180,8 +180,8 @@ jobs:
             sudo bash nodesource_setup.sh
             echo " ---> sudo apt-get install nodejs"
             sudo apt-get install nodejs
-            echo " ---> sudo apt-get install build-essential"
-            sudo apt-get install build-essential
+            echo " ---> sudo apt-get --yes --force-yes install build-essential"
+            sudo apt-get --yes --force-yes install build-essential
             echo " ---> cd /var/www/"
             cd /var/www/
             echo " ---> mkdir spa.vesta.f-rosal.com"
