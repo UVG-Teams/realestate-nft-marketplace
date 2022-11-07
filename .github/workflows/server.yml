@@ -24,7 +24,7 @@ jobs:
             echo " ---> Instalar Nginx, configurar Cerbot y Passenger"
             echo " ---> sudo apt update"
             sudo apt update
-            echo " ---> sudo apt-get install nginx"
+            echo " ---> sudo apt-get --yes --force-yes install nginx"
             sudo apt-get --yes --force-yes install nginx
             echo " ---> sudo apt-get install libnginx-mod-http-headers-more-filter"
             sudo apt-get install libnginx-mod-http-headers-more-filter
@@ -34,8 +34,8 @@ jobs:
             sudo apt-get remove certbot
             echo " ---> sudo snap install --classic certbot"
             sudo snap install --classic certbot
-            echo " ---> sudo ln -s /snap/bin/certbot /usr/bin/certbot"
-            sudo ln -s /snap/bin/certbot /usr/bin/certbot
+            echo " ---> sudo ln -s -f /snap/bin/certbot /usr/bin/certbot"
+            sudo ln -s -f /snap/bin/certbot /usr/bin/certbot
             echo " ---> sudo apt-get install -y dirmngr gnupg apt-transport-https ca-certificates"
             sudo apt-get install -y dirmngr gnupg apt-transport-https ca-certificates
             echo " ---> sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7"
