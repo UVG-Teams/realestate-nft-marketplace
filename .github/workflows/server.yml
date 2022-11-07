@@ -2,6 +2,17 @@
 name: "Server"
 on:
   workflow_dispatch:
+    inputs:
+      host:
+        required: true
+        default: "34.193.107.238"
+        description: "Host of the Lightsail instance"
+        type: string
+      username:
+        required: true
+        default: ubuntu
+        description: "User of the Lightsail instance"
+        type: string
 
 jobs:
   server-configuration:
@@ -14,8 +25,8 @@ jobs:
       - name: Installing Nginx, Cerbot and Passenger
         uses: appleboy/ssh-action@master
         with:
-          host: "34.193.107.238"
-          username: ubuntu
+          host: ${{ inputs.host }}
+          username: ${{ inputs.username }}
           key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
           script_stop: true
           script: |
@@ -77,8 +88,8 @@ jobs:
       - name: Reboot
         uses: appleboy/ssh-action@master
         with:
-          host: "34.193.107.238"
-          username: ubuntu
+          host: ${{ inputs.host }}
+          username: ${{ inputs.username }}
           key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
           script_stop: false
           script: |
@@ -90,7 +101,7 @@ jobs:
       - name: Wait for the server to be up
         uses: nev7n/wait_for_response@v1
         with:
-          url: 'http://34.193.107.238'
+          url: http://${{ inputs.host }}
           responseCode: 200
           timeout: 180000 # 3m
           interval: 15000 # 15s
@@ -101,8 +112,8 @@ jobs:
           PRIVATE_KEY: ${{ secrets.SSH_ID_RSA_PRIV_FOR_CD }}
           PUBLIC_KEY: ${{ secrets.SSH_ID_RSA_PUB_FOR_CD }}
         with:
-          host: "34.193.107.238"
-          username: ubuntu
+          host: ${{ inputs.host }}
+          username: ${{ inputs.username }}
           key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
           script_stop: true
           envs: PRIVATE_KEY,PUBLIC_KEY
@@ -177,8 +188,8 @@ jobs:
       - name: Setting up React
         uses: appleboy/ssh-action@master
         with:
-          host: "34.193.107.238"
-          username: ubuntu
+          host: ${{ inputs.host }}
+          username: ${{ inputs.username }}
           key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
           script_stop: true
           script: |
@@ -201,11 +212,3 @@ jobs:
             sudo ln -s /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com
             echo " ---> sudo service nginx restart"
             sudo service nginx restart
-          # echo " ---> cd /var/www/spa.vesta.f-rosal.com"
-          # cd /var/www/spa.vesta.f-rosal.com
-          # echo " ---> sudo npm install -g serve"
-          # sudo npm install -g serve
-          # echo " ---> serve -s build -l 80"
-          # serve -s build -l 80
-          # echo " ---> sudo service nginx restart"
-          # sudo service nginx restart
