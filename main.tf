@@ -35,5 +35,4 @@ resource "aws_lightsail_instance" "example_test" {
     availability_zone   = "eu-west-2a"
     blueprint_id        = "ubuntu_20_04"
     bundle_id           = "nano_2_0"
-    key_pair_name       = "lightsail-servers-test"
 }
