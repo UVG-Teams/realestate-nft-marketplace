@@ -1,5 +1,6 @@
 # https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build#write-configuration
 terraform {
+  # https://app.terraform.io/app/uvg-teams/workspaces/realestate-nft-marketplace/runs
   backend "remote" {
     # The name of your Terraform Cloud organization.
     organization = "uvg-teams"
