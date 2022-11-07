@@ -37,14 +37,14 @@ provider "aws" {
 # AWS Lightsail Database
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lightsail_database
 resource "aws_lightsail_database" "vesta_db_cd" {
-  relational_database_name  = "vesta-db-cd"
-  availability_zone         = "us-east-1a"
-  master_database_name      = "database_cd"
-  master_username           = "database_cd_admin"
-  master_password           = var.db_password
-  blueprint_id              = "postgres_12"
-  bundle_id                 = "micro_1_0"
-  apply_immediately         = true
+  relational_database_name = "vesta-db-cd"
+  availability_zone        = "us-east-1a"
+  master_database_name     = "database_cd"
+  master_username          = "database_cd_admin"
+  master_password          = var.db_password
+  blueprint_id             = "postgres_12"
+  bundle_id                = "micro_1_0"
+  apply_immediately        = true
 }
 
 
