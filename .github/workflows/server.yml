@@ -11,168 +11,168 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # - name: Installing Nginx, Cerbot and Passenger
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: "34.193.107.238"
-      #     username: ubuntu
-      #     key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
-      #     script_stop: true
-      #     script: |
-      #       whoami
-      #       cd ~
-      #       echo " ---> Instalar Nginx, configurar Cerbot y Passenger"
-      #       echo " ---> sudo apt update"
-      #       sudo apt update
-      #       echo " ---> sudo apt-get --yes --force-yes install nginx"
-      #       sudo apt-get --yes --force-yes install nginx
-      #       echo " ---> sudo apt-get install libnginx-mod-http-headers-more-filter"
-      #       sudo apt-get install libnginx-mod-http-headers-more-filter
-      #       echo " ---> sudo snap install core; sudo snap refresh core"
-      #       sudo snap install core; sudo snap refresh core
-      #       echo " ---> sudo apt-get remove certbot"
-      #       sudo apt-get remove certbot
-      #       echo " ---> sudo snap install --classic certbot"
-      #       sudo snap install --classic certbot
-      #       echo " ---> sudo ln -s -f /snap/bin/certbot /usr/bin/certbot"
-      #       sudo ln -s -f /snap/bin/certbot /usr/bin/certbot
-      #       echo " ---> sudo apt-get install -y dirmngr gnupg apt-transport-https ca-certificates"
-      #       sudo apt-get install -y dirmngr gnupg apt-transport-https ca-certificates
-      #       echo " ---> sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7"
-      #       sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
-      #       echo " ---> sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger focal main > /etc/apt/sources.list.d/passenger.list'"
-      #       sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger focal main > /etc/apt/sources.list.d/passenger.list'
-      #       echo " ---> sudo apt-get update"
-      #       sudo apt-get update
-      #       echo " ---> sudo apt-get install -y libnginx-mod-http-passenger"
-      #       sudo apt-get install -y libnginx-mod-http-passenger
-      #       echo " ---> if [ ! -f /etc/nginx/modules-enabled/50-mod-http-passenger.conf ]; then sudo ln -s /usr/share/nginx/modules-available/mod-http-passenger.load /etc/nginx/modules-enabled/50-mod-http-passenger.conf ; fi"
-      #       if [ ! -f /etc/nginx/modules-enabled/50-mod-http-passenger.conf ]; then sudo ln -s /usr/share/nginx/modules-available/mod-http-passenger.load /etc/nginx/modules-enabled/50-mod-http-passenger.conf ; fi
-      #       echo " ---> sudo ls /etc/nginx/conf.d/mod-http-passenger.conf"
-      #       sudo ls /etc/nginx/conf.d/mod-http-passenger.conf
-      #       echo " ---> sudo service nginx restart"
-      #       sudo service nginx restart
-      #       echo " ---> sudo /usr/bin/passenger-config validate-install"
-      #       sudo /usr/bin/passenger-config validate-install
-      #       echo " ---> Crear Nginx Virtual Host"
-      #       echo " ---> cd /etc/nginx/sites-available"
-      #       cd /etc/nginx/sites-available
-      #       echo " ---> sudo touch vesta.f-rosal.com.conf"
-      #       sudo touch vesta.f-rosal.com.conf
-      #       echo " ---> Instalar backend"
-      #       echo " ---> Instalar rvm"
-      #       echo " ---> sudo apt-get --yes --force-yes install software-properties-common"
-      #       sudo apt-get --yes --force-yes install software-properties-common
-      #       echo " ---> sudo apt-add-repository -y ppa:rael-gc/rvm"
-      #       sudo apt-add-repository -y ppa:rael-gc/rvm
-      #       echo " ---> sudo apt-get update"
-      #       sudo apt-get update
-      #       echo " ---> sudo apt-get --yes --force-yes install rvm"
-      #       sudo apt-get --yes --force-yes install rvm
-      #       echo " ---> sudo usermod -a -G rvm $USER"
-      #       sudo usermod -a -G rvm $USER
-      #       echo " ---> echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc"
-      #       echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc
+      - name: Installing Nginx, Cerbot and Passenger
+        uses: appleboy/ssh-action@master
+        with:
+          host: "34.193.107.238"
+          username: ubuntu
+          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
+          script_stop: true
+          script: |
+            whoami
+            cd ~
+            echo " ---> Instalar Nginx, configurar Cerbot y Passenger"
+            echo " ---> sudo apt update"
+            sudo apt update
+            echo " ---> sudo apt-get --yes --force-yes install nginx"
+            sudo apt-get --yes --force-yes install nginx
+            echo " ---> sudo apt-get install libnginx-mod-http-headers-more-filter"
+            sudo apt-get install libnginx-mod-http-headers-more-filter
+            echo " ---> sudo snap install core; sudo snap refresh core"
+            sudo snap install core; sudo snap refresh core
+            echo " ---> sudo apt-get remove certbot"
+            sudo apt-get remove certbot
+            echo " ---> sudo snap install --classic certbot"
+            sudo snap install --classic certbot
+            echo " ---> sudo ln -s -f /snap/bin/certbot /usr/bin/certbot"
+            sudo ln -s -f /snap/bin/certbot /usr/bin/certbot
+            echo " ---> sudo apt-get install -y dirmngr gnupg apt-transport-https ca-certificates"
+            sudo apt-get install -y dirmngr gnupg apt-transport-https ca-certificates
+            echo " ---> sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7"
+            sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+            echo " ---> sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger focal main > /etc/apt/sources.list.d/passenger.list'"
+            sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger focal main > /etc/apt/sources.list.d/passenger.list'
+            echo " ---> sudo apt-get update"
+            sudo apt-get update
+            echo " ---> sudo apt-get install -y libnginx-mod-http-passenger"
+            sudo apt-get install -y libnginx-mod-http-passenger
+            echo " ---> if [ ! -f /etc/nginx/modules-enabled/50-mod-http-passenger.conf ]; then sudo ln -s /usr/share/nginx/modules-available/mod-http-passenger.load /etc/nginx/modules-enabled/50-mod-http-passenger.conf ; fi"
+            if [ ! -f /etc/nginx/modules-enabled/50-mod-http-passenger.conf ]; then sudo ln -s /usr/share/nginx/modules-available/mod-http-passenger.load /etc/nginx/modules-enabled/50-mod-http-passenger.conf ; fi
+            echo " ---> sudo ls /etc/nginx/conf.d/mod-http-passenger.conf"
+            sudo ls /etc/nginx/conf.d/mod-http-passenger.conf
+            echo " ---> sudo service nginx restart"
+            sudo service nginx restart
+            echo " ---> sudo /usr/bin/passenger-config validate-install"
+            sudo /usr/bin/passenger-config validate-install
+            echo " ---> Crear Nginx Virtual Host"
+            echo " ---> cd /etc/nginx/sites-available"
+            cd /etc/nginx/sites-available
+            echo " ---> sudo touch vesta.f-rosal.com.conf"
+            sudo touch vesta.f-rosal.com.conf
+            echo " ---> Instalar backend"
+            echo " ---> Instalar rvm"
+            echo " ---> sudo apt-get --yes --force-yes install software-properties-common"
+            sudo apt-get --yes --force-yes install software-properties-common
+            echo " ---> sudo apt-add-repository -y ppa:rael-gc/rvm"
+            sudo apt-add-repository -y ppa:rael-gc/rvm
+            echo " ---> sudo apt-get update"
+            sudo apt-get update
+            echo " ---> sudo apt-get --yes --force-yes install rvm"
+            sudo apt-get --yes --force-yes install rvm
+            echo " ---> sudo usermod -a -G rvm $USER"
+            sudo usermod -a -G rvm $USER
+            echo " ---> echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc"
+            echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc
 
-      # - name: Reboot
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: "34.193.107.238"
-      #     username: ubuntu
-      #     key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
-      #     script_stop: false
-      #     script: |
-      #       whoami
-      #       echo " ---> Reiniciar"
-      #       echo " ---> sudo reboot"
-      #       sudo reboot
+      - name: Reboot
+        uses: appleboy/ssh-action@master
+        with:
+          host: "34.193.107.238"
+          username: ubuntu
+          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
+          script_stop: false
+          script: |
+            whoami
+            echo " ---> Reiniciar"
+            echo " ---> sudo reboot"
+            sudo reboot
       
-      # - name: Wait for the server to be up
-      #   uses: nev7n/wait_for_response@v1
-      #   with:
-      #     url: 'http://34.193.107.238'
-      #     responseCode: 200
-      #     timeout: 180000 # 3m
-      #     interval: 15000 # 15s
+      - name: Wait for the server to be up
+        uses: nev7n/wait_for_response@v1
+        with:
+          url: 'http://34.193.107.238'
+          responseCode: 200
+          timeout: 180000 # 3m
+          interval: 15000 # 15s
 
-      # - name: Setting up Ruby on Rails
-      #   uses: appleboy/ssh-action@master
-      #   env:
-      #     PRIVATE_KEY: ${{ secrets.SSH_ID_RSA_PRIV_FOR_CD }}
-      #     PUBLIC_KEY: ${{ secrets.SSH_ID_RSA_PUB_FOR_CD }}
-      #   with:
-      #     host: "34.193.107.238"
-      #     username: ubuntu
-      #     key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
-      #     script_stop: true
-      #     envs: PRIVATE_KEY,PUBLIC_KEY
-      #     script: |
-      #       whoami
-      #       cd ~
-      #       export PATH=$PATH:/usr/share/rvm/bin
-      #       echo $PATH
-      #       echo " ---> rvm list"
-      #       rvm list
-      #       echo " ---> rvm list known"
-      #       rvm list known
-      #       echo " ---> rvm install 2.7.2"
-      #       rvm install 2.7.2
-      #       echo " ---> rvm list"
-      #       rvm list
-      #       echo " ---> rvm use 2.7.2"
-      #       rvm use 2.7.2
-      #       echo " ---> Instalar postgres dependencies"
-      #       echo " ---> sudo apt-get -y install libpq-dev"
-      #       sudo apt-get -y install libpq-dev
-      #       echo " ---> Instalar codigo"
-      #       cd /home/ubuntu/.ssh/
-      #       echo " ---> Creating new rsa keys"
-      #       echo "$PRIVATE_KEY" >> ./id_rsa
-      #       echo "$PUBLIC_KEY" >> ./id_rsa.pub
-      #       echo " ---> Adding Github on known hosts"
-      #       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-      #       echo " ---> Adding right permissions to key"
-      #       sudo chmod 600 id_rsa
-      #       echo " ---> cd /var/"
-      #       cd /var/
-      #       echo " ---> sudo chown ubuntu www -R"
-      #       sudo chown ubuntu www -R
-      #       echo " ---> cd www/"
-      #       cd www/
-      #       echo " ---> git clone git@github.com:UVG-Teams/realestate-nft-marketplace.git"
-      #       git clone git@github.com:UVG-Teams/realestate-nft-marketplace.git
-      #       echo " ---> mv realestate-nft-marketplace/ vesta.f-rosal.com/"
-      #       mv realestate-nft-marketplace/ vesta.f-rosal.com/
-      #       echo " ---> cd vesta.f-rosal.com"
-      #       cd vesta.f-rosal.com
-      #       echo " ---> Fixing $PATH for this ssh connection"
-      #       export PATH=/usr/share/rvm/gems/ruby-2.7.2/bin:/usr/share/rvm/gems/ruby-2.7.2@global/bin:/usr/share/rvm/rubies/ruby-2.7.2/bin:/usr/share/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-      #       echo " ---> BUNDLER_WITHOUT="development:test" bundle install"
-      #       BUNDLER_WITHOUT="development:test" bundle install
-      #       echo " ---> git checkout production"
-      #       git checkout production
-      #       echo " ---> git status"
-      #       git status
-      #       echo " ---> cp server/vesta.f-rosal.com.conf /etc/nginx/sites-available"
-      #       sudo cp server/vesta.f-rosal.com.conf /etc/nginx/sites-available
-      #       echo " ---> sudo ln -s -f /etc/nginx/sites-available/vesta.f-rosal.com.conf /etc/nginx/sites-enabled/"
-      #       sudo ln -s -f /etc/nginx/sites-available/vesta.f-rosal.com.conf /etc/nginx/sites-enabled/
-      #       echo " ---> cd /etc/nginx/sites-enabled"
-      #       cd /etc/nginx/sites-enabled
-      #       echo " ---> sudo nginx -t"
-      #       sudo nginx -t
-      #       echo " ---> sudo service nginx restart"
-      #       sudo service nginx restart
-      #       echo " ---> cd /var/www/vesta.f-rosal.com/"
-      #       cd /var/www/vesta.f-rosal.com/
-      #       echo " ---> add writing permissions to public folder"
-      #       sudo chmod 755 public/ -R
-      #       echo " ---> make current logged user as owner of public folder"
-      #       sudo chown ubuntu public/ -R
-      #       echo " ---> make nginx user as owner of public folder"
-      #       sudo chown www-data:www-data public/ -R
-      #       echo " ---> sudo service nginx restart"
-      #       sudo service nginx restart
+      - name: Setting up Ruby on Rails
+        uses: appleboy/ssh-action@master
+        env:
+          PRIVATE_KEY: ${{ secrets.SSH_ID_RSA_PRIV_FOR_CD }}
+          PUBLIC_KEY: ${{ secrets.SSH_ID_RSA_PUB_FOR_CD }}
+        with:
+          host: "34.193.107.238"
+          username: ubuntu
+          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
+          script_stop: true
+          envs: PRIVATE_KEY,PUBLIC_KEY
+          script: |
+            whoami
+            cd ~
+            export PATH=$PATH:/usr/share/rvm/bin
+            echo $PATH
+            echo " ---> rvm list"
+            rvm list
+            echo " ---> rvm list known"
+            rvm list known
+            echo " ---> rvm install 2.7.2"
+            rvm install 2.7.2
+            echo " ---> rvm list"
+            rvm list
+            echo " ---> rvm use 2.7.2"
+            rvm use 2.7.2
+            echo " ---> Instalar postgres dependencies"
+            echo " ---> sudo apt-get -y install libpq-dev"
+            sudo apt-get -y install libpq-dev
+            echo " ---> Instalar codigo"
+            cd /home/ubuntu/.ssh/
+            echo " ---> Creating new rsa keys"
+            echo "$PRIVATE_KEY" >> ./id_rsa
+            echo "$PUBLIC_KEY" >> ./id_rsa.pub
+            echo " ---> Adding Github on known hosts"
+            ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+            echo " ---> Adding right permissions to key"
+            sudo chmod 600 id_rsa
+            echo " ---> cd /var/"
+            cd /var/
+            echo " ---> sudo chown ubuntu www -R"
+            sudo chown ubuntu www -R
+            echo " ---> cd www/"
+            cd www/
+            echo " ---> git clone git@github.com:UVG-Teams/realestate-nft-marketplace.git"
+            git clone git@github.com:UVG-Teams/realestate-nft-marketplace.git
+            echo " ---> mv realestate-nft-marketplace/ vesta.f-rosal.com/"
+            mv realestate-nft-marketplace/ vesta.f-rosal.com/
+            echo " ---> cd vesta.f-rosal.com"
+            cd vesta.f-rosal.com
+            echo " ---> Fixing $PATH for this ssh connection"
+            export PATH=/usr/share/rvm/gems/ruby-2.7.2/bin:/usr/share/rvm/gems/ruby-2.7.2@global/bin:/usr/share/rvm/rubies/ruby-2.7.2/bin:/usr/share/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+            echo " ---> BUNDLER_WITHOUT="development:test" bundle install"
+            BUNDLER_WITHOUT="development:test" bundle install
+            echo " ---> git checkout production"
+            git checkout production
+            echo " ---> git status"
+            git status
+            echo " ---> cp server/vesta.f-rosal.com.conf /etc/nginx/sites-available"
+            sudo cp server/vesta.f-rosal.com.conf /etc/nginx/sites-available
+            echo " ---> sudo ln -s -f /etc/nginx/sites-available/vesta.f-rosal.com.conf /etc/nginx/sites-enabled/"
+            sudo ln -s -f /etc/nginx/sites-available/vesta.f-rosal.com.conf /etc/nginx/sites-enabled/
+            echo " ---> cd /etc/nginx/sites-enabled"
+            cd /etc/nginx/sites-enabled
+            echo " ---> sudo nginx -t"
+            sudo nginx -t
+            echo " ---> sudo service nginx restart"
+            sudo service nginx restart
+            echo " ---> cd /var/www/vesta.f-rosal.com/"
+            cd /var/www/vesta.f-rosal.com/
+            echo " ---> add writing permissions to public folder"
+            sudo chmod 755 public/ -R
+            echo " ---> make current logged user as owner of public folder"
+            sudo chown ubuntu public/ -R
+            echo " ---> make nginx user as owner of public folder"
+            sudo chown www-data:www-data public/ -R
+            echo " ---> sudo service nginx restart"
+            sudo service nginx restart
 
       - name: Setting up React
         uses: appleboy/ssh-action@master
@@ -182,6 +182,25 @@ jobs:
           key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
           script_stop: true
           script: |
+            whoami
+            echo " ---> cd /var/www/"
+            cd /var/www/
+            echo " ---> sudo curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh"
+            sudo curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+            echo " ---> sudo bash nodesource_setup.sh"
+            sudo bash nodesource_setup.sh
+            echo " ---> sudo apt-get install nodejs"
+            sudo apt-get install nodejs
+            echo " ---> sudo apt-get --yes --force-yes install build-essential"
+            sudo apt-get --yes --force-yes install build-essential
+            echo " ---> cd /var/www/"
+            cd /var/www/
+            echo " ---> mkdir spa.vesta.f-rosal.com"
+            mkdir spa.vesta.f-rosal.com
+            echo " ---> sudo ln -s /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com"
+            sudo ln -s /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com
+            echo " ---> sudo service nginx restart"
+            sudo service nginx restart
             echo " ---> cd /var/www/spa.vesta.f-rosal.com"
             cd /var/www/spa.vesta.f-rosal.com
             echo " ---> sudo npm install -g serve"
