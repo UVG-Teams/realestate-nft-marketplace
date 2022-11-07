@@ -102,7 +102,9 @@ jobs:
           key: ${{ secrets.VESTA_CI_SSH_KEY }}
           script_stop: true
           script: |
+            whoami
             cd ~
+            echo $PATH
             export PATH=$PATH:/usr/local/rvm
             echo $PATH
             echo " ---> rvm list"
