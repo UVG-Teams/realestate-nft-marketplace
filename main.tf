@@ -36,11 +36,11 @@ provider "aws" {
 
 # AWS Lightsail Database
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lightsail_database
-resource "aws_lightsail_database" "vesta-db-cd" {
+resource "aws_lightsail_database" "vesta_db_cd" {
   name                 = "vesta-db-cd"
   availability_zone    = "us-east-1a"
-  master_database_name = "database-cd"
-  master_username      = "database-cd-admin"
+  master_database_name = "database_cd"
+  master_username      = "database_cd_admin"
   master_password      = var.db_password
   blueprint_id         = "postgres_12"
   bundle_id            = "micro_1_0"
@@ -51,12 +51,26 @@ resource "aws_lightsail_database" "vesta-db-cd" {
 # AWS Lightsail Instance
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lightsail_instance
 
-resource "aws_lightsail_instance" "example_test" {
+resource "aws_lightsail_instance" "vesta_cd" {
   name              = "vesta-cd"
   availability_zone = "us-east-1a"
   blueprint_id      = "ubuntu_20_04"
   bundle_id         = "small_2_0"
   key_pair_name     = "lightsail-servers-test"
-  public_ip_address = "34.193.107.238"
-  is_static_ip      = true
+}
+
+resource "aws_lightsail_instance_public_ports" "instance_ports" {
+  instance_name = aws_lightsail_instance.vesta_cd.name
+
+  port_info {
+    protocol  = "tcp"
+    from_port = 443
+    to_port   = 443
+  }
+
+  port_info {
+    protocol  = "tcp"
+    from_port = 3000
+    to_port   = 3000
+  }
 }
