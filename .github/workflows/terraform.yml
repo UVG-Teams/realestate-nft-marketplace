@@ -85,7 +85,7 @@ jobs:
     - name: Terraform Plan
       env:
         DB_PASSWORD_CD: ${{ secrets.DB_PASSWORD_CD }}
-      run: TF_VAR_db_password=$DB_PASSWORD_CD terraform plan -input=false
+      run: terraform plan -input=false -var="db_password=$DB_PASSWORD_CD"
 
       # On push to "production", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
@@ -93,4 +93,4 @@ jobs:
       if: github.event.base_ref == 'production' && github.event.pull_request.merged == true
       env:
         DB_PASSWORD_CD: ${{ secrets.DB_PASSWORD_CD }}
-      run: TF_VAR_db_password=$DB_PASSWORD_CD terraform apply -auto-approve -input=false
+      run: terraform apply -auto-approve -input=false -var="db_password=$DB_PASSWORD_CD"
