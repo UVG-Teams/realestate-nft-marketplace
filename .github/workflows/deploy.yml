@@ -1,0 +1,67 @@
+# This workflow will deploy the application
+name: "Deploy"
+on:
+  workflow_dispatch:
+    inputs:
+      host:
+        required: true
+        default: "34.193.107.238"
+        description: "Host of the Lightsail instance"
+        type: string
+      username:
+        required: true
+        default: ubuntu
+        description: "User of the Lightsail instance"
+        type: string
+
+jobs:
+  server-configuration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Updating Ruby on Rails
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ inputs.host }}
+          username: ${{ inputs.username }}
+          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
+          script_stop: true
+          script: |
+            whoami
+            cd ~
+            echo $PATH
+            echo " ---> Fixing $PATH for this ssh connection"
+            export PATH=/usr/share/rvm/gems/ruby-2.7.2/bin:/usr/share/rvm/gems/ruby-2.7.2@global/bin:/usr/share/rvm/rubies/ruby-2.7.2/bin:/usr/share/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+            echo " ---> cd /var/www/vesta.f-rosal.com/"
+            cd /var/www/vesta.f-rosal.com/
+            echo " ---> git checkout production"
+            git checkout production
+            echo " ---> git pull origin production"
+            git pull origin production
+            echo " ---> BUNDLER_WITHOUT="development:test" bundle install"
+            BUNDLER_WITHOUT="development:test" bundle install
+            echo " ---> BUNDLER_WITHOUT="development:test" bundle update"
+            BUNDLER_WITHOUT="development:test" bundle update
+            echo " ---> RAILS_ENV=production rake db:migrate:status"
+            echo " ---> RAILS_ENV=production rake db:migrate"
+            echo " ---> sudo service nginx restart"
+            sudo service nginx restart
+
+      - name: Updating React
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ inputs.host }}
+          username: ${{ inputs.username }}
+          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
+          script_stop: true
+          script: |
+            whoami
+            echo " ---> cd /var/www/"
+            cd /var/www/
+            echo " ---> sudo ln -s -f /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com"
+            sudo ln -s -f /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com
+            echo " ---> sudo service nginx restart"
+            sudo service nginx restart
