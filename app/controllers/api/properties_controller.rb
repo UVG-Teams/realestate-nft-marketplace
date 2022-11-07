@@ -72,7 +72,6 @@ class Api::PropertiesController < ApplicationApiController
     # Custom methods
     # ====================================================================================================
 
-    
     # @param [int] id The property id to get the files from
     # @return The files from a property
     def retrieve_files
@@ -89,7 +88,6 @@ class Api::PropertiesController < ApplicationApiController
 
         respond_with_status(200, response)
     end
-
 
     # @param [int] id The property id to upload the file to
     # @param File The file to upload

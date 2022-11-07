@@ -32,9 +32,9 @@ class Api::UsersController < ApplicationApiController
     # PATCH/PUT /users/1 or /users/1.json
     # @param [int] id The user id
     # @param [String] first_name
-    # @param [String] last_name 
-    # @param [String] email 
-    # @param [String] password 
+    # @param [String] last_name
+    # @param [String] email
+    # @param [String] password
     # @return [Object] The updated user
     def update
         if @user.update(user_params)
