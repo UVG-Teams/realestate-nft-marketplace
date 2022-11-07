@@ -73,6 +73,15 @@ jobs:
             sudo usermod -a -G rvm $USER
             echo " ---> echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc"
             echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc
+
+      - name: Reboot
+        uses: appleboy/ssh-action@master
+        with:
+          host: "34.193.107.238"
+          username: ubuntu
+          key: ${{ secrets.VESTA_CI_SSH_KEY }}
+          script_stop: false
+          script: |
             echo " ---> Reiniciar"
             echo " ---> sudo reboot"
             sudo reboot
