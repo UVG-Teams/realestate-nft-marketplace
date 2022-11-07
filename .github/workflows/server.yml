@@ -67,8 +67,8 @@ jobs:
             sudo apt-add-repository -y ppa:rael-gc/rvm
             echo " ---> sudo apt-get update"
             sudo apt-get update
-            echo " ---> sudo apt-get install rvm"
-            sudo apt-get install rvm
+            echo " ---> sudo apt-get --yes --force-yes install rvm"
+            sudo apt-get --yes --force-yes install rvm
             echo " ---> sudo usermod -a -G rvm $USER"
             sudo usermod -a -G rvm $USER
             echo " ---> echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc"
