@@ -61,8 +61,8 @@ jobs:
             sudo touch vesta.f-rosal.com.conf
             echo " ---> Instalar backend"
             echo " ---> Instalar rvm"
-            echo " ---> sudo apt-get install software-properties-common"
-            sudo apt-get install software-properties-common
+            echo " ---> sudo apt-get --yes --force-yes install software-properties-common"
+            sudo apt-get --yes --force-yes install software-properties-common
             echo " ---> sudo apt-add-repository -y ppa:rael-gc/rvm"
             sudo apt-add-repository -y ppa:rael-gc/rvm
             echo " ---> sudo apt-get update"
@@ -125,9 +125,6 @@ jobs:
             sudo apt-get -y install libpq-dev
             echo " ---> Instalar codigo"
             cd /home/ubuntu/.ssh/
-            echo " ---> Removing old rsa keys"
-            rm -r id_rsa
-            rm -r id_rsa.pub
             echo " ---> Creating new rsa keys"
             echo "$PRIVATE_KEY" >> ./id_rsa
             echo "$PUBLIC_KEY" >> ./id_rsa.pub
@@ -157,4 +154,45 @@ jobs:
             git status
             echo " ---> cp server/vesta.f-rosal.com.conf /etc/nginx/sites-available"
             sudo cp server/vesta.f-rosal.com.conf /etc/nginx/sites-available
-
+            echo " ---> sudo ln -s -f /etc/nginx/sites-available/vesta.f-rosal.com.conf /etc/nginx/sites-enabled/"
+            sudo ln -s -f /etc/nginx/sites-available/vesta.f-rosal.com.conf /etc/nginx/sites-enabled/
+            echo " ---> cd /etc/nginx/sites-enabled"
+            cd /etc/nginx/sites-enabled
+            echo " ---> sudo nginx -t"
+            sudo nginx -t
+            echo " ---> sudo service nginx restart"
+            sudo service nginx restart
+            echo " ---> cd /var/www/vesta.f-rosal.com/"
+            cd /var/www/vesta.f-rosal.com/
+            echo " ---> add writing permissions to public folder"
+            sudo chmod 755 public/ -R
+            echo " ---> make current logged user as owner of public folder"
+            sudo chown ubuntu public/ -R
+            echo " ---> make nginx user as owner of public folder"
+            sudo chown www-data:www-data public/ -R
+            echo " ---> sudo service nginx restart"
+            sudo service nginx restart
+            echo " ---> cd /var/www"
+            cd /var/www
+            echo " ---> sudo curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh"
+            sudo curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+            echo " ---> sudo bash nodesource_setup.sh"
+            sudo bash nodesource_setup.sh
+            echo " ---> sudo apt-get install nodejs"
+            sudo apt-get install nodejs
+            echo " ---> sudo apt-get --yes --force-yes install build-essential"
+            sudo apt-get --yes --force-yes install build-essential
+            echo " ---> cd /var/www/"
+            cd /var/www/
+            echo " ---> mkdir spa.vesta.f-rosal.com"
+            mkdir spa.vesta.f-rosal.com
+            echo " ---> sudo ln -s /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com"
+            sudo ln -s /var/www/vesta.f-rosal.com/lib/spa/build/* /var/www/spa.vesta.f-rosal.com
+            echo " ---> sudo service nginx restart"
+            sudo service nginx restart
+            echo " ---> sudo npm install -g serve"
+            sudo npm install -g serve
+            echo " ---> serve -s build -l 80"
+            serve -s build -l 80
+            echo " ---> sudo service nginx restart"
+            sudo service nginx restart
