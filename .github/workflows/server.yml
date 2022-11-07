@@ -18,40 +18,41 @@ jobs:
           host: "34.193.107.238"
           username: ubuntu
           key: ${{ secrets.VESTA_CI_SSH_KEY }}
+          script_stop: true
           script: |
             cd ~
             echo "Instalar Nginx, configurar Cerbot y Passenger"
             sudo apt update
-          # sudo apt-get install nginx
-          # sudo apt-get install libnginx-mod-http-headers-more-filter
-          # sudo snap install core; sudo snap refresh core
-          # sudo apt-get remove certbot
-          # sudo snap install --classic certbot
-          # sudo ln -s /snap/bin/certbot /usr/bin/certbot
-          # sudo apt-get install -y dirmngr gnupg apt-transport-https ca-certificates
-          # sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
-          # sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger focal main > /etc/apt/sources.list.d/passenger.list'
-          # sudo apt-get update
-          # sudo apt-get install -y libnginx-mod-http-passenger
-          # if [ ! -f /etc/nginx/modules-enabled/50-mod-http-passenger.conf ]; then sudo ln -s /usr/share/nginx/modules-available/mod-http-passenger.load /etc/nginx/modules-enabled/50-mod-http-passenger.conf ; fi
-          # sudo ls /etc/nginx/conf.d/mod-http-passenger.conf
-          # sudo service nginx restart
-          # sudo /usr/bin/passenger-config validate-install
-          # echo "Crear Nginx Virtual Host"
-          # cd /etc/nginx/sites-available
-          # sudo touch vesta.f-rosal.com.conf
-          # echo "Instalar backend"
-          # echo "Instalar rvm"
-          # sudo apt-get install software-properties-common
-          # sudo apt-add-repository -y ppa:rael-gc/rvm
-          # sudo apt-get update
-          # sudo apt-get install rvm
-          # sudo usermod -a -G rvm $USER
-          # echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc
-          # echo "Reiniciar"
-          # sudo reboot
-          # rvm list known
-          # rvm install 2.7.2
-          # echo "Instalar postgres dependencies"
-          # sudo apt-get -y install libpq-dev
-          # echo "Instalar codigo"
+            sudo apt-get install nginx
+            sudo apt-get install libnginx-mod-http-headers-more-filter
+            sudo snap install core; sudo snap refresh core
+            sudo apt-get remove certbot
+            sudo snap install --classic certbot
+            sudo ln -s /snap/bin/certbot /usr/bin/certbot
+            sudo apt-get install -y dirmngr gnupg apt-transport-https ca-certificates
+            sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+            sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger focal main > /etc/apt/sources.list.d/passenger.list'
+            sudo apt-get update
+            sudo apt-get install -y libnginx-mod-http-passenger
+            if [ ! -f /etc/nginx/modules-enabled/50-mod-http-passenger.conf ]; then sudo ln -s /usr/share/nginx/modules-available/mod-http-passenger.load /etc/nginx/modules-enabled/50-mod-http-passenger.conf ; fi
+            sudo ls /etc/nginx/conf.d/mod-http-passenger.conf
+            sudo service nginx restart
+            sudo /usr/bin/passenger-config validate-install
+            echo "Crear Nginx Virtual Host"
+            cd /etc/nginx/sites-available
+            sudo touch vesta.f-rosal.com.conf
+            echo "Instalar backend"
+            echo "Instalar rvm"
+            sudo apt-get install software-properties-common
+            sudo apt-add-repository -y ppa:rael-gc/rvm
+            sudo apt-get update
+            sudo apt-get install rvm
+            sudo usermod -a -G rvm $USER
+            echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc
+            echo "Reiniciar"
+            sudo reboot
+            rvm list known
+            rvm install 2.7.2
+            echo "Instalar postgres dependencies"
+            sudo apt-get -y install libpq-dev
+            echo "Instalar codigo"
