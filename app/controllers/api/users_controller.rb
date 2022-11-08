@@ -3,12 +3,15 @@ class Api::UsersController < ApplicationApiController
     before_action :check_ownership, only: %i[update destroy upload_avatar remove_wallet]
 
     # GET /users or /users.json
+    # @return [Object] All users information
     def index
         @users = User.all
         respond_with_status(200, @users)
     end
 
     # GET /users/1 or /users/1.json
+    # @param [int] id The id of the user to show
+    # @return [Object] The user information
     def show
         respond_with_status(200, @user.slice(
             :id,
@@ -27,6 +30,12 @@ class Api::UsersController < ApplicationApiController
     end
 
     # PATCH/PUT /users/1 or /users/1.json
+    # @param [int] id The user id
+    # @param [String] first_name
+    # @param [String] last_name
+    # @param [String] email
+    # @param [String] password
+    # @return [Object] The updated user
     def update
         if @user.update(user_params)
             respond_with_status(200, 'User was successfully updated.')
@@ -36,6 +45,8 @@ class Api::UsersController < ApplicationApiController
     end
 
     # DELETE /users/1 or /users/1.json
+    # @param [int] id The users id to delete
+    # @return [nil, error] Nil if user is deleted
     def destroy
         @user.destroy
 
@@ -46,6 +57,9 @@ class Api::UsersController < ApplicationApiController
     # Custom methods
     # ====================================================================================================
 
+    # @param [int] id The users id
+    # @param Avatar The user avatar
+    # @return [true] True if upload successful
     def upload_avatar
         # Remove the previous if exists
         @current_user.avatar.purge if @current_user.avatar.attached?
@@ -58,11 +72,15 @@ class Api::UsersController < ApplicationApiController
         })
     end
 
+    # @param [int] id The users id
+    # @return [Object] The properties related to the user
     def properties
         user_properties = @user.properties.all
         respond_with_status(200, user_properties)
     end
 
+    # @param [int] id The users id
+    # @return [String] The users wallet
     def wallet
         return respond_with_status(400) if wallet_params[:account].blank?
 
@@ -81,6 +99,8 @@ class Api::UsersController < ApplicationApiController
         end
     end
 
+    # @param [int] id The users id
+    # @return [nil] If wallet is removed
     def remove_wallet
         return respond_with_status(400) if wallet_params[:account].blank?
 

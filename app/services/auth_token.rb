@@ -6,6 +6,9 @@ class AuthToken
 
     @@algorithm = 'RS256'
 
+    # @param current_user Authenticated user
+    # @param custom_payload Custom information to add on token
+    # @return Instance of AuthToken
     def initialize(current_user, custom_payload = {})
         @current_user = current_user
         @custom_payload = custom_payload
@@ -13,6 +16,7 @@ class AuthToken
         generate
     end
 
+    # @return [String] Authentication token
     def generate
         private_key_path = Rails.root.join('config/credentials/jwtRS256.key')
         private_key_file = File.open(private_key_path)
@@ -32,6 +36,7 @@ class AuthToken
         self.token = JWT.encode payload, private_key, @@algorithm
     end
 
+    # @return [(true, Object), (false, nil)] Return true and the token information if is authenticated
     def self.verify(token)
         public_key_path = Rails.root.join('config/credentials/jwtRS256.key.pub')
 
@@ -61,6 +66,8 @@ class AuthToken
         [true, payload]
     end
 
+    # @param [String] token Token to be refreshed
+    # @return [String] New token
     def self.refresh(token)
         valid, payload = self.verify(token)
 
@@ -72,6 +79,7 @@ class AuthToken
         self.new(current_user, custom_payload)
     end
 
+    # @return New private and public keys
     def self.generate_rsa
         rsa_private = OpenSSL::PKey::RSA.generate 2048
         rsa_public = rsa_private.public_key
