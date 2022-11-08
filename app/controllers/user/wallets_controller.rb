@@ -2,22 +2,27 @@ class User::WalletsController < ApplicationController
     before_action :set_user_wallet, only: %i[show edit update destroy]
 
     # GET /user/wallets or /user/wallets.json
+    # @return Wallets fron every user
     def index
         @user_wallets = User::Wallet.all
     end
 
     # GET /user/wallets/1 or /user/wallets/1.json
+    # @return Specific wallet
     def show; end
 
     # GET /user/wallets/new
+    # @return Create wallet view
     def new
         @user_wallet = User::Wallet.new
     end
 
     # GET /user/wallets/1/edit
+    # @return Edit wallet view
     def edit; end
 
     # POST /user/wallets or /user/wallets.json
+    # @return [String] Created wallet
     def create
         @user_wallet = User::Wallet.new(user_wallet_params)
 
@@ -33,6 +38,7 @@ class User::WalletsController < ApplicationController
     end
 
     # PATCH/PUT /user/wallets/1 or /user/wallets/1.json
+    # @return Edited wallet
     def update
         respond_to do |format|
             if @user_wallet.update(user_wallet_params)
@@ -46,6 +52,7 @@ class User::WalletsController < ApplicationController
     end
 
     # DELETE /user/wallets/1 or /user/wallets/1.json
+    # @return [nil] Nil if wallet deleted
     def destroy
         @user_wallet.destroy
 

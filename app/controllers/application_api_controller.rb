@@ -4,6 +4,8 @@ class ApplicationApiController < ActionController::API
 
     before_action :authorize_request
 
+    # @param [String] token
+    # @return [true, Object] The token verification and information
     def authorize_request
         token = nil
 

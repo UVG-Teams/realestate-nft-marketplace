@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
     before_action :authorization
 
     # Validate user authorization
+    # @return Home view if authorized
     def authorization
         unless user_signed_in?
 
