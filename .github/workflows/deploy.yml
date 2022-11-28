@@ -55,7 +55,7 @@ jobs:
         with:
           host: ${{ inputs.host }}
           username: ${{ inputs.username }}
-          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
+          key: ${{ secrets.LIGHTSAIL_SERVER_PEM }}
           script_stop: true
           script: |
             whoami
