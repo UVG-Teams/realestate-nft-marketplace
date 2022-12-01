@@ -1,0 +1,37 @@
+# https://www.npmjs.com/package/artillery
+# https://blog.appsignal.com/2021/11/10/a-guide-to-load-testing-nodejs-apis-with-artillery.html
+
+# duration: determines that virtual users will be generated for the specify amount of time
+# arrivalRate: determines the number of virtual users sent to the endpoints per second
+
+# artillery run tests/stress/navigation.yml
+
+config:
+  target: "http://localhost:3001"
+  phases:
+    - duration: 60
+      arrivalRate: 20
+      name: "Warming up"
+    - duration: 60
+      arrivalRate: 20
+      rampTo: 100
+      name: "Ramping up"
+    - duration: 60
+      arrivalRate: 100
+      name: "Sustained load"
+
+scenarios:
+  - name: "Navigation"
+    flow:
+      - get:
+          url: "/"
+      - think: 1
+      - get:
+          url: "/#/"
+      - think: 2
+      - get:
+          url: "/#/marketplace"
+      - think: 3
+      - get:
+          url: "/#/marketplace/0"
+      - think: 4
