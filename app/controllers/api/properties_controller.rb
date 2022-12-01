@@ -186,7 +186,7 @@ class Api::PropertiesController < ApplicationApiController
             :bathrooms,
             :latitude,
             :longitude,
-            :price,
+            :price
         )
     end
 
