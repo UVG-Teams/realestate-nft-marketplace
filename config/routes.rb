@@ -29,6 +29,10 @@ Rails.application.routes.draw do
         end
 
         resources :properties do
+            collection do
+                post    :sync
+            end
+
             member do
                 post    :upload_files
                 get     :retrieve_files
