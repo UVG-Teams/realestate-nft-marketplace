@@ -13,7 +13,7 @@ class Property < ApplicationRecord
         apartment: 'apartment',
         commercial: 'commercial',
         other: 'other'
-    }, default: 'house'
+    }, _default: 'house'
 
     validates :status, inclusion: { in: statuses.keys }
     validates :category, inclusion: { in: categories.keys }
