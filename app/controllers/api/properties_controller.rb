@@ -110,6 +110,46 @@ class Api::PropertiesController < ApplicationApiController
         respond_with_status(200, response)
     end
 
+    # POST /properties/sync or /properties/sync.json
+    def sync
+        begin
+            return respond_with_status(400) if sync_property_params.blank?
+
+            @property = Property.find_by(nft_id: sync_property_params[:nft_id])
+            @property = Property.new if @property.blank?
+
+            @property.nft_id = sync_property_params[:nft_id]
+            @property.finca = sync_property_params[:finca]
+            @property.folio = sync_property_params[:folio]
+            @property.libro = sync_property_params[:libro]
+            @property.location = sync_property_params[:location]
+            @property.rooms = sync_property_params[:rooms]
+            @property.bathrooms = sync_property_params[:bathrooms]
+            @property.latitude = sync_property_params[:latitude]
+            @property.longitude = sync_property_params[:longitude]
+            @property.price = sync_property_params[:price]
+
+            # @property.category = sync_property_params[:category]
+            # @property.status = sync_property_params[:status]
+
+            wallet = User::Wallet.create_with(
+                user: User.new({
+                    email: sync_property_params[:account]
+                })
+            ).find_or_create_by(account: sync_property_params[:account])
+
+            @property.user = wallet.user if wallet
+        rescue StandardError => e
+            return respond_with_status(400, e.to_s)
+        end
+
+        if @property.save
+            respond_with_status(200, 'Property was successfully created.')
+        else
+            respond_with_status(400, @property.errors)
+        end
+    end
+
     private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -128,6 +168,25 @@ class Api::PropertiesController < ApplicationApiController
             :category,
             :rooms,
             :bathrooms
+        )
+    end
+
+    # Only allow a list of trusted parameters through.
+    def sync_property_params
+        params.fetch(:property, {}).permit(
+            :nft_id,
+            :account,
+            :finca,
+            :folio,
+            :libro,
+            :location,
+            :status,
+            :category,
+            :rooms,
+            :bathrooms,
+            :latitude,
+            :longitude,
+            :price
         )
     end
 
