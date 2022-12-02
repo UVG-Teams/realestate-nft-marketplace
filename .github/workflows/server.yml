@@ -27,7 +27,7 @@ jobs:
         with:
           host: ${{ inputs.host }}
           username: ${{ inputs.username }}
-          key: ${{ secrets.LIGHTSAIL_SERVER_PEM }}
+          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
           script_stop: true
           script: |
             whoami
@@ -90,7 +90,7 @@ jobs:
         with:
           host: ${{ inputs.host }}
           username: ${{ inputs.username }}
-          key: ${{ secrets.LIGHTSAIL_SERVER_PEM }}
+          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
           script_stop: false
           script: |
             whoami
@@ -114,7 +114,7 @@ jobs:
         with:
           host: ${{ inputs.host }}
           username: ${{ inputs.username }}
-          key: ${{ secrets.LIGHTSAIL_SERVER_PEM }}
+          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
           script_stop: true
           envs: PRIVATE_KEY,PUBLIC_KEY
           script: |
@@ -190,7 +190,7 @@ jobs:
         with:
           host: ${{ inputs.host }}
           username: ${{ inputs.username }}
-          key: ${{ secrets.LIGHTSAIL_SERVER_PEM }}
+          key: ${{ secrets.LIGHTSAIL_SERVERS_TEST_PEM }}
           script_stop: true
           script: |
             whoami
