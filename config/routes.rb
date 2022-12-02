@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         resources :properties do
             collection do
                 post    :sync
+                get     :data
             end
 
             member do

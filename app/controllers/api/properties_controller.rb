@@ -1,5 +1,5 @@
 class Api::PropertiesController < ApplicationApiController
-    before_action :set_property, only: %i[show edit update destroy get_files upload_files]
+    before_action :set_property, only: %i[show edit update destroy get_files upload_files retrieve_files]
     before_action :check_ownership, only: %i[update destroy get_files upload_files]
 
     # GET /properties or /properties.json
@@ -119,6 +119,9 @@ class Api::PropertiesController < ApplicationApiController
 
             if @property.blank?
                 @property = Property.new
+                @property.nft_id = sync_property_params[:nft_id]
+
+                # Looking for the user owner of the given account
                 wallet = User::Wallet.create_with(
                     user: User.new({
                         email: sync_property_params[:account]
@@ -126,7 +129,6 @@ class Api::PropertiesController < ApplicationApiController
                 ).find_or_create_by(account: sync_property_params[:account])
 
                 @property.user = wallet.user if wallet
-                @property.nft_id = sync_property_params[:nft_id]
             end
 
             @property.finca = sync_property_params[:finca] unless sync_property_params[:finca].blank?
@@ -150,6 +152,14 @@ class Api::PropertiesController < ApplicationApiController
         else
             respond_with_status(400, @property.errors)
         end
+    end
+
+    # @return Returns data of the property found by nft id
+    def data
+        @property = Property.find_by(nft_id: params[:nft_id])
+        return respond_with_status(404, 'Property not found.') if @property.blank?
+
+        respond_with_status(200, @property)
     end
 
     private
