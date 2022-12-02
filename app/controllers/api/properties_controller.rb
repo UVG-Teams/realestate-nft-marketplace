@@ -1,5 +1,5 @@
 class Api::PropertiesController < ApplicationApiController
-    before_action :set_property, only: %i[show edit update destroy get_files upload_files]
+    before_action :set_property, only: %i[show edit update destroy get_files upload_files retrieve_files]
     before_action :check_ownership, only: %i[update destroy get_files upload_files]
 
     # GET /properties or /properties.json
