@@ -34,16 +34,16 @@ users_data.each do |data|
     )
 end
 
-User.all.each do |user|
-    user.properties.create_with(
-        finca: Faker::Number.number(digits: 4),
-        folio: Faker::Number.number(digits: 4),
-        libro: Faker::Number.number(digits: 4),
-        location: Faker::Address.full_address,
-        category: Property.categories.keys.sample,
-        rooms: Faker::Number.number(digits: 1),
-        bathrooms: Faker::Number.number(digits: 1)
-    ).find_or_create_by!(
-        nft_id: generate_property_uuid
-    )
-end
+# User.all.each do |user|
+#     user.properties.create_with(
+#         finca: Faker::Number.number(digits: 4),
+#         folio: Faker::Number.number(digits: 4),
+#         libro: Faker::Number.number(digits: 4),
+#         location: Faker::Address.full_address,
+#         category: Property.categories.keys.sample,
+#         rooms: Faker::Number.number(digits: 1),
+#         bathrooms: Faker::Number.number(digits: 1)
+#     ).find_or_create_by!(
+#         nft_id: generate_property_uuid
+#     )
+# end

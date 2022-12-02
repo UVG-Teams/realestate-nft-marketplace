@@ -1,5 +1,5 @@
 class Api::PropertiesController < ApplicationApiController
-    before_action :set_property, only: %i[show edit update destroy get_files upload_files]
+    before_action :set_property, only: %i[show edit update destroy get_files upload_files retrieve_files]
     before_action :check_ownership, only: %i[update destroy get_files upload_files]
 
     # GET /properties or /properties.json
@@ -110,6 +110,58 @@ class Api::PropertiesController < ApplicationApiController
         respond_with_status(200, response)
     end
 
+    # POST /properties/sync or /properties/sync.json
+    def sync
+        begin
+            return respond_with_status(400) if sync_property_params.blank?
+
+            @property = Property.find_by(nft_id: sync_property_params[:nft_id])
+
+            if @property.blank?
+                @property = Property.new
+                @property.nft_id = sync_property_params[:nft_id]
+
+                # Looking for the user owner of the given account
+                wallet = User::Wallet.create_with(
+                    user: User.new({
+                        email: sync_property_params[:account]
+                    })
+                ).find_or_create_by(account: sync_property_params[:account])
+
+                @property.user = wallet.user if wallet
+            end
+
+            @property.finca = sync_property_params[:finca] unless sync_property_params[:finca].blank?
+            @property.folio = sync_property_params[:folio] unless sync_property_params[:folio].blank?
+            @property.libro = sync_property_params[:libro] unless sync_property_params[:libro].blank?
+            @property.location = sync_property_params[:location] unless sync_property_params[:location].blank?
+            @property.rooms = sync_property_params[:rooms] unless sync_property_params[:rooms].blank?
+            @property.bathrooms = sync_property_params[:bathrooms] unless sync_property_params[:bathrooms].blank?
+            @property.latitude = sync_property_params[:latitude] unless sync_property_params[:latitude].blank?
+            @property.longitude = sync_property_params[:longitude] unless sync_property_params[:longitude].blank?
+            @property.price = sync_property_params[:price] unless sync_property_params[:price].blank?
+
+            # @property.category = sync_property_params[:category]
+            # @property.status = sync_property_params[:status]
+        rescue StandardError => e
+            return respond_with_status(400, e.to_s)
+        end
+
+        if @property.save
+            respond_with_status(200, 'Property was successfully created.')
+        else
+            respond_with_status(400, @property.errors)
+        end
+    end
+
+    # @return Returns data of the property found by nft id
+    def data
+        @property = Property.find_by(nft_id: params[:nft_id])
+        return respond_with_status(404, 'Property not found.') if @property.blank?
+
+        respond_with_status(200, @property)
+    end
+
     private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -128,6 +180,25 @@ class Api::PropertiesController < ApplicationApiController
             :category,
             :rooms,
             :bathrooms
+        )
+    end
+
+    # Only allow a list of trusted parameters through.
+    def sync_property_params
+        params.fetch(:property, {}).permit(
+            :nft_id,
+            :account,
+            :finca,
+            :folio,
+            :libro,
+            :location,
+            :status,
+            :category,
+            :rooms,
+            :bathrooms,
+            :latitude,
+            :longitude,
+            :price
         )
     end
 

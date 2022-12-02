@@ -17,6 +17,9 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   Enabled: false
 
+Metrics/ClassLength:
+  Enabled: false
+
 Layout/IndentationWidth:
   Enabled: false
   # Number of spaces for each indentation level.
