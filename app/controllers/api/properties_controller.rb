@@ -119,6 +119,8 @@ class Api::PropertiesController < ApplicationApiController
 
             if @property.blank?
                 @property = Property.new
+
+                # Looking for the user owner of the given account
                 wallet = User::Wallet.create_with(
                     user: User.new({
                         email: sync_property_params[:account]
