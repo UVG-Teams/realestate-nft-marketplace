@@ -30,7 +30,7 @@ class AuthToken
             **@custom_payload,
             sub: @current_user.id,
             # exp: 24.hours.from_now.to_i,
-            exp: 5.minutes.from_now.to_i
+            exp: 15.minutes.from_now.to_i
         }
 
         self.token = JWT.encode payload, private_key, @@algorithm
