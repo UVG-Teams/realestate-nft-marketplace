@@ -57,7 +57,7 @@ resource "aws_lightsail_instance" "vesta_cd" {
   availability_zone = "us-east-1a"
   blueprint_id      = "ubuntu_20_04"
   bundle_id         = "small_2_0"
-  key_pair_name     = "lightsail-servers-test"
+  key_pair_name     = "lightsail-server"
 }
 
 resource "aws_lightsail_instance_public_ports" "instance_ports" {
