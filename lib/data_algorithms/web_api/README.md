@@ -12,5 +12,5 @@ Change `venv/lib/python3.10/site-packages/jwt/api_jws.py : 5`,  to:
 
 #### Run backend
 ```
-    flask --app run
+    flask --app flaskr --debug run
 ```

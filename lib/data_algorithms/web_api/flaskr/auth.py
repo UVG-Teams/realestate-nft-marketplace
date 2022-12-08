@@ -14,11 +14,11 @@ import tensorflow as tf
 # import matplotlib.pyplot as plt
 import math
 
-bathroom = tf.keras.models.load_model('./models/bathroom.h5')
-diningroom = tf.keras.models.load_model('./models/diningroom.h5')
-bedroom = tf.keras.models.load_model('./models/bedroom.h5')
-livingroom = tf.keras.models.load_model('./models/livingroom.h5')
-kitchen = tf.keras.models.load_model('./models/kitchen.h5')
+# bathroom = tf.keras.models.load_model('./models/bathroom.h5')
+# diningroom = tf.keras.models.load_model('./models/diningroom.h5')
+# bedroom = tf.keras.models.load_model('./models/bedroom.h5')
+# livingroom = tf.keras.models.load_model('./models/livingroom.h5')
+# kitchen = tf.keras.models.load_model('./models/kitchen.h5')
 IMG_SIZE = 224
 
 class User(object):
