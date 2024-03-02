@@ -4,7 +4,7 @@ Trabajo de graduación UVG titulado "Traspaso inmediato e inteligente de propied
 
 Autores:
 - [Andy Castillo](https://github.com/Andy5am)
-- [Marco Fuentes](https://github.com/marcofuentes05)
+- [Marco José Fuentes](https://github.com/marcofuentes05)
 - [Gian Luca Rivera](https://github.com/LucaBia)
 - [Francisco Rosal](https://github.com/FR98)
 
